@@ -1,5 +1,11 @@
-import React, { useCallback, useState } from 'react';
-import { View, StatusBar, Platform, Alert } from 'react-native';
+import React, { useCallback, useEffect, useState } from 'react';
+import {
+  View,
+  StatusBar,
+  Platform,
+  Alert,
+  ActivityIndicator,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import api from '../../../../shared/service/api';
 
@@ -30,12 +36,11 @@ interface Address {
 
 const Location: React.FC = () => {
   const { navigate, goBack } = useNavigation();
-
   const [loading, setLoading] = useState(false);
+
   const [userCep, setUserCep] = useState<string>();
 
   const handleSearch = useCallback(async () => {
-    console.log('cep:', userCep);
     setLoading(true);
     await api
       .get<Address>('address', {
@@ -45,7 +50,9 @@ const Location: React.FC = () => {
         navigate('LocationDetails', { userAddress: response.data });
       })
       .catch(() => {
-        Alert.alert('Cep não encontrado, tente novamente.');
+        67;
+
+        Alert.alert('CEP não encontrado, tente novamente.');
       });
     setLoading(false);
   }, [navigate, userCep]);
@@ -56,7 +63,6 @@ const Location: React.FC = () => {
         style={{
           backgroundColor: '#FD9E63',
           height: Platform.OS === 'ios' ? 80 : 34,
-          // padding: 10,
         }}
       >
         <Header>
@@ -66,27 +72,39 @@ const Location: React.FC = () => {
           <StatusBar backgroundColor="#FD9E63" barStyle="light-content" />
           <StatusBarText>Endereço de entrega</StatusBarText>
         </Header>
-        <Content>
-          <SearchBox>
-            <InputSearch
-              autoCorrect={false}
-              textContentType="none"
-              value={userCep}
-              placeholder="Pesquisar cep"
-              onChangeText={setUserCep}
-              keyboardType="numeric"
-              autoFocus
-            />
-            <IconSearch name="search" />
-            <CleanSearch accessible onPress={() => setUserCep('')}>
-              <IconClose name="x-circle" />
-            </CleanSearch>
-          </SearchBox>
-          <TextInfo>Informe apenas números do cep</TextInfo>
-          <ConfirmButton onPress={handleSearch}>
-            <ConfirmText>Buscar</ConfirmText>
-          </ConfirmButton>
-        </Content>
+        {loading ? (
+          <View
+            style={{
+              flex: 1,
+              marginTop: 300,
+              justifyContent: 'center',
+            }}
+          >
+            <ActivityIndicator size="large" color="#999" />
+          </View>
+        ) : (
+          <Content>
+            <SearchBox>
+              <InputSearch
+                autoCorrect={false}
+                textContentType="none"
+                value={userCep}
+                placeholder="Pesquisar CEP"
+                onChangeText={setUserCep}
+                keyboardType="numeric"
+                autoFocus
+              />
+              <IconSearch name="search" />
+              <CleanSearch accessible onPress={() => setUserCep('')}>
+                <IconClose name="x-circle" />
+              </CleanSearch>
+            </SearchBox>
+            <TextInfo>Informe apenas números do CEP</TextInfo>
+            <ConfirmButton onPress={handleSearch}>
+              <ConfirmText>Buscar</ConfirmText>
+            </ConfirmButton>
+          </Content>
+        )}
       </View>
     </Container>
   );

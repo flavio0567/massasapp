@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const api = axios.create({
-  // baseURL: 'http://localhost:3333',
-  baseURL: 'http://172.20.11.222:3333',
+  // baseURL: 'https://167.71.150.49',
+  baseURL: 'https://massasapi.massasdacecilia.com.br/',
 });
 
 export default api;

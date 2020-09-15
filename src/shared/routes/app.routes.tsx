@@ -104,6 +104,7 @@ const AppRoutes: React.FC = () => {
   function HomeTabs(): any {
     return (
       <Tab.Navigator
+        initialRouteName="Porch"
         tabBarOptions={{
           activeTintColor: '#F2A900',
           inactiveTintColor: '#fcd0ba',

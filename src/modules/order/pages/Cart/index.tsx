@@ -1,9 +1,8 @@
-/* eslint-disable import/no-duplicates */
 import React, { useCallback, useState } from 'react';
 import { bindActionCreators } from 'redux';
 
 import { connect } from 'react-redux';
-import { View, StatusBar, Platform, Alert } from 'react-native';
+import { View, Platform, Alert } from 'react-native';
 import { ptBR } from 'date-fns/locale';
 import { format, parseISO, isValid } from 'date-fns';
 import Icon from 'react-native-vector-icons/Feather';
@@ -82,7 +81,7 @@ const Cart: React.FC = ({
   const { reset, navigate } = navigation;
   const { user } = useAuth();
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const { deliveryLocalization } = useDeliveryLocalization();
 

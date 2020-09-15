@@ -134,13 +134,7 @@ const Products: React.FC = ({ navigation, route, cartSize }: any) => {
           >
             <View>
               <ProductText>{item.name}</ProductText>
-              <ComplementText>
-                {formatPrice(item.sales_price)}
-                {/* {Intl.NumberFormat('pt-BR', {
-                  style: 'currency',
-                  currency: 'BRL',
-                }).format(item.sales_price)} */}
-              </ComplementText>
+              <ComplementText>{formatPrice(item.sales_price)}</ComplementText>
             </View>
 
             <NavigationButton

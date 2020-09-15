@@ -33,7 +33,7 @@ const Main: React.FC = () => {
 
     const deliveryDateTime = {
       deliveryDate: new Date(''),
-      deliveryTime: new Date(''),
+      deliveryTime: '',
     };
 
     setDateTime(deliveryDateTime);

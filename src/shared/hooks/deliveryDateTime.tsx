@@ -11,7 +11,7 @@ interface DeliveryDateTimeContext {
 }
 
 interface DeliveryDateTimeContextData {
-  deliveryDateTime: object;
+  deliveryDateTime: DeliveryDateTimeContext;
   setDateTime(delivery: DeliveryDateTimeContext): void;
 }
 

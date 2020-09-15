@@ -64,7 +64,7 @@ export const AddressView = styled.View`
 
 export const IconLocation = styled(Icon).attrs({
   size: 24,
-  color: '#ff9000',
+  color: '#fff',
 })`
   padding: 10px 160px 10px;
 `;
@@ -81,7 +81,7 @@ export const AddressLabelText = styled.Text`
   line-height: 24px;
   height: 40px;
   width: 140px;
-  color: #ff9000;
+  color: #fff;
   font-family: 'RobotoSlab-Regular';
 `;
 
@@ -99,11 +99,11 @@ export const AddressNumberInput = styled.TextInput`
   margin-top: 10px;
   font-size: 14px;
   font-family: 'RobotoSlab-Regular';
-  width: 100px;
+  width: 184px;
   height: 34px;
   color: #3f3f3f;
   border-radius: 5px;
-  background: #e0e0e0;
+  background: #fdfbe7;
 `;
 
 export const AddressComplementInput = styled.TextInput`
@@ -115,7 +115,7 @@ export const AddressComplementInput = styled.TextInput`
   height: 38px;
   color: #3f3f3f;
   border-radius: 5px;
-  background: #e0e0e0;
+  background: #fdfbe7;
 `;
 
 export const ConfirmButton = styled(RectButton)`
@@ -125,7 +125,7 @@ export const ConfirmButton = styled(RectButton)`
   border-radius: 10px;
   align-items: center;
   justify-content: center;
-  margin: 320px 30px;
+  margin: 320px 12px;
   width: 332px;
 `;
 

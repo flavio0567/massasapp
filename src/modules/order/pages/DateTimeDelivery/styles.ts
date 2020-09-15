@@ -50,20 +50,19 @@ export const SelectionButton = styled.TouchableOpacity`
 
 export const DeliveryUserView = styled.View`
   border-radius: 5px;
-  background: #f3d5ad;
+  background: #ffb85f;
 `;
 
 export const DeliveryUserInputView = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  /* margin: 10px; */
 `;
 
 export const DeliveryUserLabelText = styled.Text`
   font-size: 12px;
   margin-left: 10px;
-  color: #3f3f3f;
+  color: #fff;
   font-family: 'RobotoSlab-Regular';
 `;
 
@@ -75,7 +74,7 @@ export const DeliveryUserInput = styled.TextInput`
   font-family: 'RobotoSlab-Regular';
   color: #3f3f3f;
   border-radius: 5px;
-  background: #efb661;
+  background: #fdfbe7;
   width: 220px;
 `;
 
@@ -87,7 +86,7 @@ export const DeliveryMobileInput = styled(TextInputMask)`
   font-family: 'RobotoSlab-Regular';
   color: #3f3f3f;
   border-radius: 5px;
-  background: #efb661;
+  background: #fdfbe7;
   width: 220px;
 `;
 
@@ -124,8 +123,8 @@ export const OpenDataPickerButton = styled(RectButton)`
 
 export const OpenDataPickerButtonText = styled.Text`
   font-family: 'RobotoSlab-Regular';
-  font-size: 16px;
-  color: #232129;
+  font-size: 18px;
+  color: #fff;
 `;
 
 export const DateTimeSection = styled.View``;
@@ -146,11 +145,20 @@ export const Schedule = styled.View`
   padding: 24px 0 16px;
 `;
 
-export const LabelText = styled.Text`
-  font-size: 18px;
-  color: #be6a14;
+export const InfoLabelText = styled.Text`
+  font-size: 20px;
+  color: #fff;
   font-family: 'RobotoSlab-Medium';
-  margin: 0 64px 12px;
+  margin-left: 60px;
+  padding: 10px 10px 20px;
+`;
+
+export const HourLabelText = styled.Text`
+  font-size: 20px;
+  color: #efc06e;
+  font-family: 'RobotoSlab-Medium';
+  margin-left: 96px;
+  padding: 10px 10px 20px;
 `;
 
 export const Section = styled.View`

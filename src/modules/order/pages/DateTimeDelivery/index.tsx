@@ -50,7 +50,8 @@ import {
   ConfirmButton,
   StartusBarText,
   Schedule,
-  LabelText,
+  InfoLabelText,
+  HourLabelText,
   Section,
   SectionContent,
   Hour,
@@ -260,12 +261,12 @@ const DateTimeDelivery: React.FC = () => {
 
       <DeliveryInfo>
         <DeliveryUserView>
-          <LabelText>Informações do pedido</LabelText>
+          <InfoLabelText>Informações do pedido</InfoLabelText>
 
           <Form ref={formRef} onSubmit={handleUser}>
             <DeliveryUserInputView>
               <DeliveryUserLabelText>
-                <Icon name="user" color="#ff9000" /> Nome:{' '}
+                <Icon name="user" color="#fff" /> Nome:{' '}
               </DeliveryUserLabelText>
               <DeliveryUserInput
                 onChangeText={(userName: string) => setDeliveryUser(userName)}
@@ -280,7 +281,7 @@ const DateTimeDelivery: React.FC = () => {
             </DeliveryUserInputView>
             <DeliveryUserInputView>
               <DeliveryUserLabelText>
-                <Icon name="phone" color="#ff9000" /> Celular(DDD):{' '}
+                <Icon name="phone" color="#fff" /> Celular(DDD):{' '}
               </DeliveryUserLabelText>
               <DeliveryMobileInput
                 type="cel-phone"
@@ -297,16 +298,6 @@ const DateTimeDelivery: React.FC = () => {
                 returnKeyType="done"
               />
             </DeliveryUserInputView>
-            {/* <SelectionButton
-              onPress={() => {
-                formRef.current?.submitForm();
-              }}
-            >
-              <DeliveryUserLabelText>
-                Confirme os dados para entrega:{' '}
-                <Icon name="thumbs-up" color="#ff9000" />
-              </DeliveryUserLabelText>
-            </SelectionButton> */}
           </Form>
         </DeliveryUserView>
         {/* )} */}
@@ -336,7 +327,7 @@ const DateTimeDelivery: React.FC = () => {
         </Calendar>
 
         <Schedule>
-          <LabelText>Escolha o horário</LabelText>
+          <HourLabelText>Escolha o horário </HourLabelText>
 
           <Section>
             <SectionContent>
