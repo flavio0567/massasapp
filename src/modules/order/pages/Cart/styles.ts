@@ -161,13 +161,16 @@ export const ProductItem = styled.View`
 
   background: #fff;
   border-radius: 4px;
+  margin: 4px 0 4px;
+
+  width: 360px;
 `;
 
 export const ProductDetailText = styled.Text`
   width: 176px;
   flex-flow: row wrap;
   font-size: 14px;
-  margin-right: 10px;
+  margin: 8px 0 8px 8px;
   font-family: 'RobotoSlab-Regular';
   color: #3f3f3f;
 `;

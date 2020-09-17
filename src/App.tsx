@@ -3,6 +3,7 @@ import { View, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
 
+// import './config/config.js';
 import './config/ReactotronConfig.js';
 
 import store from './store';

@@ -12,7 +12,7 @@ export const Container = styled.View`
 export const BannerView = styled.View``;
 
 export const BannerText = styled.Text`
-  font-size: 23px;
+  font-size: 20px;
   font-family: 'RobotoSlab-Regular';
   color: #fd9e63;
 

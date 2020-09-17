@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 
 import { Badge } from 'react-native-elements';
-import { View, StatusBar, Platform } from 'react-native';
+import { View, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { connect } from 'react-redux';
 
@@ -90,7 +90,7 @@ const Order: React.FC = ({ cartSize }: any) => {
             }
           >
             {familyProduct.avatar_url ? (
-              <ProductImage source={{ uri: familyProduct.avatar_url }} />
+              <ProductImage source={{ uri: `${familyProduct.avatar_url}` }} />
             ) : (
               <ProductImage source={ImgLogo} />
             )}

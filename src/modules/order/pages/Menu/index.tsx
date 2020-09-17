@@ -71,11 +71,7 @@ const Menu: React.FC = ({ navigation, route, cartSize }: any) => {
             <ChevronIcon name="chevron-left" size={22} />
           </SelectionButton>
 
-          <StatusBar
-            // translucent
-            backgroundColor="#FD9E63"
-            barStyle="light-content"
-          />
+          <StatusBar backgroundColor="#FD9E63" barStyle="light-content" />
 
           <SelectionButton onPress={() => navigate('Cart', { caller: 'Menu' })}>
             <View>

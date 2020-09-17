@@ -80,7 +80,7 @@ export const AddressLabelText = styled.Text`
   font-size: 14px;
   line-height: 24px;
   height: 40px;
-  width: 140px;
+  width: 150px;
   color: #fff;
   font-family: 'RobotoSlab-Regular';
 `;
