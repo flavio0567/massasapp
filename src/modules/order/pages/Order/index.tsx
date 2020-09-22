@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 
 import { Badge } from 'react-native-elements';
-import { View, Platform } from 'react-native';
+import { View, Platform, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { connect } from 'react-redux';
 
@@ -13,7 +13,6 @@ import {
   Container,
   Header,
   SelectionButton,
-  ChevronIcon,
   CartIcon,
   StartusBarText,
   ProductList,
@@ -32,15 +31,23 @@ export interface Product {
 const Order: React.FC = ({ cartSize }: any) => {
   const { navigate } = useNavigation();
 
+  const [loading, setLoading] = useState(false);
+
   const [familyProducts, setFamilyProducts] = useState<Product[]>([]);
 
-  useEffect(() => {
-    api.get('products/family').then((response) => {
+  const productFamily = useCallback(async () => {
+    setLoading(true);
+    await api.get('products/family').then((response) => {
       const { product } = response.data;
 
       setFamilyProducts(product);
     });
+    setLoading(false);
   }, []);
+
+  useEffect(() => {
+    productFamily();
+  }, [productFamily]);
 
   const navigateToMenu = useCallback(
     (product_family: number, name: string) => {
@@ -58,10 +65,6 @@ const Order: React.FC = ({ cartSize }: any) => {
         }}
       >
         <Header>
-          <SelectionButton onPress={() => navigate('Order')}>
-            <ChevronIcon name="trash-2" size={22} />
-          </SelectionButton>
-
           <StartusBarText>Cardápio</StartusBarText>
           <SelectionButton onPress={() => navigate('Cart', { caller: 'Menu' })}>
             <Badge
@@ -78,26 +81,37 @@ const Order: React.FC = ({ cartSize }: any) => {
           </SelectionButton>
         </Header>
       </View>
-
-      <ProductList
-        data={familyProducts}
-        numColumns={2}
-        keyExtractor={(item) => `key${item.id}`}
-        renderItem={({ item: familyProduct }) => (
-          <ProductContainer
-            onPress={() =>
-              navigateToMenu(familyProduct.product_family, familyProduct.name)
-            }
-          >
-            {familyProduct.avatar_url ? (
-              <ProductImage source={{ uri: `${familyProduct.avatar_url}` }} />
-            ) : (
-              <ProductImage source={ImgLogo} />
-            )}
-            <FamilyProductText>{familyProduct.name}</FamilyProductText>
-          </ProductContainer>
-        )}
-      />
+      {loading ? (
+        <View
+          style={{
+            flex: 1,
+            marginTop: 300,
+            justifyContent: 'center',
+          }}
+        >
+          <ActivityIndicator size="large" color="#999" />
+        </View>
+      ) : (
+        <ProductList
+          data={familyProducts}
+          numColumns={2}
+          keyExtractor={(item) => `key${item.id}`}
+          renderItem={({ item: familyProduct }) => (
+            <ProductContainer
+              onPress={() =>
+                navigateToMenu(familyProduct.product_family, familyProduct.name)
+              }
+            >
+              {familyProduct.avatar_url ? (
+                <ProductImage source={{ uri: `${familyProduct.avatar_url}` }} />
+              ) : (
+                <ProductImage source={ImgLogo} />
+              )}
+              <FamilyProductText>{familyProduct.name}</FamilyProductText>
+            </ProductContainer>
+          )}
+        />
+      )}
     </Container>
   );
 };

@@ -50,7 +50,7 @@ const Success: React.FC = () => {
           <Title> Compra concluída</Title>
           <Description>Obrigado por escolher Massas da Cecilia!</Description>
           <OkButton onPress={handleOkPressed}>
-            <OkButtonText>Ok</OkButtonText>
+            <OkButtonText>Retornar ao início</OkButtonText>
           </OkButton>
         </SuccessView>
       </Container>

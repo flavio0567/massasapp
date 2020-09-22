@@ -118,7 +118,8 @@ export const OpenDataPickerButton = styled(RectButton)`
   border-radius: 10px;
   align-items: center;
   justify-content: center;
-  margin: 12px 14px;
+  margin: 10px 52px;
+  width: 300px;
 `;
 
 export const OpenDataPickerButtonText = styled.Text`
@@ -130,15 +131,13 @@ export const OpenDataPickerButtonText = styled.Text`
 export const DateTimeSection = styled.View``;
 
 export const ConfirmButton = styled(RectButton)`
-  /* position: absolute;
-  top: 140px; */
   height: 46px;
   background: #fd9e63;
   border-radius: 10px;
   align-items: center;
   justify-content: center;
-  margin: 0 30px;
-  width: 340px;
+  margin: 0 52px;
+  width: 300px;
 `;
 
 export const Schedule = styled.View`

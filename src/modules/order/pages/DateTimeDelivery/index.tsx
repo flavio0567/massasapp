@@ -318,8 +318,9 @@ const DateTimeDelivery: React.FC = () => {
                   onChange={handleDateChanged}
                   textColor="#FD9E63"
                   value={deliveryDate}
-                  minuteInterval={15}
-                  minimumDate={deliveryDate}
+                  // minuteInterval={15}
+                  // minimumDate={deliveryDate}
+                  minimumDate={new Date()}
                 />
               </View>
             </DateTimeSection>
@@ -341,7 +342,6 @@ const DateTimeDelivery: React.FC = () => {
                     onPress={() => {
                       handleSelectHour(hour);
                     }}
-                    // onActiveStateChange={handleToggleDatePicker}
                   >
                     <HourText selected={selectedHour === hour}>
                       {hourFullFormatted}

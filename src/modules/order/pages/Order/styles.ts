@@ -11,19 +11,12 @@ export const Container = styled.View`
 
 export const Header = styled.SafeAreaView`
   flex-direction: row;
-
-  justify-content: space-between;
-  align-items: center;
 `;
 
 export const SelectionButton = styled.TouchableOpacity`
   padding: 5px;
-  margin-top: 4px;
-`;
-
-export const ChevronIcon = styled(Icon)`
-  margin-left: 10px;
-  color: #fff;
+  margin-top: 2px;
+  margin-left: -64px;
 `;
 
 export const CartIcon = styled(Icon)`
@@ -36,8 +29,8 @@ export const StartusBarText = styled.Text`
   font-size: 18px;
   font-family: 'RobotoSlab-Regular';
   color: #fff;
-  /* width: 100px; */
-  /* margin: 0 150px 10px; */
+  margin: 0 154px 10px;
+  width: 74px;
 `;
 
 export const ProductList = styled(FlatList as new () => FlatList<Product>)`

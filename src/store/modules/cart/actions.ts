@@ -14,6 +14,7 @@ interface Product {
 interface AddRequestProductProps {
   type: string;
   id: string;
+  quantity: number;
 }
 
 interface AddSuccessProductProps {
@@ -42,10 +43,14 @@ interface AddDateTimeProps {
   deliveryDateTime: string;
 }
 
-export function addToCartRequest(id: string): AddRequestProductProps {
+export function addToCartRequest(
+  id: string,
+  quantity: number,
+): AddRequestProductProps {
   return {
     type: '@cart/ADD_REQUEST',
     id,
+    quantity,
   };
 }
 

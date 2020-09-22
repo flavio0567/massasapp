@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Badge } from 'react-native-elements';
-import { View, StatusBar, Platform } from 'react-native';
+import { View, StatusBar, Platform, Alert } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { formatPrice } from '../../../../util/format';
 
@@ -17,6 +17,13 @@ import {
   ChevronIcon,
   StartusBarText,
   CartIcon,
+  QuantityView,
+  AddRemoveButton,
+  MinusText,
+  TextProdAmount,
+  PlusText,
+  ProductPriceView,
+  ProductLabelText,
   ProductText,
   SelectionButton,
   LineSeparator,
@@ -27,10 +34,14 @@ import {
 } from './styles';
 
 interface Product {
+  id: any;
   code: number;
   name: string;
-  sales_price: number;
+  sales_price: any;
   amount: number;
+  product_family: number;
+  quantity: number;
+  unit: string;
 }
 
 const ProductDetails: React.FC = ({
@@ -38,12 +49,15 @@ const ProductDetails: React.FC = ({
   route,
   cartSize,
   addToCartRequest,
+  updateQuantityRequest,
 }: any) => {
   const { navigate } = navigation;
-  const [userToken, setUserToken] = useState();
-  const [product, setProduct] = useState();
+  const [userToken, setUserToken] = useState<string | null>();
+  const [product, setProduct] = useState<Product>();
 
   const { code, caller } = route.params;
+
+  const [quantity, setQuantity] = useState<number>(0);
 
   useEffect(() => {
     async function getProducName(): Promise<void> {
@@ -62,13 +76,55 @@ const ProductDetails: React.FC = ({
           headers: { Authorization: `Bearer ${userToken}` },
         })
         .then((response) => {
-          setProduct(response.data.product);
+          if (product?.product_family === 1) {
+            response.data.product.quantity = 0.25;
+            setProduct(response.data.product);
+          } else {
+            response.data.product.quantity = 1;
+            setProduct(response.data.product);
+          }
         });
+    }
+
+    if (product?.product_family === 1) {
+      setQuantity(0.25);
+    } else {
+      setQuantity(1);
     }
   }, [code, userToken, product]);
 
+  function increment(prd: Product): void {
+    if (product?.product_family === 1) {
+      updateQuantityRequest(prd.id, quantity + 0.25);
+      setQuantity(quantity + 0.25);
+    } else {
+      updateQuantityRequest(prd.id, quantity + 1);
+      setQuantity(quantity + 1);
+    }
+  }
+
+  function decrement(prd: Product): void {
+    if (quantity === 0) return;
+
+    if (product?.product_family === 1) {
+      updateQuantityRequest(prd.id, quantity - 0.25);
+      setQuantity(quantity - 0.25);
+    } else {
+      updateQuantityRequest(prd.id, quantity - 1);
+      setQuantity(quantity - 1);
+    }
+  }
+
   function handleAddProduct(id: string): void {
-    addToCartRequest(id);
+    if (quantity === 0) {
+      Alert.alert(
+        'Erro ao incluir o produto no carrinho',
+        'Toque no botão + para selecionar a quantidade desejada.',
+      );
+      return;
+    }
+
+    addToCartRequest(id, quantity);
 
     navigate('Order');
   }
@@ -124,19 +180,50 @@ const ProductDetails: React.FC = ({
       </View>
       <View>
         <ProductText>{product?.name}</ProductText>
-        <ProductText>
-          {formatPrice(product?.sales_price)}
-          {/* {Intl.NumberFormat('pt-BR', {
-            style: 'currency',
-            currency: 'BRL',
-          }).format(product?.sales_price)} */}
-        </ProductText>
+        <QuantityView>
+          <ProductLabelText>Quantidade:</ProductLabelText>
+          <AddRemoveButton
+            onPress={() => {
+              decrement(product);
+            }}
+          >
+            <MinusText>-</MinusText>
+          </AddRemoveButton>
+          {product?.product_family === 1 ? (
+            <TextProdAmount>{quantity.toFixed(3)}</TextProdAmount>
+          ) : (
+            <TextProdAmount style={{ marginRight: -34 }}>
+              {quantity}
+            </TextProdAmount>
+          )}
+          <AddRemoveButton
+            onPress={() => {
+              increment(product);
+            }}
+          >
+            <PlusText>+</PlusText>
+          </AddRemoveButton>
+          {product?.product_family === 1 ? (
+            <TextProdAmount>{product?.unit}</TextProdAmount>
+          ) : null}
+        </QuantityView>
+
+        <ProductPriceView>
+          <ProductLabelText>Preço unidade/Kg</ProductLabelText>
+          <ProductText style={{ marginLeft: 34 }}>
+            {formatPrice(product?.sales_price)}
+          </ProductText>
+        </ProductPriceView>
 
         <LineSeparator />
 
         <AddInformation>
-          Informações adicionais sobre o produto, quando necessáriom podem ser
+          Informações adicionais sobre o produto, quando necessário, podem ser
           solicitadas.
+        </AddInformation>
+        <AddInformation>
+          O valor abaixo pode variar de acordo com o peso final do produto na
+          embalagem.
         </AddInformation>
       </View>
 
@@ -144,11 +231,7 @@ const ProductDetails: React.FC = ({
         <ButtonSelection onPress={() => handleAddProduct(product?.id)}>
           <ButtonText>Confirmar</ButtonText>
           <ButtonText>
-            {formatPrice(product?.sales_price)}
-            {/* {Intl.NumberFormat('pt-BR', {
-              style: 'currency',
-              currency: 'BRL',
-            }).format(product?.sales_price)} */}
+            {formatPrice(product?.sales_price * quantity)}
           </ButtonText>
         </ButtonSelection>
       </ButtonContainer>
@@ -156,11 +239,11 @@ const ProductDetails: React.FC = ({
   );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any): any => ({
   cartSize: state.cart.length,
 });
 
-const mapDispatchToProps = (dispatch) =>
+const mapDispatchToProps = (dispatch: any): any =>
   bindActionCreators(CartActions, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductDetails);

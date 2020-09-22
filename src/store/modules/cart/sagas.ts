@@ -5,7 +5,7 @@ import api from '../../../shared/service/api';
 
 import { addToCartSuccess, updateQuantitySuccess } from './actions';
 
-function* addToCart({ id }: any): SagaIterator {
+function* addToCart({ id, quantity }: any): SagaIterator {
   const productExists = yield select((state) =>
     state.cart.find((p: any) => p.id === id),
   );
@@ -14,11 +14,11 @@ function* addToCart({ id }: any): SagaIterator {
 
   const stockAmount = stock.data.product.amount;
 
-  const currentAQuantity = productExists ? productExists.quantity : 0;
+  const currentQuantity = productExists
+    ? productExists.quantity + quantity
+    : quantity;
 
-  const quantity = currentAQuantity + 1;
-
-  if (quantity > stockAmount) {
+  if (currentQuantity > stockAmount) {
     Alert.alert(
       'Não foi possível adicionar ao carrinho',
       'Quantidade solicitada do produto não disponível.',
@@ -33,8 +33,8 @@ function* addToCart({ id }: any): SagaIterator {
 
     const data = {
       ...response.data.product,
-      sales_prouct: Number(response.data.productsales_product),
-      quantity: 1,
+      sales_price: Number(response.data.product.sales_price),
+      quantity,
     };
     yield put(addToCartSuccess(data));
   }

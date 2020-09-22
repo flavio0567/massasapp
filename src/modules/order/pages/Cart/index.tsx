@@ -22,6 +22,7 @@ import {
   LineSeparator,
   Delivery,
   SelectionButton,
+  TrashButton,
   ChevronIcon,
   StatusBarText,
   ProductText,
@@ -40,6 +41,7 @@ import {
   ListProducts,
   ProductDetailText,
   ProductItem,
+  ProductItemView,
   TotalText,
   SubTotalLabel,
   TextProdAmount,
@@ -68,6 +70,7 @@ export interface Product {
   subTotal: number;
   amount: number;
   unit: string;
+  product_family: number;
 }
 
 const Cart: React.FC = ({
@@ -113,11 +116,19 @@ const Cart: React.FC = ({
   }
 
   function increment(product: Product): void {
-    updateQuantityRequest(product.id, product.quantity + 1);
+    if (product?.product_family === 1) {
+      updateQuantityRequest(product.id, product.quantity + 0.25);
+    } else {
+      updateQuantityRequest(product.id, product.quantity + 1);
+    }
   }
 
   function decrement(product: Product): void {
-    updateQuantityRequest(product.id, product.quantity - 1);
+    if (product?.product_family === 1) {
+      updateQuantityRequest(product.id, product.quantity - 0.25);
+    } else {
+      updateQuantityRequest(product.id, product.quantity - 1);
+    }
   }
 
   function handleRemoveFromCart(id: string): void {
@@ -227,9 +238,9 @@ const Cart: React.FC = ({
         <Header>
           <StatusBarText>Pedido</StatusBarText>
 
-          <SelectionButton onPress={handleEmptyCart}>
+          <TrashButton onPress={handleEmptyCart}>
             <ChevronIcon name="trash-2" size={22} />
-          </SelectionButton>
+          </TrashButton>
         </Header>
       </View>
 
@@ -259,7 +270,7 @@ const Cart: React.FC = ({
                   size={16}
                   style={{
                     color: '#ff9000',
-                    left: 338,
+                    left: 398,
                     top: -48,
                     width: 18,
                   }}
@@ -344,40 +355,50 @@ const Cart: React.FC = ({
         </LineSeparator>
 
         <ListProducts
-          contentInset={{ top: 0, bottom: 30, left: 0, right: 0 }}
-          style={{ paddingLeft: 10 }}
           data={cart}
           keyExtractor={(item: Product) => String(item.code)}
           renderItem={({ item: product }) => (
             <ProductItem key={product.code}>
-              <ProductDetailText>{product.name} </ProductDetailText>
-              <QuantityView>
-                <AddRemoveButton
-                  onPress={() => {
-                    decrement(product);
-                  }}
-                >
-                  <MinusText>-</MinusText>
-                </AddRemoveButton>
+              <View>
+                <ProductDetailText>{product.name} </ProductDetailText>
+              </View>
+              <ProductItemView>
+                <QuantityView>
+                  <AddRemoveButton
+                    onPress={() => {
+                      decrement(product);
+                    }}
+                  >
+                    <MinusText>-</MinusText>
+                  </AddRemoveButton>
 
-                <TextProdAmount>{product.quantity}</TextProdAmount>
-                <AddRemoveButton
-                  onPress={() => {
-                    increment(product);
-                  }}
+                  {product?.product_family === 1 ? (
+                    <TextProdAmount>
+                      {product.quantity.toFixed(3)}
+                    </TextProdAmount>
+                  ) : (
+                    <TextProdAmount>{product.quantity}</TextProdAmount>
+                  )}
+
+                  <AddRemoveButton
+                    onPress={() => {
+                      increment(product);
+                    }}
+                  >
+                    <PlusText>+</PlusText>
+                  </AddRemoveButton>
+                  <TextProdAmount>{product.unit}</TextProdAmount>
+                </QuantityView>
+                <SubTotalView>
+                  <SubTotalLabel>Sub-total</SubTotalLabel>
+                  <TotalText>{product.subTotal}</TotalText>
+                </SubTotalView>
+                <RemoveItemButton
+                  onPress={() => handleRemoveFromCart(product.id)}
                 >
-                  <PlusText>+</PlusText>
-                </AddRemoveButton>
-              </QuantityView>
-              <SubTotalView>
-                <SubTotalLabel>Sub-total</SubTotalLabel>
-                <TotalText>{product.subTotal}</TotalText>
-              </SubTotalView>
-              <RemoveItemButton
-                onPress={() => handleRemoveFromCart(product.id)}
-              >
-                <DeleteIcon name="trash-2" size={18} />
-              </RemoveItemButton>
+                  <DeleteIcon name="trash-2" size={18} />
+                </RemoveItemButton>
+              </ProductItemView>
             </ProductItem>
           )}
         />

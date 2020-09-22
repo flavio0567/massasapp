@@ -4,10 +4,14 @@ type ReducerProps = {
   reducer: string;
 };
 
-type StateProp = Array<{
+interface StateProp {
+  quantity(quantity: any): any;
+  id: string;
   type: string;
   payload: any;
-}>;
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  product: object;
+}
 
 export default function cart(state = [], action: StateProp): ReducerProps[] {
   switch (action.type) {
