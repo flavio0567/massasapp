@@ -68,7 +68,13 @@ const SignUp: React.FC = () => {
           abortEarly: false,
         });
 
-        await api.post('/users', data);
+        const userExists = await api.get(`/users/mobile/${data.mobile}`);
+
+        if (userExists) {
+          await api.put('/users', data);
+        } else {
+          await api.post('/users', data);
+        }
 
         Alert.alert(
           'Cadastro realizado com sucesso!',
