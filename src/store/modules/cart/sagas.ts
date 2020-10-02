@@ -12,7 +12,7 @@ function* addToCart({ id, quantity }: any): SagaIterator {
 
   const stock = yield call(api.get, `/products/${id}`);
 
-  const stockAmount = stock.data.product.amount;
+  const stockAmount = stock.data.amount;
 
   const currentQuantity = productExists
     ? productExists.quantity + quantity
@@ -32,8 +32,8 @@ function* addToCart({ id, quantity }: any): SagaIterator {
     const response = yield call(api.get, `products/${id}`);
 
     const data = {
-      ...response.data.product,
-      sales_price: Number(response.data.product.sales_price),
+      ...response.data,
+      sales_price: Number(response.data.sales_price),
       quantity,
     };
     yield put(addToCartSuccess(data));
@@ -45,7 +45,7 @@ function* updateQuantity({ id, quantity }: any) {
   if (quantity <= 0) return;
 
   const stock = yield call(api.get, `products/${id}`);
-  const stockAmount = stock.data.product.amount;
+  const stockAmount = stock.data.amount;
 
   if (quantity > stockAmount) {
     quantity -= 1;

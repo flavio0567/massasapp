@@ -184,10 +184,27 @@ const DateTimeDelivery: React.FC = () => {
 
     await deliveryData(deliveryUserMobile, deliveryUser);
 
-    const deliveryDateTime = {
-      deliveryDate,
-      deliveryTime: format(new Date().setHours(selectedHour), 'HH:00'),
-    };
+    let deliveryDateTime;
+
+    try {
+      const time = format(new Date().setHours(selectedHour), 'HH:00');
+
+      const date = new Date(deliveryDate);
+
+      date.setHours(selectedHour);
+      date.setMinutes(0);
+      setDeliveryDate(date);
+
+      deliveryDateTime = {
+        deliveryDate: date,
+        deliveryTime: time,
+      };
+    } catch (err) {
+      Alert.alert(
+        'Erro ao criar o agendamentp:',
+        'Ocorreu um erro ao tentar criar o agendamento, tente novamente.',
+      );
+    }
 
     dispatch({
       type: '@order/ADD_DATE_TIME',
@@ -232,14 +249,6 @@ const DateTimeDelivery: React.FC = () => {
     },
     [deliveryData, deliveryUserMobile],
   );
-
-  // const handleUserMobile = useCallback(
-  //   async (userMobile: string) => {
-  //     setDeliveryUserMobile(userMobile);
-  //     await deliveryData(userMobile, deliveryUser);
-  //   },
-  //   [deliveryData, deliveryUser],
-  // );
 
   return (
     <Container>
