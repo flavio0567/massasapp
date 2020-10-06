@@ -9,7 +9,7 @@ export const Container = styled.View`
 `;
 
 export const ChevronIcon = styled(Icon)`
-  margin-left: 10px;
+  margin-right: 20px;
   color: #fff;
 `;
 

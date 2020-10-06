@@ -76,7 +76,7 @@ const ProductDetails: React.FC = ({
           headers: { Authorization: `Bearer ${userToken}` },
         })
         .then((response) => {
-          if (product?.product_family === 1) {
+          if (product?.product_family === 1 || product?.product_family === 3) {
             response.data.product.quantity = 0.25;
             setProduct(response.data.product);
           } else {
@@ -86,7 +86,7 @@ const ProductDetails: React.FC = ({
         });
     }
 
-    if (product?.product_family === 1) {
+    if (product?.product_family === 1 || product?.product_family === 3) {
       setQuantity(0.25);
     } else {
       setQuantity(1);
@@ -94,7 +94,7 @@ const ProductDetails: React.FC = ({
   }, [code, userToken, product]);
 
   function increment(prd: Product): void {
-    if (product?.product_family === 1) {
+    if (product?.product_family === 1 || product?.product_family === 3) {
       updateQuantityRequest(prd.id, quantity + 0.25);
       setQuantity(quantity + 0.25);
     } else {
@@ -106,7 +106,7 @@ const ProductDetails: React.FC = ({
   function decrement(prd: Product): void {
     if (quantity === 0) return;
 
-    if (product?.product_family === 1) {
+    if (product?.product_family === 1 || product?.product_family === 3) {
       updateQuantityRequest(prd.id, quantity - 0.25);
       setQuantity(quantity - 0.25);
     } else {
@@ -189,7 +189,7 @@ const ProductDetails: React.FC = ({
           >
             <MinusText>-</MinusText>
           </AddRemoveButton>
-          {product?.product_family === 1 ? (
+          {product?.product_family === 1 || product?.product_family === 3 ? (
             <TextProdAmount>{quantity.toFixed(3)}</TextProdAmount>
           ) : (
             <TextProdAmount style={{ marginRight: -34 }}>
@@ -203,7 +203,7 @@ const ProductDetails: React.FC = ({
           >
             <PlusText>+</PlusText>
           </AddRemoveButton>
-          {product?.product_family === 1 ? (
+          {product?.product_family === 1 || product?.product_family === 3 ? (
             <TextProdAmount>{product?.unit}</TextProdAmount>
           ) : null}
         </QuantityView>

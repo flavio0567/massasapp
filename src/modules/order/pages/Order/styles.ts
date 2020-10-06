@@ -29,8 +29,8 @@ export const StartusBarText = styled.Text`
   font-size: 18px;
   font-family: 'RobotoSlab-Regular';
   color: #fff;
-  margin: 0 154px 10px;
-  width: 74px;
+  margin: 0 156px 10px;
+  width: 78px;
 `;
 
 export const ProductList = styled(FlatList as new () => FlatList<Product>)`

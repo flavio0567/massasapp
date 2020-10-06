@@ -116,7 +116,7 @@ const Cart: React.FC = ({
   }
 
   function increment(product: Product): void {
-    if (product?.product_family === 1) {
+    if (product?.product_family === 1 || product?.product_family === 3) {
       updateQuantityRequest(product.id, product.quantity + 0.25);
     } else {
       updateQuantityRequest(product.id, product.quantity + 1);
@@ -124,7 +124,7 @@ const Cart: React.FC = ({
   }
 
   function decrement(product: Product): void {
-    if (product?.product_family === 1) {
+    if (product?.product_family === 1 || product?.product_family === 3) {
       updateQuantityRequest(product.id, product.quantity - 0.25);
     } else {
       updateQuantityRequest(product.id, product.quantity - 1);
@@ -270,7 +270,7 @@ const Cart: React.FC = ({
                   size={16}
                   style={{
                     color: '#ff9000',
-                    left: 398,
+                    left: 418,
                     top: -48,
                     width: 18,
                   }}
@@ -372,7 +372,8 @@ const Cart: React.FC = ({
                     <MinusText>-</MinusText>
                   </AddRemoveButton>
 
-                  {product?.product_family === 1 ? (
+                  {product?.product_family === 1 ||
+                  product?.product_family === 3 ? (
                     <TextProdAmount>
                       {product.quantity.toFixed(3)}
                     </TextProdAmount>
