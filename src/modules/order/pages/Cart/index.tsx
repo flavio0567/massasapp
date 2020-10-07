@@ -321,7 +321,8 @@ const Cart: React.FC = ({
           ) : (
             <>
               <ProductText>
-                <Icon name="map-pin" /> Avenida Prof. Adib Chaib, 2926
+                <Icon name="map-pin" /> Avenida Prof. Adib Chaib, 2926 - Mogi
+                Mirim
               </ProductText>
             </>
           )}
