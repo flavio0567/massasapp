@@ -52,7 +52,7 @@ export const SelectionButton = styled.TouchableOpacity`
 `;
 
 export const Content = styled.View`
-  margin: 44px 10px 20px;
+  margin: 34px 10px 20px;
 `;
 
 export const AddressView = styled.View`
@@ -80,7 +80,7 @@ export const AddressLabelText = styled.Text`
   font-size: 14px;
   line-height: 24px;
   height: 40px;
-  width: 150px;
+  width: 112px;
   color: #fff;
   font-family: 'RobotoSlab-Regular';
 `;
@@ -99,7 +99,7 @@ export const AddressNumberInput = styled.TextInput`
   margin-top: 10px;
   font-size: 14px;
   font-family: 'RobotoSlab-Regular';
-  width: 184px;
+  width: 170px;
   height: 34px;
   color: #3f3f3f;
   border-radius: 5px;
@@ -111,7 +111,7 @@ export const AddressComplementInput = styled.TextInput`
   margin-top: 10px;
   font-size: 14px;
   font-family: 'RobotoSlab-Regular';
-  width: 184px;
+  width: 170px;
   height: 38px;
   color: #3f3f3f;
   border-radius: 5px;
@@ -125,8 +125,8 @@ export const ConfirmButton = styled(RectButton)`
   border-radius: 10px;
   align-items: center;
   justify-content: center;
-  margin: 320px 12px;
-  width: 332px;
+  margin: 306px 50px;
+  width: 250px;
 `;
 
 export const ConfirmText = styled.Text`
@@ -136,4 +136,12 @@ export const ConfirmText = styled.Text`
   font-size: 18px;
   font-family: 'RobotoSlab-Regular';
   color: #fff;
+`;
+
+export const AddInformation = styled.Text`
+  margin: 66px 54px;
+  color: #666;
+  font-size: 12px;
+  font-family: 'RobotoSlab-Regular';
+  width: 220px;
 `;

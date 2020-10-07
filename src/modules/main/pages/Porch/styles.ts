@@ -9,11 +9,12 @@ export const Container = styled.View`
 `;
 
 export const ButtonContainer = styled.View`
+  position: relative;
   flex-direction: row;
   justify-content: center;
   align-self: flex-end;
-  /* top: 544px; */
-  top: ${Platform.OS === 'ios' ? 650 : 530}px;
+
+  top: ${Platform.OS === 'ios' && Platform.Version >= 13 ? 520 : 440}px;
 `;
 
 export const ButtonSelection = styled.TouchableOpacity`

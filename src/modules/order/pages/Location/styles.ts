@@ -97,8 +97,8 @@ export const ConfirmButton = styled(RectButton)`
   border-radius: 10px;
   align-items: center;
   justify-content: center;
-  margin: 100px 24px;
-  width: 332px;
+  margin: 100px 74px;
+  width: 230px;
 `;
 
 export const ConfirmText = styled.Text`

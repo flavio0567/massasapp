@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ImageBackground, Image } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
+import { Platform } from 'react-native';
+
 import massasImg from '../../../assets/massa_artesanal.png';
 import logoImg from '../../../assets/logo_massas.png';
 
@@ -17,6 +19,15 @@ import {
 
 const Porch: React.FC = () => {
   const { navigate } = useNavigation();
+
+  useEffect(() => {
+    // const majorVersionIOS = parseInt(Platform.Version, 10);
+    if (Platform.Version <= 13) {
+      console.tron.log('Work around a change in behavior');
+    } else {
+      console.tron.log('lower then ');
+    }
+  }, []);
 
   return (
     <Container>

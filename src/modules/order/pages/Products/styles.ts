@@ -56,9 +56,9 @@ export const LineSeparator = styled.View`
 
 export const ProductText = styled.Text`
   flex-flow: row wrap;
-  margin: 20px 20px 0;
+  margin: 18px 18px 0;
   color: #666;
-  max-width: 300px;
+  max-width: 250px;
   font-size: 18px;
   font-family: 'RobotoSlab-Regular';
 `;

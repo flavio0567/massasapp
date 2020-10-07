@@ -61,7 +61,7 @@ const Order: React.FC = ({ cartSize }: any) => {
       <View
         style={{
           backgroundColor: '#FD9E63',
-          height: Platform.OS === 'ios' ? 80 : 40,
+          height: Platform.OS === 'ios' && Platform.Version >= 13 ? 80 : 60,
         }}
       >
         <Header>

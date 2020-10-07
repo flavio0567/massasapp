@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/Feather';
-import { FlatList } from 'react-native';
+import { FlatList, Platform } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import { Product } from '.';
 
@@ -22,26 +22,31 @@ export const SelectionButton = styled.TouchableOpacity`
 export const CartIcon = styled(Icon)`
   margin-right: 20px;
   color: #fff;
-  z-index: -1;
+  /* z-index: -1; */
 `;
 
 export const StartusBarText = styled.Text`
   font-size: 18px;
   font-family: 'RobotoSlab-Regular';
   color: #fff;
-  margin: 0 156px 10px;
   width: 78px;
+
+  margin-left: ${Platform.OS === 'ios' && Platform.Version >= 13 ? 142 : 90}px;
+  margin-right: ${Platform.OS === 'ios' && Platform.Version >= 13
+    ? 162
+    : 164}px;
 `;
 
 export const ProductList = styled(FlatList as new () => FlatList<Product>)`
-  padding: 12px 8px;
+  padding: 10px 8px;
 `;
 
 export const ProductContainer = styled(RectButton)`
-  width: 168px;
+  width: 172px;
+  flex-shrink: 2;
   height: 164px;
   background: #ffcc50;
-  margin: 6px;
+  margin: 4px;
   border-radius: 6px;
   border: 0.5px solid #ffcc50;
 `;
@@ -57,5 +62,5 @@ export const FamilyProductText = styled.Text`
   width: 152px;
   color: #fff;
   font-family: 'RobotoSlab-Regular';
-  margin: 0 10px;
+  margin: 0 6px;
 `;

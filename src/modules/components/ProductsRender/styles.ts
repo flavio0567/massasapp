@@ -27,7 +27,7 @@ export const LineSeparator = styled.View`
 
 export const ProductText = styled.Text`
   flex-flow: row wrap;
-  width: 210px;
+  width: 180px;
   color: #666;
   /* margin: 0 0 0 10px; */
   font-size: 16px;

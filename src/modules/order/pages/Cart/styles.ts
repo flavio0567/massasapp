@@ -37,7 +37,7 @@ export const CartIcon = styled(Icon)`
 
 export const TrashButton = styled.TouchableOpacity`
   padding: 5px;
-  margin-left: -30px;
+  margin-left: -96px;
 `;
 export const SelectionButton = styled.TouchableOpacity`
   padding: 5px;
@@ -136,11 +136,11 @@ export const DeliveryTextInfo = styled.Text`
 `;
 
 export const AddRemoveButton = styled(RectButton)`
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   background: #fd9e63;
-  border-radius: 12px;
-  margin: 14px -6px;
+  border-radius: 14px;
+  margin: 12px -6px;
   justify-content: center;
   align-items: center;
 `;
@@ -183,8 +183,9 @@ export const ProductDetailText = styled.Text`
 
 export const QuantityView = styled.View`
   flex-direction: row;
+  justify-content: space-evenly;
   width: 180px;
-  margin: 0 10px;
+  margin: 0 20px;
 `;
 
 export const DeleteIcon = styled(Icon)`

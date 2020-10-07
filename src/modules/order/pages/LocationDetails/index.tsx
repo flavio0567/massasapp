@@ -25,6 +25,7 @@ import {
   AddressDetailView,
   ConfirmButton,
   ConfirmText,
+  AddInformation,
 } from './styles';
 
 export interface Address {
@@ -105,7 +106,7 @@ const LocationDetails: React.FC = ({ route }: any) => {
                 {userAddress.city} - {userAddress.state}
               </AddressText>
               <AddressDetailView>
-                <AddressLabelText>Informe o número: </AddressLabelText>
+                <AddressLabelText>Número: </AddressLabelText>
                 <AddressNumberInput
                   onChangeText={(num: string) => setNumberAddress(num)}
                   autoCorrect={false}
@@ -132,6 +133,11 @@ const LocationDetails: React.FC = ({ route }: any) => {
           <ConfirmButton onPress={handleConfirmLocation}>
             <ConfirmText>Confirme o Endereço</ConfirmText>
           </ConfirmButton>
+          <AddInformation>
+            Taxa de Delivery: Mogi Mirim centro R$3,00, demais regiões R$ 5,00.
+            Mogi Guaçu R$ 10,00. Outras regiões sob consulta. O valor final do
+            pedido será confirmado por telefone.
+          </AddInformation>
         </Content>
       </View>
     </Container>

@@ -232,7 +232,7 @@ const Cart: React.FC = ({
       <View
         style={{
           backgroundColor: '#FD9E63',
-          height: Platform.OS === 'ios' ? 80 : 40,
+          height: Platform.OS === 'ios' && Platform.Version >= 12 ? 80 : 40,
         }}
       >
         <Header>
@@ -270,7 +270,7 @@ const Cart: React.FC = ({
                   size={16}
                   style={{
                     color: '#ff9000',
-                    left: 418,
+                    left: 398,
                     top: -48,
                     width: 18,
                   }}
@@ -378,7 +378,11 @@ const Cart: React.FC = ({
                       {product.quantity.toFixed(3)}
                     </TextProdAmount>
                   ) : (
-                    <TextProdAmount>{product.quantity}</TextProdAmount>
+                    <TextProdAmount
+                      style={{ marginRight: -12, marginLeft: 20 }}
+                    >
+                      {product.quantity}
+                    </TextProdAmount>
                   )}
 
                   <AddRemoveButton

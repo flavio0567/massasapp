@@ -290,7 +290,7 @@ const DateTimeDelivery: React.FC = () => {
             </DeliveryUserInputView>
             <DeliveryUserInputView>
               <DeliveryUserLabelText>
-                <Icon name="phone" color="#fff" /> Celular(DDD):{' '}
+                <Icon name="phone" color="#fff" /> Celular (DDD):{' '}
               </DeliveryUserLabelText>
               <DeliveryMobileInput
                 type="cel-phone"

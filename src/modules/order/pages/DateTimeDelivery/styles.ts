@@ -55,7 +55,7 @@ export const DeliveryUserView = styled.View`
 
 export const DeliveryUserInputView = styled.View`
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 `;
 
@@ -87,7 +87,7 @@ export const DeliveryMobileInput = styled(TextInputMask)`
   color: #3f3f3f;
   border-radius: 5px;
   background: #fdfbe7;
-  width: 220px;
+  width: 180px;
 `;
 
 export const ContentDateTime = styled.ScrollView``;
@@ -118,8 +118,8 @@ export const OpenDataPickerButton = styled(RectButton)`
   border-radius: 10px;
   align-items: center;
   justify-content: center;
-  margin: 10px 52px;
-  width: 300px;
+  margin: 10px 60px;
+  width: 220px;
 `;
 
 export const OpenDataPickerButtonText = styled.Text`
@@ -136,19 +136,17 @@ export const ConfirmButton = styled(RectButton)`
   border-radius: 10px;
   align-items: center;
   justify-content: center;
-  margin: 0 52px;
-  width: 300px;
+  margin: 0 60px 20px;
+  width: 220px;
 `;
 
-export const Schedule = styled.View`
-  padding: 24px 0 16px;
-`;
+export const Schedule = styled.View``;
 
 export const InfoLabelText = styled.Text`
-  font-size: 20px;
+  font-size: 18px;
   color: #fff;
   font-family: 'RobotoSlab-Medium';
-  margin-left: 60px;
+  margin-left: 50px;
   padding: 10px 10px 20px;
 `;
 

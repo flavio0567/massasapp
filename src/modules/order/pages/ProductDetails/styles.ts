@@ -23,6 +23,7 @@ export const StartusBarText = styled.Text`
   font-size: 18px;
   font-family: 'RobotoSlab-Regular';
   color: #fff;
+  margin-top: 6px;
 `;
 
 export const CartIcon = styled(Icon)`
@@ -33,7 +34,7 @@ export const CartIcon = styled(Icon)`
 export const QuantityView = styled.View`
   flex-direction: row;
   width: 80px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 
 export const AddRemoveButton = styled(RectButton)`
@@ -85,6 +86,7 @@ export const ProductText = styled.Text`
 
 export const SelectionButton = styled.TouchableOpacity`
   padding: 5px;
+  margin-top: 6px;
 `;
 
 export const AddInformation = styled.Text`
