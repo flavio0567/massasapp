@@ -29,6 +29,7 @@ export const StartusBarText = styled.Text`
   font-size: 18px;
   font-family: 'RobotoSlab-Regular';
   color: #fff;
+
   width: 78px;
 
   margin-left: ${Platform.OS === 'ios' && Platform.Version >= 13 ? 142 : 90}px;
@@ -42,7 +43,8 @@ export const ProductList = styled(FlatList as new () => FlatList<Product>)`
 `;
 
 export const ProductContainer = styled(RectButton)`
-  width: 172px;
+  width: 190px;
+  flex-grow: 4;
   flex-shrink: 2;
   height: 164px;
   background: #ffcc50;
