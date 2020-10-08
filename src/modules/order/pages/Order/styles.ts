@@ -30,9 +30,9 @@ export const StartusBarText = styled.Text`
   font-family: 'RobotoSlab-Regular';
   color: #fff;
 
-  width: 78px;
+  width: 80px;
 
-  margin-left: ${Platform.OS === 'ios' && Platform.Version >= 13 ? 142 : 90}px;
+  margin-left: ${Platform.OS === 'ios' && Platform.Version >= 13 ? 140 : 90}px;
   margin-right: ${Platform.OS === 'ios' && Platform.Version >= 13
     ? 162
     : 164}px;
