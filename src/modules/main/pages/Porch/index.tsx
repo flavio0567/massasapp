@@ -20,15 +20,6 @@ import {
 const Porch: React.FC = () => {
   const { navigate } = useNavigation();
 
-  useEffect(() => {
-    // const majorVersionIOS = parseInt(Platform.Version, 10);
-    if (Platform.Version <= 13) {
-      console.tron.log('Work around a change in behavior');
-    } else {
-      console.tron.log('lower then ');
-    }
-  }, []);
-
   return (
     <Container>
       <ImageBackground

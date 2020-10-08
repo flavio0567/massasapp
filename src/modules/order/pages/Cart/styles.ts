@@ -118,7 +118,7 @@ export const ProductText = styled.Text`
 `;
 
 export const DeliveryLabelText = styled.Text`
-  margin: 2px 10px 0;
+  margin: 12px 10px 0;
   color: #ff9000;
   font-size: 12px;
   font-family: 'RobotoSlab-Regular';
