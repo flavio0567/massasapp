@@ -30,12 +30,12 @@ export const StartusBarText = styled.Text`
   font-family: 'RobotoSlab-Regular';
   color: #fff;
 
-  width: 80px;
+  width: 82px;
 
-  margin-left: ${Platform.OS === 'ios' && Platform.Version >= 13 ? 140 : 90}px;
+  margin-left: ${Platform.OS === 'ios' && Platform.Version >= 13 ? 142 : 140}px;
   margin-right: ${Platform.OS === 'ios' && Platform.Version >= 13
     ? 162
-    : 164}px;
+    : 112}px;
 `;
 
 export const ProductList = styled(FlatList as new () => FlatList<Product>)`

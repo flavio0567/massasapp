@@ -40,7 +40,7 @@ const Order: React.FC = ({ cartSize }: any) => {
     setLoading(true);
     await api.get('products/family').then((response) => {
       const { product } = response.data;
-      console.tron.log('uri:', product);
+
       setFamilyProducts(product);
     });
     setLoading(false);
@@ -117,6 +117,6 @@ const Order: React.FC = ({ cartSize }: any) => {
   );
 };
 
-export default connect((state) => ({
+export default connect((state: any) => ({
   cartSize: state.cart.length,
 }))(Order);
