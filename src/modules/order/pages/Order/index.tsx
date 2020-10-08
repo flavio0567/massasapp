@@ -25,7 +25,8 @@ export interface Product {
   id: string;
   name: string;
   product_family: number;
-  avatar_url: HTMLImageElement;
+  avatar_url: any;
+  // avatar_url: HTMLImageElement;
 }
 
 const Order: React.FC = ({ cartSize }: any) => {
@@ -39,7 +40,7 @@ const Order: React.FC = ({ cartSize }: any) => {
     setLoading(true);
     await api.get('products/family').then((response) => {
       const { product } = response.data;
-
+      console.tron.log('uri:', product);
       setFamilyProducts(product);
     });
     setLoading(false);

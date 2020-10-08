@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ImageBackground, Image } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
-import { Platform } from 'react-native';
 
 import massasImg from '../../../assets/massa_artesanal.png';
 import logoImg from '../../../assets/logo_massas.png';
