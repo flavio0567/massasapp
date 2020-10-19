@@ -86,11 +86,11 @@ const SignUp: React.FC = () => {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
 
-          console.tron.log(errors);
+          console.log(errors);
 
           formRef.current?.setErrors(errors);
         }
-        console.tron.log(err);
+        console.log(err);
 
         Alert.alert(
           'Erro no cadastro',
@@ -137,7 +137,7 @@ const SignUp: React.FC = () => {
                 keyboardType="phone-pad"
                 name="mobile"
                 icon="phone"
-                placeholder="Número do celular"
+                placeholder="Número do celular com DDD"
                 returnKeyType="next"
                 onSubmitEditing={() => {
                   passwordInputRef.current?.focus;

@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
 import FeatherIcon from 'react-native-vector-icons/Feather';
+import { TextInputMask } from 'react-native-masked-text';
 
 import Button from '../../../../shared/components/Button';
 
@@ -27,6 +28,18 @@ export const Image = styled.Image`
 
 export const Icon = styled(FeatherIcon)`
   margin-right: 10px;
+`;
+
+export const DeliveryMobileInput = styled(TextInputMask)`
+  padding: 10px;
+  margin-right: 30px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-family: 'RobotoSlab-Regular';
+  color: #3f3f3f;
+  border-radius: 5px;
+  background: #fdfbe7;
+  width: 200px;
 `;
 
 export const TextOptional = styled.Text`

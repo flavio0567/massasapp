@@ -35,19 +35,6 @@ export const DeliveryInfo = styled.View`
   margin: 12px 12px 0;
 `;
 
-export const ProductText = styled.Text`
-  flex-flow: row wrap;
-  margin: 10px 10px 0;
-  color: #3f3f3f;
-  font-size: 14px;
-  font-family: 'RobotoSlab-Regular';
-  padding: 10px;
-`;
-
-export const SelectionButton = styled.TouchableOpacity`
-  padding: 5px;
-`;
-
 export const DeliveryUserView = styled.View`
   border-radius: 5px;
   background: #ffb85f;
@@ -64,6 +51,7 @@ export const DeliveryUserLabelText = styled.Text`
   margin-left: 10px;
   color: #fff;
   font-family: 'RobotoSlab-Regular';
+  width: 64px;
 `;
 
 export const DeliveryUserInput = styled.TextInput`
@@ -75,7 +63,7 @@ export const DeliveryUserInput = styled.TextInput`
   color: #3f3f3f;
   border-radius: 5px;
   background: #fdfbe7;
-  width: 220px;
+  width: 200px;
 `;
 
 export const DeliveryMobileInput = styled(TextInputMask)`
@@ -87,7 +75,7 @@ export const DeliveryMobileInput = styled(TextInputMask)`
   color: #3f3f3f;
   border-radius: 5px;
   background: #fdfbe7;
-  width: 180px;
+  width: 200px;
 `;
 
 export const ContentDateTime = styled.ScrollView``;

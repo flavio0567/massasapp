@@ -1,4 +1,9 @@
 import styled from 'styled-components/native';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
+
 import Icon from 'react-native-vector-icons/Feather';
 import { RectButton } from 'react-native-gesture-handler';
 
@@ -59,7 +64,7 @@ export const AddressView = styled.View`
   border-radius: 5px;
   background: #ffb85f;
   padding: 8px 10px 20px;
-  height: 294px;
+  height: ${hp('46%')}px;
 `;
 
 export const IconLocation = styled(Icon).attrs({
@@ -76,17 +81,17 @@ export const AddressDetailView = styled.View`
 `;
 
 export const AddressLabelText = styled.Text`
-  padding: 10px;
+  padding-top: 10px;
   font-size: 14px;
   line-height: 24px;
-  height: 40px;
-  width: 112px;
+  height: ${hp('5%')}px;
+  width: ${wp('34%')}px;
   color: #fff;
   font-family: 'RobotoSlab-Regular';
 `;
 
 export const AddressText = styled.Text`
-  padding: 10px;
+  padding-top: 10px;
   font-size: 16px;
   line-height: 30px;
   height: 44px;
@@ -97,10 +102,10 @@ export const AddressText = styled.Text`
 export const AddressNumberInput = styled.TextInput`
   padding: 10px;
   margin-top: 10px;
-  font-size: 14px;
+  font-size: 16px;
   font-family: 'RobotoSlab-Regular';
-  width: 170px;
-  height: 34px;
+  width: ${wp('54%')}px;
+  height: ${hp('6%')}px;
   color: #3f3f3f;
   border-radius: 5px;
   background: #fdfbe7;
@@ -109,10 +114,10 @@ export const AddressNumberInput = styled.TextInput`
 export const AddressComplementInput = styled.TextInput`
   padding: 10px;
   margin-top: 10px;
-  font-size: 14px;
+  font-size: 16px;
   font-family: 'RobotoSlab-Regular';
-  width: 170px;
-  height: 38px;
+  width: ${wp('54%')}px;
+  height: ${hp('6%')}px;
   color: #3f3f3f;
   border-radius: 5px;
   background: #fdfbe7;
@@ -125,8 +130,8 @@ export const ConfirmButton = styled(RectButton)`
   border-radius: 10px;
   align-items: center;
   justify-content: center;
-  margin: 306px 50px;
-  width: 250px;
+  margin: ${hp('50%')}px ${wp('16%')}px;
+  width: ${wp('64%')}px;
 `;
 
 export const ConfirmText = styled.Text`
@@ -139,9 +144,9 @@ export const ConfirmText = styled.Text`
 `;
 
 export const AddInformation = styled.Text`
-  margin: 66px 54px;
+  margin: ${hp('14%')}px ${wp('16%')}px;
   color: #666;
   font-size: 12px;
   font-family: 'RobotoSlab-Regular';
-  width: 220px;
+  width: ${wp('68%')}px;
 `;

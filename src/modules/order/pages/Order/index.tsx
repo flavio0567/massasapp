@@ -1,7 +1,9 @@
 import React, { useEffect, useState, useCallback } from 'react';
 
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
+
 import { Badge } from 'react-native-elements';
-import { View, Platform, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { connect } from 'react-redux';
 
@@ -62,7 +64,7 @@ const Order: React.FC = ({ cartSize }: any) => {
       <View
         style={{
           backgroundColor: '#FD9E63',
-          height: Platform.OS === 'ios' && Platform.Version >= 13 ? 80 : 60,
+          height: hp('10%'),
         }}
       >
         <Header>
@@ -100,8 +102,7 @@ const Order: React.FC = ({ cartSize }: any) => {
           renderItem={({ item: familyProduct }) => (
             <ProductContainer
               onPress={() =>
-                navigateToMenu(familyProduct.product_family, familyProduct.name)
-              }
+                navigateToMenu(familyProduct.product_family, familyProduct.name)}
             >
               {familyProduct.avatar_url ? (
                 <ProductImage source={{ uri: `${familyProduct.avatar_url}` }} />

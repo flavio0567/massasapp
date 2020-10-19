@@ -48,7 +48,8 @@ const Success: React.FC = () => {
             style={{ marginLeft: 110 }}
           />
           <Title> Compra concluída</Title>
-          <Description>Obrigado por escolher Massas da Cecilia!</Description>
+          <Description>Obrigado por escolher</Description>
+          <Description>Massas da Cecilia!</Description>
           <OkButton onPress={handleOkPressed}>
             <OkButtonText>Retornar ao início</OkButtonText>
           </OkButton>

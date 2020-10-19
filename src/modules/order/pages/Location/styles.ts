@@ -1,5 +1,7 @@
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/Feather';
+import { TextInputMask } from 'react-native-masked-text';
+
 import { RectButton } from 'react-native-gesture-handler';
 
 export const Container = styled.View`
@@ -60,13 +62,16 @@ export const SearchBox = styled.View`
   margin: 64px;
 `;
 
-export const InputSearch = styled.TextInput`
-  padding: 10px 32px 10px;
+export const InputSearch = styled(TextInputMask)`
+  padding: 10px 32px 10px
+  margin-right: 30px;
+  margin-bottom: 2px;
   font-size: 16px;
   font-family: 'RobotoSlab-Regular';
-  width: 200px;
   color: #3f3f3f;
+  border-radius: 5px;
   background: #ffd18d;
+  width: 200px;
 `;
 
 export const IconSearch = styled(Icon).attrs({

@@ -1,11 +1,11 @@
 import React, { useCallback, useState } from 'react';
+import { View, StatusBar, Alert, ActivityIndicator } from 'react-native';
+
 import {
-  View,
-  StatusBar,
-  Platform,
-  Alert,
-  ActivityIndicator,
-} from 'react-native';
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
+
 import { useNavigation } from '@react-navigation/native';
 import api from '../../../../shared/service/api';
 
@@ -62,7 +62,7 @@ const Location: React.FC = () => {
       <View
         style={{
           backgroundColor: '#FD9E63',
-          height: Platform.OS === 'ios' ? 80 : 34,
+          height: hp('10%'),
         }}
       >
         <Header>
@@ -89,17 +89,21 @@ const Location: React.FC = () => {
                 autoCorrect={false}
                 textContentType="none"
                 value={userCep}
-                placeholder="Pesquisar CEP"
+                placeholder="99999-999"
                 onChangeText={setUserCep}
                 keyboardType="numeric"
                 autoFocus
+                type="custom"
+                options={{
+                  mask: '99999-999',
+                }}
               />
               <IconSearch name="search" />
               <CleanSearch accessible onPress={() => setUserCep('')}>
                 <IconClose name="x-circle" />
               </CleanSearch>
             </SearchBox>
-            <TextInfo>Informe apenas números do CEP</TextInfo>
+            <TextInfo>Informe todos os números do CEP</TextInfo>
             <ConfirmButton onPress={handleSearch}>
               <ConfirmText>Buscar</ConfirmText>
             </ConfirmButton>

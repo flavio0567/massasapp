@@ -1,7 +1,12 @@
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/Feather';
-import { FlatList, Platform } from 'react-native';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
+import { FlatList } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
+
 import { Product } from '.';
 
 export const Container = styled.View`
@@ -11,6 +16,7 @@ export const Container = styled.View`
 
 export const Header = styled.SafeAreaView`
   flex-direction: row;
+  justify-content: space-around;
 `;
 
 export const SelectionButton = styled.TouchableOpacity`
@@ -26,16 +32,13 @@ export const CartIcon = styled(Icon)`
 `;
 
 export const StartusBarText = styled.Text`
+  justify-content: center;
   font-size: 18px;
   font-family: 'RobotoSlab-Regular';
   color: #fff;
 
-  width: 82px;
-
-  margin-left: ${Platform.OS === 'ios' && Platform.Version >= 13 ? 142 : 140}px;
-  margin-right: ${Platform.OS === 'ios' && Platform.Version >= 13
-    ? 162
-    : 112}px;
+  width: ${wp('50%')}px;
+  margin-left: ${hp('16%')}px;
 `;
 
 export const ProductList = styled(FlatList as new () => FlatList<Product>)`
@@ -54,15 +57,15 @@ export const ProductContainer = styled(RectButton)`
 `;
 
 export const ProductImage = styled.Image`
-  width: 160px;
-  height: 118px;
+  width: 100%;
+  height: 64%;
 `;
 
 export const FamilyProductText = styled.Text`
   color: #666;
-  font-size: 16px;
-  width: 152px;
+  font-size: ${wp('4.8%')}px;
+  width: ${wp('50%')}px;
   color: #fff;
   font-family: 'RobotoSlab-Regular';
-  margin: 0 6px;
+  margin: ${hp('1%')}px 6px;
 `;

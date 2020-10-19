@@ -7,9 +7,11 @@ import React, {
   useRef,
 } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
-// import { TextInputMask } from 'react-native-masked-text';
+
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
+
 import { useDispatch, connect } from 'react-redux';
-import { View, StatusBar, Platform, Alert } from 'react-native';
+import { View, StatusBar, Alert, Platform } from 'react-native';
 import { ptBR } from 'date-fns/locale';
 import { format, getHours } from 'date-fns';
 
@@ -34,8 +36,6 @@ import {
   SelectButton,
   Header,
   DeliveryInfo,
-  ProductText,
-  SelectionButton,
   DeliveryUserView,
   DeliveryUserInputView,
   DeliveryUserInput,
@@ -63,7 +63,7 @@ const DateTimeDelivery: React.FC = () => {
 
   const formRef = useRef<FormHandles>(null);
 
-  const { user, loading, deliveryData } = useAuth();
+  const { user, deliveryData } = useAuth();
 
   const [deliveryUser, setDeliveryUser] = useState<string>();
   const [deliveryUserMobile, setDeliveryUserMobile] = useState<string>();
@@ -255,7 +255,7 @@ const DateTimeDelivery: React.FC = () => {
       <View
         style={{
           backgroundColor: '#FD9E63',
-          height: Platform.OS === 'ios' ? 80 : 40,
+          height: hp('10%'),
         }}
       >
         <Header>
@@ -281,7 +281,6 @@ const DateTimeDelivery: React.FC = () => {
                 onChangeText={(userName: string) => setDeliveryUser(userName)}
                 autoCorrect={false}
                 keyboardType="default"
-                // value={deliveryUser}
                 autoFocus
                 returnKeyType="next"
               >
@@ -290,7 +289,7 @@ const DateTimeDelivery: React.FC = () => {
             </DeliveryUserInputView>
             <DeliveryUserInputView>
               <DeliveryUserLabelText>
-                <Icon name="phone" color="#fff" /> Celular (DDD):{' '}
+                <Icon name="phone" color="#fff" /> Celular:{' '}
               </DeliveryUserLabelText>
               <DeliveryMobileInput
                 type="cel-phone"
@@ -309,7 +308,6 @@ const DateTimeDelivery: React.FC = () => {
             </DeliveryUserInputView>
           </Form>
         </DeliveryUserView>
-        {/* )} */}
       </DeliveryInfo>
 
       <ContentDateTime>

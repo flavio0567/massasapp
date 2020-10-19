@@ -1,8 +1,12 @@
 import React, { useCallback, useState } from 'react';
 import { bindActionCreators } from 'redux';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 import { connect } from 'react-redux';
-import { View, Platform, Alert } from 'react-native';
+import { View, Alert } from 'react-native';
 import { ptBR } from 'date-fns/locale';
 import { format, parseISO, isValid } from 'date-fns';
 import Icon from 'react-native-vector-icons/Feather';
@@ -35,8 +39,7 @@ import {
   ButtonText,
   ButtonTextValue,
   QuantityView,
-  PlusText,
-  MinusText,
+  SignalText,
   AddRemoveButton,
   ListProducts,
   ProductDetailText,
@@ -132,7 +135,18 @@ const Cart: React.FC = ({
   }
 
   function handleRemoveFromCart(id: string): void {
-    removeFromCart(id);
+    Alert.alert(
+      'Retirar produto do carrinho',
+      'Esta opção retira este produto do carrinho de compras, confirma?',
+      [
+        { text: 'Sim', onPress: () => removeFromCart(id) },
+        {
+          text: 'Não',
+          onPress: () => console.log('item deleted by customer:', id),
+        },
+      ],
+      { cancelable: false },
+    );
   }
 
   function handleEmptyCart(): void {
@@ -232,7 +246,7 @@ const Cart: React.FC = ({
       <View
         style={{
           backgroundColor: '#FD9E63',
-          height: Platform.OS === 'ios' && Platform.Version >= 12 ? 80 : 40,
+          height: hp('10%'),
         }}
       >
         <Header>
@@ -249,7 +263,7 @@ const Cart: React.FC = ({
           <ProductLabelText>Detalhes do pedido</ProductLabelText>
         </LineSeparator>
 
-        {user?.name ? (
+        {user?.name && (
           <Delivery>
             <UserText>
               <Icon name="user" color="#ff9000" />{' '}
@@ -264,21 +278,19 @@ const Cart: React.FC = ({
                 {'  '}
                 {user.mobile}
               </UserText>
-              <SelectionButton onPress={() => navigate('DateTimeDelivery')}>
-                <Icon
-                  name="edit-2"
-                  size={16}
-                  style={{
-                    color: '#ff9000',
-                    left: 398,
-                    top: -48,
-                    width: 18,
-                  }}
-                />
-              </SelectionButton>
             </PhoneView>
+            <SelectionButton onPress={() => navigate('DateTimeDelivery')}>
+              <Icon
+                name="edit-2"
+                size={16}
+                style={{
+                  color: '#ff9000',
+                  marginLeft: 340,
+                }}
+              />
+            </SelectionButton>
           </Delivery>
-        ) : null}
+        )}
         <ItemSeparator />
 
         {deliveryLocalization?.street ? (
@@ -370,7 +382,7 @@ const Cart: React.FC = ({
                       decrement(product);
                     }}
                   >
-                    <MinusText>-</MinusText>
+                    <SignalText>-</SignalText>
                   </AddRemoveButton>
 
                   {product?.product_family === 1 ||
@@ -391,7 +403,7 @@ const Cart: React.FC = ({
                       increment(product);
                     }}
                   >
-                    <PlusText>+</PlusText>
+                    <SignalText>+</SignalText>
                   </AddRemoveButton>
                   <TextProdAmount>{product.unit}</TextProdAmount>
                 </QuantityView>

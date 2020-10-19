@@ -1,4 +1,6 @@
 import styled from 'styled-components/native';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+
 import Icon from 'react-native-vector-icons/Feather';
 import { RectButton, FlatList } from 'react-native-gesture-handler';
 import { Product } from '.';
@@ -40,8 +42,8 @@ export const TrashButton = styled.TouchableOpacity`
   margin-left: -96px;
 `;
 export const SelectionButton = styled.TouchableOpacity`
-  padding: 5px;
-  margin-left: -52px;
+  padding: 8px;
+  /* margin-left: -52px; */
 `;
 
 export const SectionSeparator = styled.View`
@@ -135,24 +137,19 @@ export const DeliveryTextInfo = styled.Text`
   width: 300px;
 `;
 
-export const AddRemoveButton = styled(RectButton)`
-  width: 28px;
-  height: 28px;
+export const AddRemoveButton = styled.TouchableOpacity`
+  width: 26px;
+  height: 26px;
   background: #fd9e63;
-  border-radius: 14px;
-  margin: 12px -6px;
+  border-radius: 13px;
+  margin: 14px -6px;
   justify-content: center;
   align-items: center;
 `;
 
-export const MinusText = styled.Text`
+export const SignalText = styled.Text`
   color: #fff;
-  font-size: 18px;
-`;
-
-export const PlusText = styled.Text`
-  color: #fff;
-  font-size: 18px;
+  font-size: 22px;
 `;
 
 export const ListProducts = styled(FlatList as new () => FlatList<Product>)`
@@ -164,7 +161,7 @@ export const ProductItem = styled.View`
   border-radius: 8px;
   margin: 4px 8px 4px;
 
-  width: 356px;
+  width: ${wp('96%')}px;
 `;
 
 export const ProductItemView = styled.View`
@@ -183,9 +180,8 @@ export const ProductDetailText = styled.Text`
 
 export const QuantityView = styled.View`
   flex-direction: row;
-  justify-content: space-evenly;
-  width: 180px;
-  margin: 0 20px;
+  width: 80px;
+  margin-bottom: 10px;
 `;
 
 export const DeleteIcon = styled(Icon)`
@@ -202,6 +198,7 @@ export const AddInformation = styled.Text`
 export const SubTotalView = styled.View`
   justify-content: center;
   align-items: center;
+  margin-left: 100px;
 `;
 
 export const SubTotalLabel = styled.Text`
@@ -219,39 +216,36 @@ export const TotalText = styled.Text`
 export const TextProdAmount = styled.Text`
   width: 100px;
   font-size: 14px;
-  padding: 16px 28px;
+  padding: 18px 28px;
 `;
 
-export const RemoveItemButton = styled.TouchableOpacity`
-  margin-right: 10px;
-`;
+export const RemoveItemButton = styled(RectButton)``;
 
 export const ButtonContainer = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
   margin: 8px;
 `;
 
 export const ButtonSelection = styled(RectButton)`
   background: #fd9e63;
   border-radius: 6px;
-  margin-left: 90px;
+  margin-left: ${wp('14%')}px;
+  width: ${wp('70%')}px;
 `;
 
 export const ButtonText = styled.Text`
   font-family: 'RobotoSlab-Medium';
   color: #fff;
   font-size: 16px;
-  width: 164px;
-  padding: 5px;
-  margin-left: 20px;
+  padding: 2px;
+  margin-left: ${wp('17%')}px;
+  width: ${wp('60%')}px;
 `;
 
 export const ButtonTextValue = styled.Text`
   font-family: 'RobotoSlab-Medium';
   color: #3f3f3f;
   font-size: 16px;
-  margin-left: 60px;
+  margin-left: ${wp('24%')}px;
+  width: ${wp('60%')}px;
   padding-bottom: 5px;
 `;

@@ -1,10 +1,12 @@
 import React, { useCallback, useState } from 'react';
 
-import { View, StatusBar, Platform } from 'react-native';
+import { View, StatusBar, Platform, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import AsyncStorage from '@react-native-community/async-storage';
+import * as Yup from 'yup';
+
 import { useDeliveryLocalization } from '../../../../shared/hooks/deliveryLocalization';
 
 import * as CartActions from '../../../../store/modules/cart/actions';
@@ -48,6 +50,14 @@ const LocationDetails: React.FC = ({ route }: any) => {
   const { setLocalization } = useDeliveryLocalization();
 
   const handleConfirmLocation = useCallback(async () => {
+    if (!numberAddress) {
+      Alert.alert(
+        'Endereço de entrega',
+        'Ocorreu erro, o número é obrigatório.',
+      );
+      return;
+    }
+
     const item = { ...userAddress };
     item.numberAddress = numberAddress;
     item.complementAddress = complementAddress;
@@ -130,7 +140,7 @@ const LocationDetails: React.FC = ({ route }: any) => {
               </AddressDetailView>
             </AddressView>
           )}
-          <ConfirmButton onPress={handleConfirmLocation}>
+          <ConfirmButton onPress={() => handleConfirmLocation(numberAddress)}>
             <ConfirmText>Confirme o Endereço</ConfirmText>
           </ConfirmButton>
           <AddInformation>

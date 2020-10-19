@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 import { Badge } from 'react-native-elements';
-import { View, StatusBar, Platform, Alert } from 'react-native';
+import { View, StatusBar, Alert } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
+
 import { formatPrice } from '../../../../util/format';
 
 import * as CartActions from '../../../../store/modules/cart/actions';
@@ -134,7 +136,7 @@ const ProductDetails: React.FC = ({
       <View
         style={{
           backgroundColor: '#FD9E63',
-          height: Platform.OS === 'ios' ? 80 : 40,
+          height: hp('10%'),
         }}
       >
         <Header>

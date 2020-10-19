@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Badge } from 'react-native-elements';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 import { connect } from 'react-redux';
 
 import Icon from 'react-native-vector-icons/Feather';
-import { View, StatusBar, Platform, FlatList } from 'react-native';
+import { View, StatusBar, FlatList } from 'react-native';
 import { formatPrice } from '../../../../util/format';
 
 import api from '../../../../shared/service/api';
@@ -77,7 +78,7 @@ const Products: React.FC = ({ navigation, route, cartSize }: any) => {
       <View
         style={{
           backgroundColor: '#FD9E63',
-          height: Platform.OS === 'ios' ? 80 : 40,
+          height: hp('10%'),
         }}
       >
         <Header>

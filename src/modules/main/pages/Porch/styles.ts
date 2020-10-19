@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
-import { Platform } from 'react-native';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 import FeatherIcon from 'react-native-vector-icons/Feather';
 
@@ -14,7 +14,7 @@ export const ButtonContainer = styled.View`
   justify-content: center;
   align-self: flex-end;
 
-  top: ${Platform.OS === 'ios' && Platform.Version >= 13 ? 520 : 440}px;
+  top: ${hp('80%')}px;
 `;
 
 export const ButtonSelection = styled.TouchableOpacity`

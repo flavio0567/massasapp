@@ -18,7 +18,7 @@ export const Title = styled.Text`
 `;
 
 export const Description = styled.Text`
-  margin: 20px;
+  margin: 6px 22px;
   padding-left: 34px;
   font-family: 'RobotoSlab-Medium';
   font-size: 18px;

@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { View, StatusBar, Platform } from 'react-native';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
+
+import { View, StatusBar } from 'react-native';
 import { Badge } from 'react-native-elements';
 import bannerImg from '../../../assets/caneloni.png';
 import ProductRender from '../../../components/ProductsRender';
@@ -63,7 +68,7 @@ const Menu: React.FC = ({ navigation, route, cartSize }: any) => {
       <View
         style={{
           backgroundColor: '#FD9E63',
-          height: Platform.OS === 'ios' ? 80 : 40,
+          height: hp('10%'),
         }}
       >
         <Header>
