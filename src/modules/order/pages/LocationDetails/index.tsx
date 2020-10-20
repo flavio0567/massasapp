@@ -1,11 +1,12 @@
 import React, { useCallback, useState } from 'react';
 
-import { View, StatusBar, Platform, Alert } from 'react-native';
+import { View, StatusBar, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
+
 import { useDispatch, connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import AsyncStorage from '@react-native-community/async-storage';
-import * as Yup from 'yup';
 
 import { useDeliveryLocalization } from '../../../../shared/hooks/deliveryLocalization';
 
@@ -94,9 +95,15 @@ const LocationDetails: React.FC = ({ route }: any) => {
       <View
         style={{
           backgroundColor: '#FD9E63',
-          height: Platform.OS === 'ios' ? 80 : 40,
+          height: hp('10%'),
         }}
       >
+        {/* <View
+        style={{
+          backgroundColor: '#FD9E63',
+          height: Platform.OS === 'ios' ? 80 : 40,
+        }}
+      > */}
         <Header>
           <SelectionButton onPress={() => goBack()}>
             <ChevronIcon name="chevron-left" size={22} />

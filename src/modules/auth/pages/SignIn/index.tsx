@@ -120,6 +120,7 @@ const SignIn: React.FC = () => {
 
             <Form ref={formRef} onSubmit={handleSignIn}>
               <Input
+                allowFontScaling={false}
                 autoCorrect={false}
                 autoCapitalize="none"
                 keyboardType="phone-pad"
@@ -133,6 +134,7 @@ const SignIn: React.FC = () => {
               />
 
               <Input
+                allowFontScaling={false}
                 ref={passwordInputRef}
                 name="password"
                 icon="lock"
@@ -165,7 +167,9 @@ const SignIn: React.FC = () => {
               }}
             >
               <Icon name="arrow-left" size={20} color="#FD9E63" />
-              <ReturnButtonText>Retornar ao início</ReturnButtonText>
+              <ReturnButtonText allowFontScaling={false}>
+                Retornar ao início
+              </ReturnButtonText>
             </ReturnButton>
 
             <CreateAccountButton
@@ -174,7 +178,9 @@ const SignIn: React.FC = () => {
               }}
             >
               <Icon name="log-in" size={20} color="#fff" />
-              <CreateAccountButtonText>Criar uma conta</CreateAccountButtonText>
+              <CreateAccountButtonText allowFontScaling={false}>
+                Criar uma conta
+              </CreateAccountButtonText>
             </CreateAccountButton>
           </Container>
         </ScrollView>

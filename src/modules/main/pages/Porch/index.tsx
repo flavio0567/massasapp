@@ -41,7 +41,7 @@ const Porch: React.FC = () => {
               navigate('SignIn');
             }}
           >
-            <ButtonText>Entrar</ButtonText>
+            <ButtonText allowFontScaling={false}>Entrar</ButtonText>
           </ButtonSelection>
 
           <ButtonSelection
@@ -49,7 +49,7 @@ const Porch: React.FC = () => {
               navigate('SignUp');
             }}
           >
-            <ButtonText>Cadastrar</ButtonText>
+            <ButtonText allowFontScaling={false}>Cadastrar</ButtonText>
           </ButtonSelection>
         </ButtonContainer>
 
@@ -59,7 +59,9 @@ const Porch: React.FC = () => {
           }}
         >
           <Icon name="log-in" size={20} color="#FD9E63" />
-          <GuestText>Continuar como visitante</GuestText>
+          <GuestText allowFontScaling={false}>
+            Continuar como visitante
+          </GuestText>
         </GuestSelection>
       </ImageBackground>
     </Container>
