@@ -7,6 +7,7 @@ import {
   Platform,
   TextInput,
   Alert,
+  StatusBar,
 } from 'react-native';
 
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
@@ -29,6 +30,10 @@ import * as CartActions from '../../../../store/modules/cart/actions';
 
 import {
   Container,
+  Header,
+  SelectionButton,
+  ChevronIcon,
+  StatusBarText,
   Title,
   AddInformation,
   AddressText,
@@ -51,57 +56,54 @@ const LocationDetails: React.FC = ({ route }: any) => {
   const formRef = useRef<FormHandles>(null);
   const complementInputRef = useRef<TextInput>(null);
 
-  const { reset } = useNavigation();
+  const { reset, goBack } = useNavigation();
 
-  const handleConfirmLocation = useCallback(
-    async (data: SignInFormData) => {
-      try {
-        if (!numberAddress) {
-          Alert.alert(
-            'Endereço de entrega',
-            'Ocorreu erro, o número é obrigatório.',
-          );
-          return;
-        }
-
-        const item = { ...userAddress };
-        item.numberAddress = numberAddress;
-        item.complementAddress = complementAddress;
-        const deliveryAddress = item;
-
-        dispatch({
-          type: '@order/ADD_ADDRESS',
-          deliveryAddress,
-        });
-
-        await AsyncStorage.removeItem('@Massas:deliveryLocalization');
-
-        AsyncStorage.setItem(
-          '@Massas:deliveryLocalization',
-          JSON.stringify(deliveryAddress),
-        );
-
-        await AsyncStorage.getItem('@Massas:deliveryLocalization');
-
-        setLocalization(deliveryAddress);
-
-        reset({ index: 0, routes: [{ name: 'DateTimeDelivery' }] });
-      } catch (err) {
+  const handleConfirmLocation = useCallback(async () => {
+    try {
+      if (!numberAddress) {
         Alert.alert(
-          'Endereço de entrega!',
+          'Endereço de entrega',
           'Ocorreu erro, o número é obrigatório.',
         );
+        return;
       }
-    },
-    [
-      complementAddress,
-      dispatch,
-      numberAddress,
-      reset,
-      setLocalization,
-      userAddress,
-    ],
-  );
+
+      const item = { ...userAddress };
+      item.numberAddress = numberAddress;
+      item.complementAddress = complementAddress;
+      const deliveryAddress = item;
+
+      dispatch({
+        type: '@order/ADD_ADDRESS',
+        deliveryAddress,
+      });
+
+      await AsyncStorage.removeItem('@Massas:deliveryLocalization');
+
+      AsyncStorage.setItem(
+        '@Massas:deliveryLocalization',
+        JSON.stringify(deliveryAddress),
+      );
+
+      await AsyncStorage.getItem('@Massas:deliveryLocalization');
+
+      setLocalization(deliveryAddress);
+
+      reset({ index: 0, routes: [{ name: 'DateTimeDelivery' }] });
+    } catch (err) {
+      Alert.alert(
+        'Endereço de entrega!',
+        'Ocorreu erro, o número é obrigatório.',
+      );
+    }
+  }, [
+    complementAddress,
+    dispatch,
+    numberAddress,
+    reset,
+    setLocalization,
+    userAddress,
+  ]);
 
   return (
     <>
@@ -110,23 +112,32 @@ const LocationDetails: React.FC = ({ route }: any) => {
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         enabled
       >
+        <View
+          style={{
+            backgroundColor: '#FD9E63',
+            height: hp('10%'),
+          }}
+        >
+          <Header>
+            <SelectionButton onPress={() => goBack()}>
+              <ChevronIcon name="chevron-left" size={22} />
+            </SelectionButton>
+            <StatusBar backgroundColor="#FD9E63" barStyle="light-content" />
+            <StatusBarText allowFontScaling={false}>
+              Endereço de entrega
+            </StatusBarText>
+          </Header>
+        </View>
         <ScrollView
           keyboardShouldPersistTaps="handled"
           contentContainerStyle={{ flex: 1 }}
           style={{
-            backgroundColor: '#FFF5e6',
-            height: hp('3%'),
+            backgroundColor: '#faf3e9',
           }}
         >
           <Container>
-            <View
-              style={{
-                backgroundColor: '#FD9E63',
-                height: hp('10%'),
-              }}
-            />
             <View>
-              <Title allowFontScaling={false}>Endereço de entrega</Title>
+              {/* <Title allowFontScaling={false}>Endereço de entrega</Title> */}
               {userAddress && (
                 <>
                   <IconLocation name="map-pin" />

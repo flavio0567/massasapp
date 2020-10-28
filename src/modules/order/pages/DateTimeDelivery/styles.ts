@@ -23,8 +23,8 @@ export const Header = styled.SafeAreaView`
 `;
 
 export const StartusBarText = styled.Text`
-  font-size: 18px;
   flex: 1;
+  font-size: 18px;
   margin: 0 64px 10px;
 
   font-family: 'RobotoSlab-Regular';

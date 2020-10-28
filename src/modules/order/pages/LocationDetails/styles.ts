@@ -12,6 +12,31 @@ export const Container = styled.View`
   padding: 0 34px 260px;
 `;
 
+export const Header = styled.SafeAreaView`
+  flex-direction: row;
+
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const SelectionButton = styled.TouchableOpacity`
+  padding: 5px;
+`;
+
+export const ChevronIcon = styled(Icon)`
+  margin-left: 10px;
+  color: #fff;
+`;
+
+export const StatusBarText = styled.Text`
+  flex: 1;
+  font-size: 18px;
+  margin: 0 48px 0px;
+
+  font-family: 'RobotoSlab-Regular';
+  color: #fff;
+`;
+
 export const Title = styled.Text`
   font-size: 24px;
   color: #999;
