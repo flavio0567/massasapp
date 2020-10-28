@@ -91,7 +91,9 @@ const Products: React.FC = ({ navigation, route, cartSize }: any) => {
             backgroundColor="#FD9E63"
             barStyle="light-content"
           />
-          <StartusBarText>Selecione um produto</StartusBarText>
+          <StartusBarText allowFontScaling={false}>
+            Selecione um produto
+          </StartusBarText>
           <SelectionButton
             onPress={() => navigate('Cart', { caller: 'Products' })}
           >
@@ -112,6 +114,7 @@ const Products: React.FC = ({ navigation, route, cartSize }: any) => {
 
       <SearchBox>
         <InputSearch
+          allowFontScaling={false}
           autoCorrect={false}
           textContentType="none"
           onChangeText={(text) => handleSearch(text)}
@@ -134,8 +137,10 @@ const Products: React.FC = ({ navigation, route, cartSize }: any) => {
             }}
           >
             <View>
-              <ProductText>{item.name}</ProductText>
-              <ComplementText>{formatPrice(item.sales_price)}</ComplementText>
+              <ProductText allowFontScaling={false}>{item.name}</ProductText>
+              <ComplementText allowFontScaling={false}>
+                {formatPrice(item.sales_price)}
+              </ComplementText>
             </View>
 
             <NavigationButton

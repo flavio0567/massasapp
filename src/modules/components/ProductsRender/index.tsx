@@ -48,7 +48,7 @@ const ProductRender: React.FC = ({ data }: any) => {
         )}
 
         <View>
-          <ProductText>{data.name}</ProductText>
+          <ProductText allowFontScaling={false}>{data.name}</ProductText>
         </View>
 
         <NavigationButton

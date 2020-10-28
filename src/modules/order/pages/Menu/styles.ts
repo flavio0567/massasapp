@@ -43,12 +43,6 @@ export const SelectionButton = styled.TouchableOpacity`
   margin-top: 4px;
 `;
 
-export const StartusBarText = styled.Text`
-  font-size: 18px;
-  font-family: 'RobotoSlab-Regular';
-  color: #fff;
-`;
-
 export const CartIcon = styled(Icon)`
   margin-right: 20px;
   color: #fff;
@@ -62,13 +56,6 @@ export const ProductImg = styled.Image`
   height: 110px;
   border-radius: 5px;
   margin: 20px;
-`;
-
-export const ProductText = styled.Text`
-  color: #666;
-  font-size: 16px;
-  margin-right: 140px;
-  font-family: 'RobotoSlab-Regular';
 `;
 
 export const NavigationButton = styled.TouchableOpacity`

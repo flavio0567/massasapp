@@ -1,10 +1,13 @@
 import React, { useCallback, useState } from 'react';
-import { View, StatusBar, Alert, ActivityIndicator } from 'react-native';
-
 import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
+  View,
+  StatusBar,
+  Alert,
+  ActivityIndicator,
+  Platform,
+} from 'react-native';
+
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 import { useNavigation } from '@react-navigation/native';
 import api from '../../../../shared/service/api';
@@ -70,7 +73,9 @@ const Location: React.FC = () => {
             <ChevronIcon name="chevron-left" size={22} />
           </SelectionButton>
           <StatusBar backgroundColor="#FD9E63" barStyle="light-content" />
-          <StatusBarText>Endereço de entrega</StatusBarText>
+          <StatusBarText allowFontScaling={false}>
+            Endereço de entrega
+          </StatusBarText>
         </Header>
         {loading ? (
           <View
@@ -86,6 +91,7 @@ const Location: React.FC = () => {
           <Content>
             <SearchBox>
               <InputSearch
+                allowFontScaling={false}
                 autoCorrect={false}
                 textContentType="none"
                 value={userCep}
@@ -99,13 +105,17 @@ const Location: React.FC = () => {
                 }}
               />
               <IconSearch name="search" />
-              <CleanSearch accessible onPress={() => setUserCep('')}>
-                <IconClose name="x-circle" />
-              </CleanSearch>
+              {Platform.OS === 'ios' ? (
+                <CleanSearch accessible onPress={() => setUserCep('')}>
+                  <IconClose name="x-circle" />
+                </CleanSearch>
+              ) : null}
             </SearchBox>
-            <TextInfo>Informe todos os números do CEP</TextInfo>
+            <TextInfo allowFontScaling={false}>
+              Informe todos os números do CEP
+            </TextInfo>
             <ConfirmButton onPress={handleSearch}>
-              <ConfirmText>Buscar</ConfirmText>
+              <ConfirmText allowFontScaling={false}>Buscar</ConfirmText>
             </ConfirmButton>
           </Content>
         )}

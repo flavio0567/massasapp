@@ -157,12 +157,10 @@ const ProductDetails: React.FC = ({
               <ChevronIcon name="chevron-left" size={22} />
             </SelectionButton>
           )}
-          <StatusBar
-            // translucent
-            backgroundColor="#FD9E63"
-            barStyle="light-content"
-          />
-          <StartusBarText>Adicionar item ao pedido</StartusBarText>
+          <StatusBar backgroundColor="#FD9E63" barStyle="light-content" />
+          <StartusBarText allowFontScaling={false}>
+            Adicionar item ao pedido
+          </StartusBarText>
           <SelectionButton
             onPress={() => navigate('Cart', { caller: 'ProductDetails' })}
           >
@@ -181,20 +179,27 @@ const ProductDetails: React.FC = ({
         </Header>
       </View>
       <View>
-        <ProductText>{product?.name}</ProductText>
+        <ProductText allowFontScaling={false}>{product?.name}</ProductText>
         <QuantityView>
-          <ProductLabelText>Quantidade:</ProductLabelText>
+          <ProductLabelText allowFontScaling={false}>
+            Quantidade:
+          </ProductLabelText>
           <AddRemoveButton
             onPress={() => {
               decrement(product);
             }}
           >
-            <MinusText>-</MinusText>
+            <MinusText allowFontScaling={false}>-</MinusText>
           </AddRemoveButton>
           {product?.product_family === 1 || product?.product_family === 3 ? (
-            <TextProdAmount>{quantity.toFixed(3)}</TextProdAmount>
+            <TextProdAmount allowFontScaling={false}>
+              {quantity.toFixed(3)}
+            </TextProdAmount>
           ) : (
-            <TextProdAmount style={{ marginRight: -34 }}>
+            <TextProdAmount
+              allowFontScaling={false}
+              style={{ marginRight: -34 }}
+            >
               {quantity}
             </TextProdAmount>
           )}
@@ -203,15 +208,19 @@ const ProductDetails: React.FC = ({
               increment(product);
             }}
           >
-            <PlusText>+</PlusText>
+            <PlusText allowFontScaling={false}>+</PlusText>
           </AddRemoveButton>
           {product?.product_family === 1 || product?.product_family === 3 ? (
-            <TextProdAmount>{product?.unit}</TextProdAmount>
+            <TextProdAmount allowFontScaling={false}>
+              {product?.unit}
+            </TextProdAmount>
           ) : null}
         </QuantityView>
 
         <ProductPriceView>
-          <ProductLabelText>Preço unidade/Kg</ProductLabelText>
+          <ProductLabelText allowFontScaling={false}>
+            Preço unidade/Kg
+          </ProductLabelText>
           <ProductText style={{ marginLeft: 34 }}>
             {formatPrice(product?.sales_price)}
           </ProductText>
@@ -219,11 +228,11 @@ const ProductDetails: React.FC = ({
 
         <LineSeparator />
 
-        <AddInformation>
+        <AddInformation allowFontScaling={false}>
           Informações adicionais sobre o produto, quando necessário, podem ser
           solicitadas.
         </AddInformation>
-        <AddInformation>
+        <AddInformation allowFontScaling={false}>
           O valor abaixo pode variar de acordo com o peso final do produto na
           embalagem.
         </AddInformation>
@@ -231,8 +240,8 @@ const ProductDetails: React.FC = ({
 
       <ButtonContainer>
         <ButtonSelection onPress={() => handleAddProduct(product?.id)}>
-          <ButtonText>Confirmar</ButtonText>
-          <ButtonText>
+          <ButtonText allowFontScaling={false}>Confirmar</ButtonText>
+          <ButtonText allowFontScaling={false}>
             {formatPrice(product?.sales_price * quantity)}
           </ButtonText>
         </ButtonSelection>

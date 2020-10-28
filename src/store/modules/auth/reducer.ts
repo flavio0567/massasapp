@@ -1,4 +1,7 @@
 import produce from 'immer';
+import { enableES5 } from 'immer';
+
+enableES5();
 
 const INITIAL_STATE = {
   token: null,

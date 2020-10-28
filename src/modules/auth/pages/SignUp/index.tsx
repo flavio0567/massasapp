@@ -69,7 +69,7 @@ const SignUp: React.FC = () => {
         });
 
         const userExists = await api.get(`/users/mobile/${data.mobile}`);
-
+        console.tron.log(userExists);
         if (userExists) {
           await api.put('/users', data);
         } else {
@@ -94,7 +94,7 @@ const SignUp: React.FC = () => {
 
         Alert.alert(
           'Erro no cadastro',
-          'Ocorreu erro ao cadastrar, os seus dados estão incompletos.',
+          `Ocorreu erro ao cadastrar, os seus dados estão incompletos: ${err.errors[0]} - ${err.errors[1]} - ${err.errors[2]} - ${err.errors[3]}`,
         );
       }
     },
@@ -114,7 +114,7 @@ const SignUp: React.FC = () => {
         >
           <Container>
             <View>
-              <Title>Faça o seu cadastro</Title>
+              <Title allowFontScaling={false}>Faça o seu cadastro</Title>
             </View>
 
             <Form ref={formRef} onSubmit={handleSignUp}>
@@ -181,7 +181,9 @@ const SignUp: React.FC = () => {
                   formRef.current?.submitForm();
                 }}
               />
-              <TextOptional>E-mail Opcional</TextOptional>
+              <TextOptional allowFontScaling={false}>
+                E-mail Opcional
+              </TextOptional>
 
               <Agreement>
                 <CheckBoxAgreement
@@ -197,7 +199,7 @@ const SignUp: React.FC = () => {
                     )}
                   </Checkbox>
                 </CheckBoxAgreement>
-                <TextAgreement>
+                <TextAgreement allowFontScaling={false}>
                   Sim, concordo em receber mensagem de texto e/ou email sobre
                   futuros eventos, ofertas e promoções.
                 </TextAgreement>
@@ -217,7 +219,9 @@ const SignUp: React.FC = () => {
                 }}
               >
                 <Icon name="arrow-left" size={20} color="#FD9E63" />
-                <ReturnButtonText>Retornar ao início</ReturnButtonText>
+                <ReturnButtonText allowFontScaling={false}>
+                  Retornar ao início
+                </ReturnButtonText>
               </ReturnButton>
             </Form>
           </Container>

@@ -1,163 +1,189 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 
-import { View, StatusBar, Alert } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import {
+  View,
+  ScrollView,
+  KeyboardAvoidingView,
+  Platform,
+  TextInput,
+  Alert,
+} from 'react-native';
+
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
+
+import AsyncStorage from '@react-native-community/async-storage';
+
+import { Form } from '@unform/mobile';
+import { FormHandles } from '@unform/core';
+
+import { useNavigation } from '@react-navigation/native';
 
 import { useDispatch, connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import AsyncStorage from '@react-native-community/async-storage';
+import Input from '../../../../shared/components/Input';
+import Button from '../../../../shared/components/Button';
 
 import { useDeliveryLocalization } from '../../../../shared/hooks/deliveryLocalization';
 
 import * as CartActions from '../../../../store/modules/cart/actions';
 
 import {
-  StartusBarText,
   Container,
-  SelectionButton,
-  Header,
-  ChevronIcon,
-  Content,
-  AddressNumberInput,
-  AddressComplementInput,
-  AddressView,
-  AddressText,
-  AddressLabelText,
-  IconLocation,
-  AddressDetailView,
-  ConfirmButton,
-  ConfirmText,
+  Title,
   AddInformation,
+  AddressText,
+  IconLocation,
 } from './styles';
 
-export interface Address {
-  cep: string | number;
-  city: string;
-  state: string;
-  neighborhood: string;
-  street: string;
+interface SignInFormData {
+  number: number;
+  complement: string;
 }
 
 const LocationDetails: React.FC = ({ route }: any) => {
   const { userAddress } = route.params;
-  const { navigate, goBack } = useNavigation();
+  const dispatch = useDispatch();
+  const { setLocalization } = useDeliveryLocalization();
 
   const [numberAddress, setNumberAddress] = useState<string>();
   const [complementAddress, setComplementAddress] = useState<string>();
 
-  const dispatch = useDispatch();
+  const formRef = useRef<FormHandles>(null);
+  const complementInputRef = useRef<TextInput>(null);
 
-  const { setLocalization } = useDeliveryLocalization();
+  const { reset } = useNavigation();
 
-  const handleConfirmLocation = useCallback(async () => {
-    if (!numberAddress) {
-      Alert.alert(
-        'Endereço de entrega',
-        'Ocorreu erro, o número é obrigatório.',
-      );
-      return;
-    }
+  const handleConfirmLocation = useCallback(
+    async (data: SignInFormData) => {
+      try {
+        if (!numberAddress) {
+          Alert.alert(
+            'Endereço de entrega',
+            'Ocorreu erro, o número é obrigatório.',
+          );
+          return;
+        }
 
-    const item = { ...userAddress };
-    item.numberAddress = numberAddress;
-    item.complementAddress = complementAddress;
-    const deliveryAddress = item;
+        const item = { ...userAddress };
+        item.numberAddress = numberAddress;
+        item.complementAddress = complementAddress;
+        const deliveryAddress = item;
 
-    dispatch({
-      type: '@order/ADD_ADDRESS',
-      deliveryAddress,
-    });
+        dispatch({
+          type: '@order/ADD_ADDRESS',
+          deliveryAddress,
+        });
 
-    await AsyncStorage.removeItem('@Massas:deliveryLocalization');
+        await AsyncStorage.removeItem('@Massas:deliveryLocalization');
 
-    AsyncStorage.setItem(
-      '@Massas:deliveryLocalization',
-      JSON.stringify(deliveryAddress),
-    );
+        AsyncStorage.setItem(
+          '@Massas:deliveryLocalization',
+          JSON.stringify(deliveryAddress),
+        );
 
-    await AsyncStorage.getItem('@Massas:deliveryLocalization');
+        await AsyncStorage.getItem('@Massas:deliveryLocalization');
 
-    setLocalization(deliveryAddress);
+        setLocalization(deliveryAddress);
 
-    navigate('DateTimeDelivery');
-  }, [
-    numberAddress,
-    userAddress,
-    dispatch,
-    navigate,
-    complementAddress,
-    setLocalization,
-  ]);
+        reset({ index: 0, routes: [{ name: 'DateTimeDelivery' }] });
+      } catch (err) {
+        Alert.alert(
+          'Endereço de entrega!',
+          'Ocorreu erro, o número é obrigatório.',
+        );
+      }
+    },
+    [
+      complementAddress,
+      dispatch,
+      numberAddress,
+      reset,
+      setLocalization,
+      userAddress,
+    ],
+  );
 
   return (
-    <Container>
-      <View
-        style={{
-          backgroundColor: '#FD9E63',
-          height: hp('10%'),
-        }}
+    <>
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        enabled
       >
-        {/* <View
-        style={{
-          backgroundColor: '#FD9E63',
-          height: Platform.OS === 'ios' ? 80 : 40,
-        }}
-      > */}
-        <Header>
-          <SelectionButton onPress={() => goBack()}>
-            <ChevronIcon name="chevron-left" size={22} />
-          </SelectionButton>
-          <StatusBar backgroundColor="#FD9E63" barStyle="light-content" />
-          <StartusBarText>Endereço de entrega</StartusBarText>
-        </Header>
-        <Content>
-          {userAddress && (
-            <AddressView>
-              <IconLocation name="map-pin" />
-              <AddressText>{userAddress.street}, </AddressText>
-              <AddressText>
-                {userAddress.neighborhood} - {userAddress.cep}
-              </AddressText>
-              <AddressText>
-                {userAddress.city} - {userAddress.state}
-              </AddressText>
-              <AddressDetailView>
-                <AddressLabelText>Número: </AddressLabelText>
-                <AddressNumberInput
-                  onChangeText={(num: string) => setNumberAddress(num)}
-                  autoCorrect={false}
-                  keyboardType="numeric"
-                  returnKeyType="next"
-                  autoFocus
-                >
-                  {numberAddress}
-                </AddressNumberInput>
-              </AddressDetailView>
+        <ScrollView
+          keyboardShouldPersistTaps="handled"
+          contentContainerStyle={{ flex: 1 }}
+          style={{
+            backgroundColor: '#FFF5e6',
+            height: hp('3%'),
+          }}
+        >
+          <Container>
+            <View
+              style={{
+                backgroundColor: '#FD9E63',
+                height: hp('10%'),
+              }}
+            />
+            <View>
+              <Title allowFontScaling={false}>Endereço de entrega</Title>
+              {userAddress && (
+                <>
+                  <IconLocation name="map-pin" />
+                  <AddressText>
+                    {userAddress.street}, {numberAddress}, {complementAddress}{' '}
+                    {userAddress.neighborhood} - {userAddress.city},{' '}
+                    {userAddress.state}, {userAddress.cep}
+                    {'\n'}
+                  </AddressText>
+                </>
+              )}
+            </View>
 
-              <AddressDetailView>
-                <AddressLabelText>Complemento: </AddressLabelText>
-                <AddressComplementInput
-                  onChangeText={(text: string) => setComplementAddress(text)}
-                  returnKeyType="go"
-                  autoCorrect={false}
-                >
-                  {complementAddress}
-                </AddressComplementInput>
-              </AddressDetailView>
-            </AddressView>
-          )}
-          <ConfirmButton onPress={() => handleConfirmLocation(numberAddress)}>
-            <ConfirmText>Confirme o Endereço</ConfirmText>
-          </ConfirmButton>
-          <AddInformation>
-            Taxa de Delivery: Mogi Mirim centro R$3,00, demais regiões R$ 5,00.
-            Mogi Guaçu R$ 10,00. Outras regiões sob consulta. O valor final do
-            pedido será confirmado por telefone.
-          </AddInformation>
-        </Content>
-      </View>
-    </Container>
+            <Form ref={formRef} onSubmit={handleConfirmLocation}>
+              <Input
+                autoCorrect={false}
+                autoCapitalize="none"
+                keyboardType="phone-pad"
+                name="number"
+                icon=""
+                placeholder="Número do logradouro"
+                returnKeyType="next"
+                onChangeText={(num: string) => setNumberAddress(num)}
+                onSubmitEditing={() => {
+                  complementInputRef.current?.focus;
+                }}
+              />
+
+              <Input
+                ref={complementInputRef}
+                name="complement"
+                icon=""
+                autoCorrect={false}
+                placeholder="Complemento"
+                returnKeyType="send"
+                onChangeText={(text: string) => setComplementAddress(text)}
+                onSubmitEditing={() => {
+                  formRef.current?.submitForm();
+                }}
+              />
+              <Button
+                onPress={() => {
+                  formRef.current?.submitForm();
+                }}
+              >
+                Confirme o Endereço
+              </Button>
+              <AddInformation allowFontScaling={false}>
+                Taxa de Delivery: Mogi Mirim centro R$3,00, demais regiões R$
+                5,00. Mogi Guaçu R$ 10,00. Outras regiões sob consulta. O valor
+                final do pedido será confirmado por telefone.
+              </AddInformation>
+            </Form>
+          </Container>
+        </ScrollView>
+      </KeyboardAvoidingView>
+    </>
   );
 };
 

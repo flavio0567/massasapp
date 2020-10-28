@@ -58,19 +58,17 @@ export const Content = styled.View``;
 export const SearchBox = styled.View`
   background: #ffd18d;
   padding-left: 10px;
-  border-radius: 8px;
+  border-radius: 5px;
   margin: 64px;
 `;
 
 export const InputSearch = styled(TextInputMask)`
-  padding: 10px 32px 10px
+  padding: 10px 32px 10px;
   margin-right: 30px;
   margin-bottom: 2px;
   font-size: 16px;
   font-family: 'RobotoSlab-Regular';
   color: #3f3f3f;
-  border-radius: 5px;
-  background: #ffd18d;
   width: 200px;
 `;
 

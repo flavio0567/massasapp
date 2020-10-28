@@ -28,16 +28,16 @@ const Success: React.FC = () => {
   return (
     <ImageBackground
       source={massasImg}
-      style={{ width: '100%', height: '100%', opacity: 0.7 }}
+      style={{ width: '100%', height: '100%', opacity: 0.86 }}
     >
       <Container>
         <Image
           source={logoImg}
           style={{
             width: '88%',
-            height: '32%',
+            height: '22%',
             position: 'absolute',
-            top: 40,
+            top: 0,
           }}
         />
         <SuccessView>
@@ -47,11 +47,15 @@ const Success: React.FC = () => {
             color="#04d361"
             style={{ marginLeft: 110 }}
           />
-          <Title> Compra concluída</Title>
-          <Description>Obrigado por escolher</Description>
-          <Description>Massas da Cecilia!</Description>
+          <Title allowFontScaling={false}> Compra concluída</Title>
+          <Description allowFontScaling={false}>
+            Obrigado por escolher
+          </Description>
+          <Description allowFontScaling={false}>Massas da Cecilia!</Description>
           <OkButton onPress={handleOkPressed}>
-            <OkButtonText>Retornar ao início</OkButtonText>
+            <OkButtonText allowFontScaling={false}>
+              Retornar ao início
+            </OkButtonText>
           </OkButton>
         </SuccessView>
       </Container>

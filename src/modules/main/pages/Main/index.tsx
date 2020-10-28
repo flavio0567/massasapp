@@ -61,13 +61,15 @@ const Main: React.FC = () => {
       />
 
       <TitleView>
-        <Title>Crie seu pedido</Title>
-        <SubTitle>escolha uma das opções de entrega abaixo</SubTitle>
+        <Title allowFontScaling={false}>Crie seu pedido</Title>
+        <SubTitle allowFontScaling={false}>
+          Escolha uma das opções de entrega abaixo
+        </SubTitle>
       </TitleView>
 
       <ButtonContainer>
         <ButtonSelection onPress={handlePickup}>
-          <ButtonText>Retirar na Loja</ButtonText>
+          <ButtonText allowFontScaling={false}>Retirar na Loja</ButtonText>
         </ButtonSelection>
 
         <ButtonSelection
@@ -75,7 +77,7 @@ const Main: React.FC = () => {
             navigate('Location');
           }}
         >
-          <ButtonText>Delivery</ButtonText>
+          <ButtonText allowFontScaling={false}>Delivery</ButtonText>
         </ButtonSelection>
       </ButtonContainer>
     </ImageBackground>

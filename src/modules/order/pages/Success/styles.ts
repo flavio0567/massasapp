@@ -40,6 +40,7 @@ export const OkButtonText = styled.Text`
   font-family: 'RobotoSlab-Medium';
   color: #312e38;
   font-size: 18px;
+  color: #fff;
 `;
 
 export const SuccessView = styled.View`

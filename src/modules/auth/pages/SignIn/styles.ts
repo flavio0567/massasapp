@@ -49,7 +49,7 @@ export const ForgotPasswordButton = styled.TouchableOpacity`
   margin: 10px;
 `;
 
-ForgotPasswordButton.displayName = 'ForgotPasswordButton';
+// ForgotPasswordButton.displayName = 'ForgotPasswordButton';
 
 export const GuestText = styled.Text`
   font-size: 16px;

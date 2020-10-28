@@ -29,12 +29,9 @@ export const ProductText = styled.Text`
   flex-flow: row wrap;
   width: 180px;
   color: #666;
-  /* margin: 0 0 0 10px; */
   font-size: 16px;
   font-family: 'RobotoSlab-Regular';
 `;
-
-export const ProductValue = styled.Text``;
 
 export const NavigationButton = styled.TouchableOpacity`
   margin-right: 15px;

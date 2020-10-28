@@ -250,7 +250,7 @@ const Cart: React.FC = ({
         }}
       >
         <Header>
-          <StatusBarText>Pedido</StatusBarText>
+          <StatusBarText allowFontScaling={false}>Pedido</StatusBarText>
 
           <TrashButton onPress={handleEmptyCart}>
             <ChevronIcon name="trash-2" size={22} />
@@ -260,21 +260,27 @@ const Cart: React.FC = ({
 
       <Content>
         <LineSeparator>
-          <ProductLabelText>Detalhes do pedido</ProductLabelText>
+          <ProductLabelText allowFontScaling={false}>
+            Detalhes do pedido
+          </ProductLabelText>
         </LineSeparator>
 
         {user?.name && (
           <Delivery>
-            <UserText>
+            <UserText allowFontScaling={false}>
               <Icon name="user" color="#ff9000" />{' '}
-              <DeliveryLabelText>Nome: </DeliveryLabelText>
+              <DeliveryLabelText allowFontScaling={false}>
+                Nome:{' '}
+              </DeliveryLabelText>
               {'    '}
               {user.name} {'\n'}
             </UserText>
             <PhoneView>
-              <UserText>
+              <UserText allowFontScaling={false}>
                 <Icon name="phone" color="#ff9000" />{' '}
-                <DeliveryLabelText>Celular: </DeliveryLabelText>
+                <DeliveryLabelText allowFontScaling={false}>
+                  Celular:{' '}
+                </DeliveryLabelText>
                 {'  '}
                 {user.mobile}
               </UserText>
@@ -296,7 +302,9 @@ const Cart: React.FC = ({
         {deliveryLocalization?.street ? (
           <>
             <DeliveryLabelView>
-              <DeliveryLabelText>Delivery</DeliveryLabelText>
+              <DeliveryLabelText allowFontScaling={false}>
+                Delivery
+              </DeliveryLabelText>
               <SelectionButton onPress={() => navigate('Main')}>
                 <Icon name="edit-2" size={16} style={{ color: '#ff9000' }} />
               </SelectionButton>
@@ -306,7 +314,9 @@ const Cart: React.FC = ({
         ) : (
           <>
             <DeliveryLabelView>
-              <DeliveryLabelText>Retirar na loja</DeliveryLabelText>
+              <DeliveryLabelText allowFontScaling={false}>
+                Retirar na loja
+              </DeliveryLabelText>
               <SelectionButton onPress={() => navigate('Location')}>
                 <Icon name="edit-2" size={16} style={{ color: '#ff9000' }} />
               </SelectionButton>
@@ -318,9 +328,10 @@ const Cart: React.FC = ({
         <DeliveryInfo>
           {deliveryLocalization?.street ? (
             <>
-              <ProductText>
+              <ProductText allowFontScaling={false}>
                 <Icon name="map-pin" /> {deliveryLocalization.street},{' '}
-                {deliveryLocalization.numberAddress}{' '}
+                {deliveryLocalization.numberAddress}
+                {' - '}
                 {deliveryLocalization.complementAddress
                   ? deliveryLocalization.complementAddress
                   : null}{' '}
@@ -332,7 +343,7 @@ const Cart: React.FC = ({
             </>
           ) : (
             <>
-              <ProductText>
+              <ProductText allowFontScaling={false}>
                 <Icon name="map-pin" /> Avenida Prof. Adib Chaib, 2926 - Mogi
                 Mirim
               </ProductText>
@@ -344,7 +355,7 @@ const Cart: React.FC = ({
         <DeliveryDateTimeInfo>
           {deliveryDate ? (
             <>
-              <DeliveryTextInfo>
+              <DeliveryTextInfo allowFontScaling={false}>
                 {deliveryDate} às {deliveryDateTime?.deliveryTime}h
               </DeliveryTextInfo>
               <SelectionButton onPress={() => navigate('DateTimeDelivery')}>
@@ -358,13 +369,17 @@ const Cart: React.FC = ({
 
         <ButtonContainer>
           <ButtonSelection onPress={handleCreateOrder}>
-            <ButtonText>Encerrar o pedido</ButtonText>
-            <ButtonTextValue>{formatPrice(order_total)}</ButtonTextValue>
+            <ButtonText allowFontScaling={false}>Encerrar o pedido</ButtonText>
+            <ButtonTextValue allowFontScaling={false}>
+              {formatPrice(order_total)}
+            </ButtonTextValue>
           </ButtonSelection>
         </ButtonContainer>
 
         <LineSeparator>
-          <ProductLabelText>Itens do pedido</ProductLabelText>
+          <ProductLabelText allowFontScaling={false}>
+            Itens do pedido
+          </ProductLabelText>
         </LineSeparator>
 
         <ListProducts
@@ -373,7 +388,9 @@ const Cart: React.FC = ({
           renderItem={({ item: product }) => (
             <ProductItem key={product.code}>
               <View>
-                <ProductDetailText>{product.name} </ProductDetailText>
+                <ProductDetailText allowFontScaling={false}>
+                  {product.name}{' '}
+                </ProductDetailText>
               </View>
               <ProductItemView>
                 <QuantityView>
@@ -382,16 +399,17 @@ const Cart: React.FC = ({
                       decrement(product);
                     }}
                   >
-                    <SignalText>-</SignalText>
+                    <SignalText allowFontScaling={false}>-</SignalText>
                   </AddRemoveButton>
 
                   {product?.product_family === 1 ||
                   product?.product_family === 3 ? (
-                    <TextProdAmount>
+                    <TextProdAmount allowFontScaling={false}>
                       {product.quantity.toFixed(3)}
                     </TextProdAmount>
                   ) : (
                     <TextProdAmount
+                      allowFontScaling={false}
                       style={{ marginRight: -12, marginLeft: 20 }}
                     >
                       {product.quantity}
@@ -403,13 +421,19 @@ const Cart: React.FC = ({
                       increment(product);
                     }}
                   >
-                    <SignalText>+</SignalText>
+                    <SignalText allowFontScaling={false}>+</SignalText>
                   </AddRemoveButton>
-                  <TextProdAmount>{product.unit}</TextProdAmount>
+                  <TextProdAmount allowFontScaling={false}>
+                    {product.unit}
+                  </TextProdAmount>
                 </QuantityView>
                 <SubTotalView>
-                  <SubTotalLabel>Sub-total</SubTotalLabel>
-                  <TotalText>{product.subTotal}</TotalText>
+                  <SubTotalLabel allowFontScaling={false}>
+                    Sub-total
+                  </SubTotalLabel>
+                  <TotalText allowFontScaling={false}>
+                    {product.subTotal}
+                  </TotalText>
                 </SubTotalView>
                 <RemoveItemButton
                   onPress={() => handleRemoveFromCart(product.id)}

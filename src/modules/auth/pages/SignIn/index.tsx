@@ -108,7 +108,7 @@ const SignIn: React.FC = () => {
         >
           <Container>
             <View>
-              <Title>Faça seu login</Title>
+              <Title allowFontScaling={false}>Faça seu login</Title>
             </View>
 
             {/* <Image source={fbImg} />
@@ -120,7 +120,6 @@ const SignIn: React.FC = () => {
 
             <Form ref={formRef} onSubmit={handleSignIn}>
               <Input
-                allowFontScaling={false}
                 autoCorrect={false}
                 autoCapitalize="none"
                 keyboardType="phone-pad"
@@ -134,7 +133,6 @@ const SignIn: React.FC = () => {
               />
 
               <Input
-                allowFontScaling={false}
                 ref={passwordInputRef}
                 name="password"
                 icon="lock"

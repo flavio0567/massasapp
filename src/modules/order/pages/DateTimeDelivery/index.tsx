@@ -264,20 +264,25 @@ const DateTimeDelivery: React.FC = () => {
           </SelectButton>
 
           <StatusBar backgroundColor="#FD9E63" />
-          <StartusBarText>Horário da entrega</StartusBarText>
+          <StartusBarText allowFontScaling={false}>
+            Horário da entrega
+          </StartusBarText>
         </Header>
       </View>
 
       <DeliveryInfo>
         <DeliveryUserView>
-          <InfoLabelText>Informações do pedido</InfoLabelText>
+          <InfoLabelText allowFontScaling={false}>
+            Informações do pedido
+          </InfoLabelText>
 
           <Form ref={formRef} onSubmit={handleUser}>
             <DeliveryUserInputView>
-              <DeliveryUserLabelText>
+              <DeliveryUserLabelText allowFontScaling={false}>
                 <Icon name="user" color="#fff" /> Nome:{' '}
               </DeliveryUserLabelText>
               <DeliveryUserInput
+                allowFontScaling={false}
                 onChangeText={(userName: string) => setDeliveryUser(userName)}
                 autoCorrect={false}
                 keyboardType="default"
@@ -288,10 +293,11 @@ const DateTimeDelivery: React.FC = () => {
               </DeliveryUserInput>
             </DeliveryUserInputView>
             <DeliveryUserInputView>
-              <DeliveryUserLabelText>
+              <DeliveryUserLabelText allowFontScaling={false}>
                 <Icon name="phone" color="#fff" /> Celular:{' '}
               </DeliveryUserLabelText>
               <DeliveryMobileInput
+                allowFontScaling={false}
                 type="cel-phone"
                 keyboardType="numeric"
                 options={{
@@ -313,7 +319,9 @@ const DateTimeDelivery: React.FC = () => {
       <ContentDateTime>
         <Calendar>
           <OpenDataPickerButton onPress={handleToggleDatePicker}>
-            <OpenDataPickerButtonText>Escolha a data</OpenDataPickerButtonText>
+            <OpenDataPickerButtonText allowFontScaling={false}>
+              Escolha a data
+            </OpenDataPickerButtonText>
           </OpenDataPickerButton>
 
           {showDatePicker && (
@@ -325,8 +333,6 @@ const DateTimeDelivery: React.FC = () => {
                   onChange={handleDateChanged}
                   textColor="#FD9E63"
                   value={deliveryDate}
-                  // minuteInterval={15}
-                  // minimumDate={deliveryDate}
                   minimumDate={new Date()}
                 />
               </View>
@@ -335,7 +341,9 @@ const DateTimeDelivery: React.FC = () => {
         </Calendar>
 
         <Schedule>
-          <HourLabelText>Escolha o horário </HourLabelText>
+          <HourLabelText allowFontScaling={false}>
+            Escolha o horário{' '}
+          </HourLabelText>
 
           <Section>
             <SectionContent>
@@ -350,7 +358,10 @@ const DateTimeDelivery: React.FC = () => {
                       handleSelectHour(hour);
                     }}
                   >
-                    <HourText selected={selectedHour === hour}>
+                    <HourText
+                      allowFontScaling={false}
+                      selected={selectedHour === hour}
+                    >
                       {hourFullFormatted}
                     </HourText>
                   </Hour>
@@ -360,7 +371,9 @@ const DateTimeDelivery: React.FC = () => {
           </Section>
         </Schedule>
         <ConfirmButton onPress={handleConfirmDateTime}>
-          <OpenDataPickerButtonText>Confirmar</OpenDataPickerButtonText>
+          <OpenDataPickerButtonText allowFontScaling={false}>
+            Confirmar
+          </OpenDataPickerButtonText>
         </ConfirmButton>
       </ContentDateTime>
     </Container>

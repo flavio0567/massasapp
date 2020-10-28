@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import { Platform } from 'react-native';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
@@ -14,6 +15,7 @@ export const ButtonContainer = styled.View`
   justify-content: center;
   align-self: flex-end;
 
+  margin-top: ${Platform.OS === 'ios' ? 0 : -40}px;
   top: ${hp('80%')}px;
 `;
 

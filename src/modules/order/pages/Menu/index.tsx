@@ -97,7 +97,7 @@ const Menu: React.FC = ({ navigation, route, cartSize }: any) => {
       </View>
       <BannerView>
         <BannerImage source={bannerImg} />
-        <BannerText>{name}</BannerText>
+        <BannerText allowFontScaling={false}>{name}</BannerText>
       </BannerView>
       <ProductList
         data={products}

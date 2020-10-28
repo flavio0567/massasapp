@@ -1,16 +1,22 @@
 import produce from 'immer';
+import { enableES5 } from 'immer';
+
+enableES5();
 
 type ReducerProps = {
   reducer: string;
 };
 
 interface StateProp {
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  order: Object;
+
   quantity(quantity: any): any;
   id: string;
   type: string;
   payload: any;
   // eslint-disable-next-line @typescript-eslint/ban-types
-  product: object;
+  product: Object;
 }
 
 export default function cart(state = [], action: StateProp): ReducerProps[] {

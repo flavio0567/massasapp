@@ -68,15 +68,15 @@ const Order: React.FC = ({ cartSize }: any) => {
         }}
       >
         <Header>
-          <StartusBarText>Cardápio</StartusBarText>
+          <StartusBarText allowFontScaling={false}>Cardápio</StartusBarText>
           <SelectionButton onPress={() => navigate('Cart', { caller: 'Menu' })}>
             <Badge
               status="error"
               value={cartSize}
               containerStyle={{
                 position: 'absolute',
-                top: -4,
-                right: 12,
+                top: -2,
+                right: 8,
                 opacity: 0.8,
               }}
             />
@@ -109,7 +109,9 @@ const Order: React.FC = ({ cartSize }: any) => {
               ) : (
                 <ProductImage source={ImgLogo} />
               )}
-              <FamilyProductText>{familyProduct.name}</FamilyProductText>
+              <FamilyProductText allowFontScaling={false}>
+                {familyProduct.name}
+              </FamilyProductText>
             </ProductContainer>
           )}
         />

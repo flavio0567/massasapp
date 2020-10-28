@@ -28,7 +28,7 @@ export const SelectionButton = styled.TouchableOpacity`
 export const CartIcon = styled(Icon)`
   margin-right: 20px;
   color: #fff;
-  /* z-index: -1; */
+  z-index: -1;
 `;
 
 export const StartusBarText = styled.Text`
