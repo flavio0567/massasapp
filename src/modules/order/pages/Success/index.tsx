@@ -3,8 +3,13 @@ import Icon from 'react-native-vector-icons/Feather';
 import { ImageBackground, Image } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
+
 import massasImg from '../../../assets/almondega.png';
-import logoImg from '../../../assets/wheat.png';
+import logoMassasImg from '../../../assets/logo_massas.png';
 
 import {
   Container,
@@ -31,19 +36,10 @@ const Success: React.FC = () => {
       style={{ width: '100%', height: '100%', opacity: 0.86 }}
     >
       <Container>
-        <Image
-          source={logoImg}
-          style={{
-            width: '88%',
-            height: '22%',
-            position: 'absolute',
-            top: 0,
-          }}
-        />
         <SuccessView>
           <Icon
             name="check-circle"
-            size={80}
+            size={78}
             color="#04d361"
             style={{ marginLeft: 110 }}
           />
@@ -51,7 +47,16 @@ const Success: React.FC = () => {
           <Description allowFontScaling={false}>
             Obrigado por escolher
           </Description>
-          <Description allowFontScaling={false}>Massas da Cecilia!</Description>
+          <Image
+            source={logoMassasImg}
+            style={{
+              width: wp('40%'),
+              height: hp('40%'),
+              position: 'absolute',
+              top: 158,
+              left: 84,
+            }}
+          />
           <OkButton onPress={handleOkPressed}>
             <OkButtonText allowFontScaling={false}>
               Retornar ao início

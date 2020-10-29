@@ -32,7 +32,7 @@ export const OkButton = styled(RectButton)`
   align-items: center;
 
   border-radius: 10px;
-  margin: 24px 24px 10px;
+  margin: 154px 24px 10px;
   padding: 12px;
 `;
 
@@ -47,4 +47,5 @@ export const SuccessView = styled.View`
   border-radius: 10px;
   background: #fff;
   padding: 8px 10px 20px;
+  height: 440px;
 `;

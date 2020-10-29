@@ -89,7 +89,7 @@ target 'massasdacecilia' do
     # Pods for testing
   end
 
-  use_native_modules!
+  # use_native_modules!
 
   # Enables Flipper.
   #
