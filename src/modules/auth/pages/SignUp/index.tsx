@@ -53,28 +53,27 @@ const SignUp: React.FC = () => {
 
   const handleSignUp = useCallback(
     async (data: SignInFormData) => {
+      console.log('data', data);
       try {
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
           name: Yup.string().required('Nome obrigatório.'),
-          mobile: Yup.number().required('Número do celular obrigatório.'),
+          mobile: Yup.string().required('Número do celular obrigatório.'),
           password: Yup.string().min(6, 'Senha no mínimo 6 dígitos.'),
           email: Yup.string().email('Formato do e-mail invalido.'),
-          password_confirmation: Yup.string().required('Senha obrigatória.'),
+          password_confirmation: Yup.string().required(
+            'Confirmação da senha obrigatória.',
+          ),
         });
 
         await schema.validate(data, {
           abortEarly: false,
         });
 
-        const userExists = await api.get(`/users/mobile/${data.mobile}`);
-        console.tron.log(userExists);
-        if (userExists) {
-          await api.put('/users', data);
-        } else {
-          await api.post('/users', data);
-        }
+        const response = await api.post('users', data);
+
+        console.log('reaponse:', response.data);
 
         Alert.alert(
           'Cadastro realizado com sucesso!',
@@ -90,11 +89,24 @@ const SignUp: React.FC = () => {
 
           formRef.current?.setErrors(errors);
         }
-        console.log(err);
+        console.log('este é o erro ao retornar da api:', err);
+
+        if (!err.errors[0]) {
+          err.errors[0] = '';
+        }
+        if (!err.errors[1]) {
+          err.errors[1] = '';
+        }
+        if (!err.errors[2]) {
+          err.errors[2] = '';
+        }
+        if (!err.errors[3]) {
+          err.errors[3] = '';
+        }
 
         Alert.alert(
-          'Erro no cadastro',
-          `Ocorreu erro ao cadastrar, os seus dados estão incompletos: ${err.errors[0]} - ${err.errors[1]} - ${err.errors[2]} - ${err.errors[3]}`,
+          'Cadastro incompleto',
+          `Ao realizar seu cadastro informe seus dados corretamente: ${err.errors[0]} ${err.errors[1]} ${err.errors[2]} ${err.errors[3]}`,
         );
       }
     },
@@ -148,7 +160,7 @@ const SignUp: React.FC = () => {
                 ref={passwordInputRef}
                 name="password"
                 icon="lock"
-                placeholder="Senha"
+                placeholder="Senha com 6 dígitos"
                 secureTextEntry
                 returnKeyType="next"
                 onSubmitEditing={() => {

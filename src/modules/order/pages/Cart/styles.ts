@@ -41,10 +41,7 @@ export const TrashButton = styled.TouchableOpacity`
   padding: 5px;
   margin-left: -96px;
 `;
-export const SelectionButton = styled.TouchableOpacity`
-  padding: 8px;
-  /* margin-left: -52px; */
-`;
+export const SelectionButton = styled.TouchableOpacity``;
 
 export const SectionSeparator = styled.View`
   flex-direction: row;
@@ -73,19 +70,19 @@ export const ProductLabelText = styled.Text`
 
 export const DeliveryLabelView = styled.View`
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 `;
 
 export const DeliveryInfo = styled.View`
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 `;
 
 export const Delivery = styled.View`
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 `;
 
@@ -105,8 +102,18 @@ export const PhoneView = styled.View`
 
 export const DeliveryDateTimeInfo = styled.View`
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
+`;
+
+export const LocalizationText = styled.Text`
+  flex-flow: row wrap;
+  margin: 2px 10px 0;
+  color: #3f3f3f;
+  font-size: 14px;
+  font-family: 'RobotoSlab-Regular';
+  padding: 10px;
+  width: 300px;
 `;
 
 export const ProductText = styled.Text`
@@ -153,7 +160,7 @@ export const SignalText = styled.Text`
 `;
 
 export const ListProducts = styled(FlatList as new () => FlatList<Product>)`
-  padding-bottom: 200px;
+  /* padding-bottom: 200px; */
 `;
 
 export const ProductItem = styled.View`

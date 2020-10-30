@@ -56,7 +56,7 @@ const SignIn: React.FC = () => {
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
-          mobile: Yup.number().required('Número do celular obrigatório'),
+          mobile: Yup.string().required('Número do celular obrigatório'),
           password: Yup.string().required('Senha obrigatória.'),
         });
 
@@ -74,21 +74,28 @@ const SignIn: React.FC = () => {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
 
-          console.tron.log(errors);
+          console.log(errors);
 
           formRef.current?.setErrors(errors);
 
+          if (!err.errors[0]) {
+            err.errors[0] = '';
+          }
+          if (!err.errors[1]) {
+            err.errors[1] = '';
+          }
+
           Alert.alert(
-            'Erro ao tentar logar!',
-            'Não foi possível logar no app, tente novamente.',
+            'Login não concluído',
+            `Não foi possível autenticar no app, confira suas credenciais: ${err.errors[0]} ${err.errors[1]}`,
           );
 
           return;
         }
-
+        console.log('erro ao voltar do 404:', err);
         Alert.alert(
-          'Erro na autenticação',
-          'Ocorreu erro ao fazer login, cheque suas credenciais.',
+          'Login não concluído',
+          'Não encontramos seu cadastro, cheque suas credenciais.',
         );
       }
     },
@@ -127,8 +134,12 @@ const SignIn: React.FC = () => {
                 icon="phone"
                 placeholder="Número do celular"
                 returnKeyType="next"
+                autoFocus
+                // onSubmitEditing={() => {
+                //   passwordInputRef.current?.focus;
+                // }}
                 onSubmitEditing={() => {
-                  passwordInputRef.current?.focus;
+                  formRef.current?.submitForm();
                 }}
               />
 

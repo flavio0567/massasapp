@@ -14,11 +14,11 @@ export const Title = styled.Text`
   width: 194px;
   font-family: 'RobotoSlab-Medium';
   margin: 0 54px;
-  padding-left: 20px;
+  padding-left: 28px;
 `;
 
 export const Description = styled.Text`
-  margin: 6px 22px;
+  margin: 8px 28px;
   padding-left: 34px;
   font-family: 'RobotoSlab-Medium';
   font-size: 18px;
@@ -32,7 +32,7 @@ export const OkButton = styled(RectButton)`
   align-items: center;
 
   border-radius: 10px;
-  margin: 154px 24px 10px;
+  margin: 164px 24px 10px;
   padding: 12px;
 `;
 

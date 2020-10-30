@@ -56,6 +56,7 @@ import {
   DeliveryDateTimeInfo,
   DeliveryTextInfo,
   DeliveryLabelView,
+  LocalizationText,
 } from './styles';
 
 interface CartProps {
@@ -291,7 +292,9 @@ const Cart: React.FC = ({
                 size={16}
                 style={{
                   color: '#ff9000',
-                  marginLeft: 340,
+                  marginLeft: 10,
+                  bottom: 5,
+                  paddingBottom: 5,
                 }}
               />
             </SelectionButton>
@@ -306,7 +309,11 @@ const Cart: React.FC = ({
                 Delivery
               </DeliveryLabelText>
               <SelectionButton onPress={() => navigate('Main')}>
-                <Icon name="edit-2" size={16} style={{ color: '#ff9000' }} />
+                <Icon
+                  name="edit-2"
+                  size={16}
+                  style={{ color: '#ff9000', top: 4 }}
+                />
               </SelectionButton>
             </DeliveryLabelView>
             <ItemSeparator />
@@ -318,7 +325,11 @@ const Cart: React.FC = ({
                 Retirar na loja
               </DeliveryLabelText>
               <SelectionButton onPress={() => navigate('Location')}>
-                <Icon name="edit-2" size={16} style={{ color: '#ff9000' }} />
+                <Icon
+                  name="edit-2"
+                  size={16}
+                  style={{ color: '#ff9000', top: 4 }}
+                />
               </SelectionButton>
             </DeliveryLabelView>
             <ItemSeparator />
@@ -328,7 +339,7 @@ const Cart: React.FC = ({
         <DeliveryInfo>
           {deliveryLocalization?.street ? (
             <>
-              <ProductText allowFontScaling={false}>
+              <LocalizationText allowFontScaling={false}>
                 <Icon name="map-pin" /> {deliveryLocalization.street},{' '}
                 {deliveryLocalization.numberAddress}
                 {' - '}
@@ -336,7 +347,7 @@ const Cart: React.FC = ({
                   ? deliveryLocalization.complementAddress
                   : null}{' '}
                 {deliveryLocalization.neighborhood}
-              </ProductText>
+              </LocalizationText>
               <SelectionButton onPress={() => navigate('Location')}>
                 <Icon name="edit-2" size={16} style={{ color: '#ff9000' }} />
               </SelectionButton>
@@ -359,7 +370,11 @@ const Cart: React.FC = ({
                 {deliveryDate} às {deliveryDateTime?.deliveryTime}h
               </DeliveryTextInfo>
               <SelectionButton onPress={() => navigate('DateTimeDelivery')}>
-                <Icon name="edit-2" size={16} style={{ color: '#ff9000' }} />
+                <Icon
+                  name="edit-2"
+                  size={16}
+                  style={{ color: '#ff9000', marginRight: wp('3%') }}
+                />
               </SelectionButton>
             </>
           ) : null}

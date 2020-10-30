@@ -286,7 +286,7 @@ const DateTimeDelivery: React.FC = () => {
                 onChangeText={(userName: string) => setDeliveryUser(userName)}
                 autoCorrect={false}
                 keyboardType="default"
-                autoFocus
+                // autoFocus
                 returnKeyType="next"
               >
                 {deliveryUser}
@@ -300,6 +300,7 @@ const DateTimeDelivery: React.FC = () => {
                 allowFontScaling={false}
                 type="cel-phone"
                 keyboardType="numeric"
+                placeholder="(99) 99999-9999"
                 options={{
                   maskType: 'BRL',
                   withDDD: true,
@@ -307,8 +308,7 @@ const DateTimeDelivery: React.FC = () => {
                 }}
                 value={deliveryUserMobile}
                 onChangeText={(userMobile: string) =>
-                  setDeliveryUserMobile(userMobile)
-                }
+                  setDeliveryUserMobile(userMobile)}
                 returnKeyType="done"
               />
             </DeliveryUserInputView>

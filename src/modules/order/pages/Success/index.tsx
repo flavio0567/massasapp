@@ -50,10 +50,10 @@ const Success: React.FC = () => {
           <Image
             source={logoMassasImg}
             style={{
-              width: wp('40%'),
-              height: hp('40%'),
+              width: wp('34%'),
+              height: hp('34%'),
               position: 'absolute',
-              top: 158,
+              top: 148,
               left: 84,
             }}
           />
