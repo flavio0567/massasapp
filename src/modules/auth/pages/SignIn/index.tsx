@@ -112,6 +112,9 @@ const SignIn: React.FC = () => {
         <ScrollView
           keyboardShouldPersistTaps="handled"
           contentContainerStyle={{ flex: 1 }}
+          style={{
+            backgroundColor: '#faf3e9',
+          }}
         >
           <Container>
             <View>

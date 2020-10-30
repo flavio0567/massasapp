@@ -33,7 +33,7 @@ const Success: React.FC = () => {
   return (
     <ImageBackground
       source={massasImg}
-      style={{ width: '100%', height: '100%', opacity: 0.86 }}
+      style={{ width: '100%', height: '100%', opacity: 0.9 }}
     >
       <Container>
         <SuccessView>

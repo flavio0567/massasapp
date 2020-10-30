@@ -1,5 +1,6 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 import {
   View,
@@ -123,6 +124,9 @@ const SignUp: React.FC = () => {
         <ScrollView
           keyboardShouldPersistTaps="handled"
           contentContainerStyle={{ flex: 1 }}
+          style={{
+            backgroundColor: '#faf3e9',
+          }}
         >
           <Container>
             <View>
@@ -230,7 +234,12 @@ const SignUp: React.FC = () => {
                   navigate('Porch');
                 }}
               >
-                <Icon name="arrow-left" size={20} color="#FD9E63" />
+                <Icon
+                  name="arrow-left"
+                  size={20}
+                  color="#FD9E63"
+                  style={{ marginLeft: 60 }}
+                />
                 <ReturnButtonText allowFontScaling={false}>
                   Retornar ao início
                 </ReturnButtonText>

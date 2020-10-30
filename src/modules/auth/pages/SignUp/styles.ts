@@ -15,7 +15,7 @@ export const Title = styled.Text`
   font-size: 22px;
   color: #9a948c;
   font-family: 'RobotoSlab-Medium';
-  margin: 20px 0 20px;
+  margin: 10px 0 10px;
 `;
 
 export const Image = styled.Image`
@@ -47,7 +47,7 @@ export const TextOptional = styled.Text`
   bottom: 0;
   right: 0;
   color: #9a948c;
-  margin-left: -310px;
+  margin: 0px;
 
   justify-content: center;
   flex-direction: row;
@@ -93,5 +93,5 @@ export const Checkbox = styled.Text`
 export const TextAgreement = styled.Text`
   font-size: 13px;
   color: #666;
-  margin: 15px;
+  margin-left: 15px;
 `;
