@@ -35,8 +35,9 @@ const ProductRender: React.FC = ({ data }: any) => {
   );
 
   return (
-    <Container>
+    <Container accessible>
       <SectionSeparator
+        accessibilityTraits="button"
         onPress={() => {
           navigateToProducts(data.product_family, data.category, data.code);
         }}
@@ -48,10 +49,13 @@ const ProductRender: React.FC = ({ data }: any) => {
         )}
 
         <View>
-          <ProductText allowFontScaling={false}>{data.name}</ProductText>
+          <ProductText allowFontScaling={false} accessibilityLabel="Produto">
+            {data.name}
+          </ProductText>
         </View>
 
         <NavigationButton
+          accessibilityTraits="button"
           onPress={() => {
             navigateToProducts(data.product_family, data.category, data.code);
           }}

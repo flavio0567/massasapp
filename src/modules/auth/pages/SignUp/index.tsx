@@ -129,8 +129,13 @@ const SignUp: React.FC = () => {
           }}
         >
           <Container>
-            <View>
-              <Title allowFontScaling={false}>Faça o seu cadastro</Title>
+            <View accessible>
+              <Title
+                allowFontScaling={false}
+                accessibilityLabel="Faça o seu cadastro"
+              >
+                Faça o seu cadastro
+              </Title>
             </View>
 
             <Form ref={formRef} onSubmit={handleSignUp}>
@@ -197,17 +202,21 @@ const SignUp: React.FC = () => {
                   formRef.current?.submitForm();
                 }}
               />
-              <TextOptional allowFontScaling={false}>
+              <TextOptional
+                allowFontScaling={false}
+                accessibilityLabel="E-mail opcional"
+              >
                 E-mail Opcional
               </TextOptional>
 
               <Agreement>
                 <CheckBoxAgreement
+                  accessibilityTraits="button"
                   onPress={() => {
                     checked ? setChecked(false) : setChecked(true);
                   }}
                 >
-                  <Checkbox>
+                  <Checkbox accessibilityTraits="selected">
                     {checked ? (
                       <Icon name="check" size={14} color="#666360" />
                     ) : (
@@ -215,13 +224,18 @@ const SignUp: React.FC = () => {
                     )}
                   </Checkbox>
                 </CheckBoxAgreement>
-                <TextAgreement allowFontScaling={false}>
+                <TextAgreement
+                  allowFontScaling={false}
+                  accessibilityLabel="Sim, concordo em receber mensagem de texto e/ou email sobre
+                  futuros eventos, ofertas e promoções"
+                >
                   Sim, concordo em receber mensagem de texto e/ou email sobre
                   futuros eventos, ofertas e promoções.
                 </TextAgreement>
               </Agreement>
 
               <RegisterButton
+                accessibilityLabel="Cadastrar"
                 onPress={() => {
                   formRef.current?.submitForm();
                 }}
@@ -230,6 +244,7 @@ const SignUp: React.FC = () => {
               </RegisterButton>
 
               <ReturnButton
+                accessibilityComponentType="button"
                 onPress={() => {
                   navigate('Porch');
                 }}
@@ -240,7 +255,10 @@ const SignUp: React.FC = () => {
                   color="#FD9E63"
                   style={{ marginLeft: 60 }}
                 />
-                <ReturnButtonText allowFontScaling={false}>
+                <ReturnButtonText
+                  allowFontScaling={false}
+                  accessibilityLabel="Retornar ao início"
+                >
                   Retornar ao início
                 </ReturnButtonText>
               </ReturnButton>

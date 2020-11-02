@@ -20,7 +20,7 @@ const App: React.FC = () => {
       <NavigationContainer>
         <StatusBar barStyle="light-content" backgroundColor="#FD9E63" />
         <AppProvider>
-          <View style={{ flex: 1, backgroundColor: '#FD9E63' }}>
+          <View style={{ flex: 1, backgroundColor: '#FD9E63' }} accessible>
             <Routes />
           </View>
         </AppProvider>

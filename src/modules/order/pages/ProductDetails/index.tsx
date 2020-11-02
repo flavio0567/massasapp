@@ -134,6 +134,7 @@ const ProductDetails: React.FC = ({
   return (
     <Container>
       <View
+        accessible
         style={{
           backgroundColor: '#FD9E63',
           height: hp('10%'),
@@ -142,6 +143,8 @@ const ProductDetails: React.FC = ({
         <Header>
           {product?.name ? (
             <SelectionButton
+              accessibilityTraits="button"
+              accessibilityLabel="Retornar"
               onPress={() => {
                 navigate(caller);
               }}
@@ -150,6 +153,8 @@ const ProductDetails: React.FC = ({
             </SelectionButton>
           ) : (
             <SelectionButton
+              accessibilityTraits="button"
+              accessibilityLabel="Navegar ao Menu"
               onPress={() => {
                 navigate('Menu');
               }}
@@ -158,10 +163,16 @@ const ProductDetails: React.FC = ({
             </SelectionButton>
           )}
           <StatusBar backgroundColor="#FD9E63" barStyle="light-content" />
-          <StartusBarText allowFontScaling={false}>
+          <StartusBarText
+            allowFontScaling={false}
+            accessibilityTraits="button"
+            accessibilityLabel="Adicionar item ao pedido"
+          >
             Adicionar item ao pedido
           </StartusBarText>
           <SelectionButton
+            accessibilityTraits="button"
+            accessibilityLabel="Navegar ao carrinho de compras"
             onPress={() => navigate('Cart', { caller: 'ProductDetails' })}
           >
             <Badge
@@ -179,9 +190,14 @@ const ProductDetails: React.FC = ({
         </Header>
       </View>
       <View>
-        <ProductText allowFontScaling={false}>{product?.name}</ProductText>
+        <ProductText allowFontScaling={false} accessibilityLabel="Produto">
+          {product?.name}
+        </ProductText>
         <QuantityView>
-          <ProductLabelText allowFontScaling={false}>
+          <ProductLabelText
+            allowFontScaling={false}
+            accessibilityLabel="Quantidade"
+          >
             Quantidade:
           </ProductLabelText>
           <AddRemoveButton
@@ -189,7 +205,9 @@ const ProductDetails: React.FC = ({
               decrement(product);
             }}
           >
-            <MinusText allowFontScaling={false}>-</MinusText>
+            <MinusText allowFontScaling={false} accessibilityLabel="Diminuir">
+              -
+            </MinusText>
           </AddRemoveButton>
           {product?.product_family === 1 || product?.product_family === 3 ? (
             <TextProdAmount allowFontScaling={false}>
@@ -208,31 +226,47 @@ const ProductDetails: React.FC = ({
               increment(product);
             }}
           >
-            <PlusText allowFontScaling={false}>+</PlusText>
+            <PlusText allowFontScaling={false} accessibilityLabel="Incrementar">
+              +
+            </PlusText>
           </AddRemoveButton>
           {product?.product_family === 1 || product?.product_family === 3 ? (
-            <TextProdAmount allowFontScaling={false}>
+            <TextProdAmount
+              allowFontScaling={false}
+              accessibilityLabel="Produto"
+            >
               {product?.unit}
             </TextProdAmount>
           ) : null}
         </QuantityView>
 
         <ProductPriceView>
-          <ProductLabelText allowFontScaling={false}>
+          <ProductLabelText
+            allowFontScaling={false}
+            accessibilityLabel="Preço por unidade ou kilograma"
+          >
             Preço unidade/Kg
           </ProductLabelText>
-          <ProductText style={{ marginLeft: 34 }}>
+          <ProductText style={{ marginLeft: 34 }} accessibilityLabel="Preço">
             {formatPrice(product?.sales_price)}
           </ProductText>
         </ProductPriceView>
 
         <LineSeparator />
 
-        <AddInformation allowFontScaling={false}>
+        <AddInformation
+          allowFontScaling={false}
+          accessibilityLabel="Informações adicionais sobre o produto, quando necessário, podem ser
+          solicitadas"
+        >
           Informações adicionais sobre o produto, quando necessário, podem ser
           solicitadas.
         </AddInformation>
-        <AddInformation allowFontScaling={false}>
+        <AddInformation
+          allowFontScaling={false}
+          accessibilityLabel="O valor abaixo pode variar de acordo com o peso final do produto na
+          embalagem"
+        >
           O valor abaixo pode variar de acordo com o peso final do produto na
           embalagem.
         </AddInformation>
@@ -240,8 +274,10 @@ const ProductDetails: React.FC = ({
 
       <ButtonContainer>
         <ButtonSelection onPress={() => handleAddProduct(product?.id)}>
-          <ButtonText allowFontScaling={false}>Confirmar</ButtonText>
-          <ButtonText allowFontScaling={false}>
+          <ButtonText allowFontScaling={false} accessibilityLabel="Confirmar">
+            Confirmar
+          </ButtonText>
+          <ButtonText allowFontScaling={false} accessibilityLabel="Preço total">
             {formatPrice(product?.sales_price * quantity)}
           </ButtonText>
         </ButtonSelection>

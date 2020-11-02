@@ -251,7 +251,7 @@ const DateTimeDelivery: React.FC = () => {
   );
 
   return (
-    <Container>
+    <Container accessible>
       <View
         style={{
           backgroundColor: '#FD9E63',
@@ -259,12 +259,15 @@ const DateTimeDelivery: React.FC = () => {
         }}
       >
         <Header>
-          <SelectButton onPress={() => goBack()}>
+          <SelectButton onPress={() => goBack()} accessibilityTraits="button">
             <ChevronIcon name="chevron-left" size={22} />
           </SelectButton>
 
           <StatusBar backgroundColor="#FD9E63" />
-          <StartusBarText allowFontScaling={false}>
+          <StartusBarText
+            allowFontScaling={false}
+            accessibilityLabel="Horário de entrega"
+          >
             Horário da entrega
           </StartusBarText>
         </Header>
@@ -272,13 +275,19 @@ const DateTimeDelivery: React.FC = () => {
 
       <DeliveryInfo>
         <DeliveryUserView>
-          <InfoLabelText allowFontScaling={false}>
+          <InfoLabelText
+            allowFontScaling={false}
+            accessibilityLabel="Informações do pedido"
+          >
             Informações do pedido
           </InfoLabelText>
 
           <Form ref={formRef} onSubmit={handleUser}>
             <DeliveryUserInputView>
-              <DeliveryUserLabelText allowFontScaling={false}>
+              <DeliveryUserLabelText
+                allowFontScaling={false}
+                accessibilityLabel="Nome"
+              >
                 <Icon name="user" color="#fff" /> Nome:{' '}
               </DeliveryUserLabelText>
               <DeliveryUserInput
@@ -286,14 +295,16 @@ const DateTimeDelivery: React.FC = () => {
                 onChangeText={(userName: string) => setDeliveryUser(userName)}
                 autoCorrect={false}
                 keyboardType="default"
-                // autoFocus
                 returnKeyType="next"
               >
                 {deliveryUser}
               </DeliveryUserInput>
             </DeliveryUserInputView>
             <DeliveryUserInputView>
-              <DeliveryUserLabelText allowFontScaling={false}>
+              <DeliveryUserLabelText
+                allowFontScaling={false}
+                accessibilityLabel="Celular"
+              >
                 <Icon name="phone" color="#fff" /> Celular:{' '}
               </DeliveryUserLabelText>
               <DeliveryMobileInput
@@ -308,7 +319,8 @@ const DateTimeDelivery: React.FC = () => {
                 }}
                 value={deliveryUserMobile}
                 onChangeText={(userMobile: string) =>
-                  setDeliveryUserMobile(userMobile)}
+                  setDeliveryUserMobile(userMobile)
+                }
                 returnKeyType="done"
               />
             </DeliveryUserInputView>
@@ -319,7 +331,11 @@ const DateTimeDelivery: React.FC = () => {
       <ContentDateTime>
         <Calendar>
           <OpenDataPickerButton onPress={handleToggleDatePicker}>
-            <OpenDataPickerButtonText allowFontScaling={false}>
+            <OpenDataPickerButtonText
+              allowFontScaling={false}
+              accessibilityLabel="Escolha a data"
+              accessibilityTraits="button"
+            >
               Escolha a data
             </OpenDataPickerButtonText>
           </OpenDataPickerButton>
@@ -334,6 +350,7 @@ const DateTimeDelivery: React.FC = () => {
                   textColor="#FD9E63"
                   value={deliveryDate}
                   minimumDate={new Date()}
+                  accessibilityTraits="selected"
                 />
               </View>
             </DateTimeSection>
@@ -341,7 +358,10 @@ const DateTimeDelivery: React.FC = () => {
         </Calendar>
 
         <Schedule>
-          <HourLabelText allowFontScaling={false}>
+          <HourLabelText
+            allowFontScaling={false}
+            accessibilityLabel="Escolha o horário"
+          >
             Escolha o horário{' '}
           </HourLabelText>
 
@@ -361,6 +381,7 @@ const DateTimeDelivery: React.FC = () => {
                     <HourText
                       allowFontScaling={false}
                       selected={selectedHour === hour}
+                      accessibilityTraits="button"
                     >
                       {hourFullFormatted}
                     </HourText>
@@ -371,7 +392,11 @@ const DateTimeDelivery: React.FC = () => {
           </Section>
         </Schedule>
         <ConfirmButton onPress={handleConfirmDateTime}>
-          <OpenDataPickerButtonText allowFontScaling={false}>
+          <OpenDataPickerButtonText
+            allowFontScaling={false}
+            accessibilityLabel="Confirmar"
+            accessibilityTraits="button"
+          >
             Confirmar
           </OpenDataPickerButtonText>
         </ConfirmButton>

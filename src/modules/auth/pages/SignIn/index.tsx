@@ -117,8 +117,13 @@ const SignIn: React.FC = () => {
           }}
         >
           <Container>
-            <View>
-              <Title allowFontScaling={false}>Faça seu login</Title>
+            <View accessible>
+              <Title
+                allowFontScaling={false}
+                accessibilityLabel="Faça seu login"
+              >
+                Faça seu login
+              </Title>
             </View>
 
             {/* <Image source={fbImg} />
@@ -158,6 +163,7 @@ const SignIn: React.FC = () => {
                 }}
               />
               <Button
+                accessibilityLabel="Entrar"
                 onPress={() => {
                   formRef.current?.submitForm();
                 }}
@@ -174,23 +180,31 @@ const SignIn: React.FC = () => {
               <GuestText>Esqueci minha senha</GuestText>
             </ForgotPasswordButton> */}
             <ReturnButton
+              accessibilityComponentType="button"
               onPress={() => {
                 navigate('Porch');
               }}
             >
               <Icon name="arrow-left" size={20} color="#FD9E63" />
-              <ReturnButtonText allowFontScaling={false}>
+              <ReturnButtonText
+                allowFontScaling={false}
+                accessibilityLabel="Retornar ao início"
+              >
                 Retornar ao início
               </ReturnButtonText>
             </ReturnButton>
 
             <CreateAccountButton
+              accessibilityComponentType="button"
               onPress={() => {
                 navigate('SignUp');
               }}
             >
               <Icon name="log-in" size={20} color="#fff" />
-              <CreateAccountButtonText allowFontScaling={false}>
+              <CreateAccountButtonText
+                allowFontScaling={false}
+                accessibilityLabel="Criar uma conta"
+              >
                 Criar uma conta
               </CreateAccountButtonText>
             </CreateAccountButton>

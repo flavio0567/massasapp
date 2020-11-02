@@ -61,7 +61,7 @@ const Location: React.FC = () => {
   }, [navigate, userCep]);
 
   return (
-    <Container>
+    <Container accessible>
       <View
         style={{
           backgroundColor: '#FD9E63',
@@ -69,11 +69,17 @@ const Location: React.FC = () => {
         }}
       >
         <Header>
-          <SelectionButton onPress={() => goBack()}>
+          <SelectionButton
+            onPress={() => goBack()}
+            accessibilityLabel="Retornar"
+          >
             <ChevronIcon name="chevron-left" size={22} />
           </SelectionButton>
           <StatusBar backgroundColor="#FD9E63" barStyle="light-content" />
-          <StatusBarText allowFontScaling={false}>
+          <StatusBarText
+            allowFontScaling={false}
+            accessibilityLabel="Endereço de entrega"
+          >
             Endereço de entrega
           </StatusBarText>
         </Header>
@@ -89,7 +95,7 @@ const Location: React.FC = () => {
           </View>
         ) : (
           <Content>
-            <SearchBox>
+            <SearchBox accessibilityLabel="Pesquisar CEP">
               <InputSearch
                 allowFontScaling={false}
                 autoCorrect={false}
@@ -111,11 +117,16 @@ const Location: React.FC = () => {
                 </CleanSearch>
               ) : null}
             </SearchBox>
-            <TextInfo allowFontScaling={false}>
+            <TextInfo
+              allowFontScaling={false}
+              accessibilityLabel="Informe todos os números do CEP"
+            >
               Informe todos os números do CEP
             </TextInfo>
             <ConfirmButton onPress={handleSearch}>
-              <ConfirmText allowFontScaling={false}>Buscar</ConfirmText>
+              <ConfirmText allowFontScaling={false} accessibilityLabel="Buscar">
+                Buscar
+              </ConfirmText>
             </ConfirmButton>
           </Content>
         )}

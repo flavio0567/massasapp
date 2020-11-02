@@ -245,6 +245,7 @@ const Cart: React.FC = ({
   return (
     <Container>
       <View
+        accessible
         style={{
           backgroundColor: '#FD9E63',
           height: hp('10%'),
@@ -253,7 +254,11 @@ const Cart: React.FC = ({
         <Header>
           <StatusBarText allowFontScaling={false}>Pedido</StatusBarText>
 
-          <TrashButton onPress={handleEmptyCart}>
+          <TrashButton
+            onPress={handleEmptyCart}
+            accessibilityLabel="Limpar carrinho"
+            accessibilityTraits="button"
+          >
             <ChevronIcon name="trash-2" size={22} />
           </TrashButton>
         </Header>
@@ -261,7 +266,10 @@ const Cart: React.FC = ({
 
       <Content>
         <LineSeparator>
-          <ProductLabelText allowFontScaling={false}>
+          <ProductLabelText
+            allowFontScaling={false}
+            accessibilityLabel="Detalhes do pedido"
+          >
             Detalhes do pedido
           </ProductLabelText>
         </LineSeparator>
@@ -270,7 +278,10 @@ const Cart: React.FC = ({
           <Delivery>
             <UserText allowFontScaling={false}>
               <Icon name="user" color="#ff9000" />{' '}
-              <DeliveryLabelText allowFontScaling={false}>
+              <DeliveryLabelText
+                allowFontScaling={false}
+                accessibilityLabel="Nome"
+              >
                 Nome:{' '}
               </DeliveryLabelText>
               {'    '}
@@ -279,14 +290,21 @@ const Cart: React.FC = ({
             <PhoneView>
               <UserText allowFontScaling={false}>
                 <Icon name="phone" color="#ff9000" />{' '}
-                <DeliveryLabelText allowFontScaling={false}>
+                <DeliveryLabelText
+                  allowFontScaling={false}
+                  accessibilityLabel="Celular"
+                >
                   Celular:{' '}
                 </DeliveryLabelText>
                 {'  '}
                 {user.mobile}
               </UserText>
             </PhoneView>
-            <SelectionButton onPress={() => navigate('DateTimeDelivery')}>
+            <SelectionButton
+              onPress={() => navigate('DateTimeDelivery')}
+              accessibilityTraits="button"
+              accessibilityLabel="Editar"
+            >
               <Icon
                 name="edit-2"
                 size={16}
@@ -305,10 +323,17 @@ const Cart: React.FC = ({
         {deliveryLocalization?.street ? (
           <>
             <DeliveryLabelView>
-              <DeliveryLabelText allowFontScaling={false}>
+              <DeliveryLabelText
+                allowFontScaling={false}
+                accessibilityLabel="Delivery"
+              >
                 Delivery
               </DeliveryLabelText>
-              <SelectionButton onPress={() => navigate('Main')}>
+              <SelectionButton
+                onPress={() => navigate('Main')}
+                accessibilityTraits="button"
+                accessibilityLabel="Editar"
+              >
                 <Icon
                   name="edit-2"
                   size={16}
@@ -321,10 +346,17 @@ const Cart: React.FC = ({
         ) : (
           <>
             <DeliveryLabelView>
-              <DeliveryLabelText allowFontScaling={false}>
+              <DeliveryLabelText
+                allowFontScaling={false}
+                accessibilityLabel="Retirar na loja"
+              >
                 Retirar na loja
               </DeliveryLabelText>
-              <SelectionButton onPress={() => navigate('Location')}>
+              <SelectionButton
+                onPress={() => navigate('Location')}
+                accessibilityTraits="button"
+                accessibilityLabel="Editar"
+              >
                 <Icon
                   name="edit-2"
                   size={16}
@@ -339,7 +371,10 @@ const Cart: React.FC = ({
         <DeliveryInfo>
           {deliveryLocalization?.street ? (
             <>
-              <LocalizationText allowFontScaling={false}>
+              <LocalizationText
+                allowFontScaling={false}
+                accessibilityLabel="Editar"
+              >
                 <Icon name="map-pin" /> {deliveryLocalization.street},{' '}
                 {deliveryLocalization.numberAddress}
                 {' - '}
@@ -348,13 +383,19 @@ const Cart: React.FC = ({
                   : null}{' '}
                 {deliveryLocalization.neighborhood}
               </LocalizationText>
-              <SelectionButton onPress={() => navigate('Location')}>
+              <SelectionButton
+                onPress={() => navigate('Location')}
+                accessibilityTraits="button"
+              >
                 <Icon name="edit-2" size={16} style={{ color: '#ff9000' }} />
               </SelectionButton>
             </>
           ) : (
             <>
-              <ProductText allowFontScaling={false}>
+              <ProductText
+                allowFontScaling={false}
+                accessibilityLabel="Endereço da Massas da Cecilia"
+              >
                 <Icon name="map-pin" /> Avenida Prof. Adib Chaib, 2926 - Mogi
                 Mirim
               </ProductText>
@@ -369,7 +410,11 @@ const Cart: React.FC = ({
               <DeliveryTextInfo allowFontScaling={false}>
                 {deliveryDate} às {deliveryDateTime?.deliveryTime}h
               </DeliveryTextInfo>
-              <SelectionButton onPress={() => navigate('DateTimeDelivery')}>
+              <SelectionButton
+                onPress={() => navigate('DateTimeDelivery')}
+                accessibilityTraits="button"
+                accessibilityLabel="Editar"
+              >
                 <Icon
                   name="edit-2"
                   size={16}
@@ -384,15 +429,27 @@ const Cart: React.FC = ({
 
         <ButtonContainer>
           <ButtonSelection onPress={handleCreateOrder}>
-            <ButtonText allowFontScaling={false}>Encerrar o pedido</ButtonText>
-            <ButtonTextValue allowFontScaling={false}>
+            <ButtonText
+              allowFontScaling={false}
+              accessibilityLabel="Encerrar o pedido"
+              accessibilityTraits="button"
+            >
+              Encerrar o pedido
+            </ButtonText>
+            <ButtonTextValue
+              allowFontScaling={false}
+              accessibilityLabel="Valor do pedido"
+            >
               {formatPrice(order_total)}
             </ButtonTextValue>
           </ButtonSelection>
         </ButtonContainer>
 
         <LineSeparator>
-          <ProductLabelText allowFontScaling={false}>
+          <ProductLabelText
+            allowFontScaling={false}
+            accessibilityLabel="Itens do pedido"
+          >
             Itens do pedido
           </ProductLabelText>
         </LineSeparator>
@@ -414,7 +471,13 @@ const Cart: React.FC = ({
                       decrement(product);
                     }}
                   >
-                    <SignalText allowFontScaling={false}>-</SignalText>
+                    <SignalText
+                      allowFontScaling={false}
+                      accessibilityLabel="Diminuir"
+                      accessibilityTraits="button"
+                    >
+                      -
+                    </SignalText>
                   </AddRemoveButton>
 
                   {product?.product_family === 1 ||
@@ -436,24 +499,40 @@ const Cart: React.FC = ({
                       increment(product);
                     }}
                   >
-                    <SignalText allowFontScaling={false}>+</SignalText>
+                    <SignalText
+                      allowFontScaling={false}
+                      accessibilityLabel="Acrescentar"
+                      accessibilityTraits="button"
+                    >
+                      +
+                    </SignalText>
                   </AddRemoveButton>
                   <TextProdAmount allowFontScaling={false}>
                     {product.unit}
                   </TextProdAmount>
                 </QuantityView>
                 <SubTotalView>
-                  <SubTotalLabel allowFontScaling={false}>
+                  <SubTotalLabel
+                    allowFontScaling={false}
+                    accessibilityLabel="Sub-total"
+                  >
                     Sub-total
                   </SubTotalLabel>
-                  <TotalText allowFontScaling={false}>
+                  <TotalText
+                    allowFontScaling={false}
+                    accessibilityLabel="Sub-total"
+                  >
                     {product.subTotal}
                   </TotalText>
                 </SubTotalView>
                 <RemoveItemButton
                   onPress={() => handleRemoveFromCart(product.id)}
                 >
-                  <DeleteIcon name="trash-2" size={18} />
+                  <DeleteIcon
+                    name="trash-2"
+                    size={18}
+                    accessibilityTraits="button"
+                  />
                 </RemoveItemButton>
               </ProductItemView>
             </ProductItem>

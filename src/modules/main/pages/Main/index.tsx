@@ -47,6 +47,7 @@ const Main: React.FC = () => {
 
   return (
     <ImageBackground
+      accessible
       source={massasImg}
       style={{ width: '100%', height: '100%' }}
     >
@@ -61,18 +62,29 @@ const Main: React.FC = () => {
       />
 
       <TitleView>
-        <Title allowFontScaling={false}>Crie seu pedido</Title>
-        <SubTitle allowFontScaling={false}>
+        <Title allowFontScaling={false} accessibilityLabel="Crie seu pedido">
+          Crie seu pedido
+        </Title>
+        <SubTitle
+          allowFontScaling={false}
+          accessibilityLabel="Escolha uma das opções de entrega abaixo"
+        >
           Escolha uma das opções de entrega abaixo
         </SubTitle>
       </TitleView>
 
       <ButtonContainer>
         <ButtonSelection onPress={handlePickup}>
-          <ButtonText allowFontScaling={false}>Retirar na Loja</ButtonText>
+          <ButtonText
+            allowFontScaling={false}
+            accessibilityLabel="Retirar na Loja"
+          >
+            Retirar na Loja
+          </ButtonText>
         </ButtonSelection>
 
         <ButtonSelection
+          accessibilityLabel="Navegar para localização"
           onPress={() => {
             navigate('Location');
           }}

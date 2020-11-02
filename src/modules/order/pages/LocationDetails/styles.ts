@@ -80,7 +80,7 @@ export const ReturnButtonText = styled.Text`
 
 export const AddInformation = styled.Text`
   position: absolute;
-  top: ${hp('32%')}px;
+  top: ${hp('36%')}px;
   left: ${wp('4%')}px;
   color: #666;
   font-size: 12px;

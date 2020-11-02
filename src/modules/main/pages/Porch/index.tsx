@@ -20,7 +20,7 @@ const Porch: React.FC = () => {
   const { navigate } = useNavigation();
 
   return (
-    <Container>
+    <Container accessible>
       <ImageBackground
         source={massasImg}
         style={{ width: '100%', height: '100%' }}
@@ -37,11 +37,15 @@ const Porch: React.FC = () => {
 
         <ButtonContainer>
           <ButtonSelection
+            accessibilityTraits="button"
+            accessibilityLabel="Login"
             onPress={() => {
               navigate('SignIn');
             }}
           >
-            <ButtonText allowFontScaling={false}>Entrar</ButtonText>
+            <ButtonText allowFontScaling={false} accessibilityLabel="Entrar">
+              Entrar
+            </ButtonText>
           </ButtonSelection>
 
           <ButtonSelection
@@ -49,11 +53,15 @@ const Porch: React.FC = () => {
               navigate('SignUp');
             }}
           >
-            <ButtonText allowFontScaling={false}>Cadastrar</ButtonText>
+            <ButtonText allowFontScaling={false} accessibilityLabel="Cadastrar">
+              Cadastrar
+            </ButtonText>
           </ButtonSelection>
         </ButtonContainer>
 
         <GuestSelection
+          accessibilityTraits="button"
+          accessibilityLabel="Navegar ao início"
           onPress={() => {
             navigate('Home');
           }}
