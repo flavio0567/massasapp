@@ -62,13 +62,13 @@ const ProductDetails: React.FC = ({
   const [quantity, setQuantity] = useState<number>(0);
 
   useEffect(() => {
-    async function getProducName(): Promise<void> {
+    async function getToken(): Promise<void> {
       const token = await AsyncStorage.getItem('@Massas:token');
 
       setUserToken(token);
     }
 
-    getProducName();
+    getToken();
   }, []);
 
   useEffect(() => {

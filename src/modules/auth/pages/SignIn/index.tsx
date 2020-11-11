@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 
 import {
   View,
@@ -18,6 +18,7 @@ import { useNavigation } from '@react-navigation/native';
 import fbImg from '../../../assets/fb_logo.png';
 import Input from '../../../../shared/components/Input';
 import Button from '../../../../shared/components/Button';
+import api from '../../../../shared/service/api';
 
 import { useAuth } from '../../../../shared/hooks/auth';
 import getValidationErrors from '../../../../shared/utils/getValidationErrors';
@@ -44,6 +45,7 @@ interface SignInFormData {
 
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
+  const [mobile, setMobile] = useState<string>();
   const passwordInputRef = useRef<TextInput>(null);
 
   const { navigate, reset } = useNavigation();
@@ -63,6 +65,8 @@ const SignIn: React.FC = () => {
         await schema.validate(data, {
           abortEarly: false,
         });
+
+        setMobile(data.mobile);
 
         await signIn({
           mobile: data.mobile,
@@ -92,7 +96,6 @@ const SignIn: React.FC = () => {
 
           return;
         }
-        console.log('erro ao voltar do 404:', err);
         Alert.alert(
           'Login não concluído',
           'Não encontramos seu cadastro, cheque suas credenciais.',
@@ -101,6 +104,32 @@ const SignIn: React.FC = () => {
     },
     [signIn, reset],
   );
+
+  const forgotPassword = useCallback(async () => {
+    try {
+      if (!mobile) {
+        Alert.alert(
+          'Esqueci minha senha',
+          'Para recuperar a senha, informe o número do celular.',
+        );
+        return;
+      }
+
+      await api.post('password/forgot', {
+        mobile,
+      });
+
+      Alert.alert(
+        'Esqueci minha senha',
+        'Uma memsagem para redefinir sua senha foi encaminhada para o seu endereço de e-mail. Confira sua caixa de entrada!',
+      );
+    } catch (err) {
+      Alert.alert(
+        'Esqueci minha senha',
+        `Não foi possível identificar um e-mail valido associado a este celular.${err}`,
+      );
+    }
+  }, []);
 
   return (
     <>
@@ -143,11 +172,8 @@ const SignIn: React.FC = () => {
                 placeholder="Número do celular"
                 returnKeyType="next"
                 autoFocus
-                // onSubmitEditing={() => {
-                //   passwordInputRef.current?.focus;
-                // }}
                 onSubmitEditing={() => {
-                  formRef.current?.submitForm();
+                  passwordInputRef.current?.focus;
                 }}
               />
 
@@ -171,14 +197,15 @@ const SignIn: React.FC = () => {
                 Entrar
               </Button>
             </Form>
-            {/*
-            <ForgotPasswordButton
+
+            {/* <ForgotPasswordButton
               onPress={() => {
-                console.tron.log('ForgotPassword');
+                forgotPassword();
               }}
             >
               <GuestText>Esqueci minha senha</GuestText>
             </ForgotPasswordButton> */}
+
             <ReturnButton
               accessibilityComponentType="button"
               onPress={() => {

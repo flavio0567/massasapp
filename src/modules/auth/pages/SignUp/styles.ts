@@ -47,7 +47,7 @@ export const TextOptional = styled.Text`
   bottom: 0;
   right: 0;
   color: #9a948c;
-  margin: 0px;
+  margin-bottom: 10px;
 
   justify-content: center;
   flex-direction: row;
@@ -95,3 +95,5 @@ export const TextAgreement = styled.Text`
   color: #666;
   margin-left: 15px;
 `;
+
+export const InputAgreement = styled.Switch``;

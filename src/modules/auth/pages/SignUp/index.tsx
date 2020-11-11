@@ -32,6 +32,7 @@ import {
   Checkbox,
   Agreement,
   TextAgreement,
+  InputAgreement,
 } from './styles';
 
 interface SignInFormData {
@@ -50,11 +51,10 @@ const SignUp: React.FC = () => {
   const passwordConfirmInputRef = useRef<TextInput>(null);
   const mobileInputRef = useRef<TextInput>(null);
   const emailInputRef = useRef<TextInput>(null);
-  const [checked, setChecked] = useState(false);
+  // const [isAgreed, setIsAgreed] = useState(false);
 
   const handleSignUp = useCallback(
-    async (data: SignInFormData) => {
-      console.log('data', data);
+    async (user: SignInFormData) => {
       try {
         formRef.current?.setErrors({});
 
@@ -68,13 +68,11 @@ const SignUp: React.FC = () => {
           ),
         });
 
-        await schema.validate(data, {
+        await schema.validate(user, {
           abortEarly: false,
         });
 
-        const response = await api.post('users', data);
-
-        console.log('reaponse:', response.data);
+        await api.post('users', user);
 
         Alert.alert(
           'Cadastro realizado com sucesso!',
@@ -90,7 +88,6 @@ const SignUp: React.FC = () => {
 
           formRef.current?.setErrors(errors);
         }
-        console.log('este é o erro ao retornar da api:', err);
 
         if (!err.errors[0]) {
           err.errors[0] = '';
@@ -113,6 +110,11 @@ const SignUp: React.FC = () => {
     },
     [navigate],
   );
+
+  // const toggleSwitch = useCallback(() => {
+  //   setIsAgreed((previousState) => !previousState);
+  //   // console.log(isAgreed);
+  // }, []);
 
   return (
     <>
@@ -208,8 +210,21 @@ const SignUp: React.FC = () => {
               >
                 E-mail Opcional
               </TextOptional>
+              {/* <InputAgreement
+                onValueChange={toggleSwitch}
+                value={isAgreed}
+                name="isAgreed"
+              />
+              <TextAgreement
+                allowFontScaling={false}
+                accessibilityLabel="Sim, concordo em receber mensagem de texto e/ou email sobre
+                  futuros eventos, ofertas e promoções"
+              >
+                Sim, concordo em receber mensagem de texto e/ou email sobre
+                futuros eventos, ofertas e promoções.
+              </TextAgreement> */}
 
-              <Agreement>
+              {/* <Agreement>
                 <CheckBoxAgreement
                   accessibilityTraits="button"
                   onPress={() => {
@@ -232,7 +247,7 @@ const SignUp: React.FC = () => {
                   Sim, concordo em receber mensagem de texto e/ou email sobre
                   futuros eventos, ofertas e promoções.
                 </TextAgreement>
-              </Agreement>
+              </Agreement> */}
 
               <RegisterButton
                 accessibilityLabel="Cadastrar"

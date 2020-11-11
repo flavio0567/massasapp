@@ -52,6 +52,7 @@ import {
   Schedule,
   InfoLabelText,
   HourLabelText,
+  InfoHourText,
   Section,
   SectionContent,
   Hour,
@@ -60,6 +61,7 @@ import {
 
 const DateTimeDelivery: React.FC = () => {
   const { reset, navigate, goBack } = useNavigation();
+  const [token, setToken] = useState<string | null>();
 
   const formRef = useRef<FormHandles>(null);
 
@@ -84,6 +86,35 @@ const DateTimeDelivery: React.FC = () => {
       setDeliveryUserMobile(String(user.mobile));
     }
   }, [user]);
+
+  // useEffect(() => {
+
+  //   const response = await api.post('sessions', {
+  //     mobile,
+  //     password,
+  //   });
+
+  //   const { token, user } = response.data;
+
+  //   async function getToken(): Promise<void> {
+  //     const userToken = await AsyncStorage.getItem('@Massas:token');
+
+  //     if (!userToken) {
+  //       await AsyncStorage.multiSet([
+  //         ['@Massas:token', token],
+  //         ['@Massas:user', JSON.stringify(user)],
+  //       ]);
+
+  //       api.defaults.headers.authorization = `Bearer ${token}`;
+
+  //   setData({ token, user, mobile });
+  //     }
+
+  //     setToken(userToken);
+  //   }
+
+  //   getToken();
+  // }, []);
 
   const deliveryAvailability = useMemo(() => {
     deliveryDate.setHours(0);
@@ -162,20 +193,20 @@ const DateTimeDelivery: React.FC = () => {
   );
 
   const handleConfirmDateTime = useCallback(async () => {
-    if (!selectedHour) {
+    if (!deliveryUser || !deliveryUserMobile) {
       Alert.alert(
-        'Selecione data e horário para delivery/retirada:',
-        'Para prosseguir escolha data/hora para delivery/retirada.',
+        'Informe os dados do pedido:',
+        'Para prosseguir informe o nome e número do celular.',
       );
       setDeliveryDate(new Date());
 
       return;
     }
 
-    if (!deliveryUser || !deliveryUserMobile) {
+    if (!selectedHour) {
       Alert.alert(
-        'Informe os dados do pedido:',
-        'Para prosseguir informe o nome e número do celular.',
+        'Selecione data e horário para delivery/retirada:',
+        'Para prosseguir escolha data/hora para delivery/retirada.',
       );
       setDeliveryDate(new Date());
 
@@ -319,8 +350,7 @@ const DateTimeDelivery: React.FC = () => {
                 }}
                 value={deliveryUserMobile}
                 onChangeText={(userMobile: string) =>
-                  setDeliveryUserMobile(userMobile)
-                }
+                  setDeliveryUserMobile(userMobile)}
                 returnKeyType="done"
               />
             </DeliveryUserInputView>
@@ -362,9 +392,12 @@ const DateTimeDelivery: React.FC = () => {
             allowFontScaling={false}
             accessibilityLabel="Escolha o horário"
           >
-            Escolha o horário{' '}
+            Escolha o horário
+            <InfoHourText>
+              {'   '}
+              arraste para mais horários ➢
+            </InfoHourText>
           </HourLabelText>
-
           <Section>
             <SectionContent>
               {deliveryAvailability.map(

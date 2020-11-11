@@ -142,8 +142,15 @@ export const HourLabelText = styled.Text`
   font-size: 20px;
   color: #efc06e;
   font-family: 'RobotoSlab-Medium';
-  margin-left: 96px;
-  padding: 10px 10px 20px;
+  margin: 0 26px 5px;
+  padding: 10px;
+`;
+
+export const InfoHourText = styled.Text`
+  color: #999999;
+  font-family: 'RobotoSlab-Regular';
+  font-size: 10px;
+  font-weight: bold;
 `;
 
 export const Section = styled.View`

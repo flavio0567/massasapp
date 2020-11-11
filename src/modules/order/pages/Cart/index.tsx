@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { bindActionCreators } from 'redux';
 import {
   widthPercentageToDP as wp,
@@ -10,6 +10,7 @@ import { View, Alert } from 'react-native';
 import { ptBR } from 'date-fns/locale';
 import { format, parseISO, isValid } from 'date-fns';
 import Icon from 'react-native-vector-icons/Feather';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import api from '../../../../shared/service/api';
 import { useAuth } from '../../../../shared/hooks/auth';
@@ -87,6 +88,7 @@ const Cart: React.FC = ({
 }: any) => {
   const { reset, navigate } = navigation;
   const { user } = useAuth();
+  const [token, setToken] = useState<string | null>();
 
   const [loading, setLoading] = useState(false);
 
@@ -97,6 +99,16 @@ const Cart: React.FC = ({
   let deliveryDate;
 
   const delivery = isValid(parseISO(deliveryDateTime.deliveryDate));
+
+  useEffect(() => {
+    async function getToken(): Promise<void> {
+      const userToken = await AsyncStorage.getItem('@Massas:token');
+
+      setToken(userToken);
+    }
+
+    getToken();
+  }, []);
 
   if (delivery) {
     deliveryDate = format(
@@ -159,7 +171,7 @@ const Cart: React.FC = ({
           { text: 'Sim', onPress: () => removeAllCart() },
           {
             text: 'Não',
-            onPress: () => console.tron.log('canceled by the customer:', user),
+            onPress: () => console.log('canceled by the customer:', user),
           },
         ],
         { cancelable: false },
@@ -197,6 +209,7 @@ const Cart: React.FC = ({
         unit: item.unit,
         amount: item.amount,
         quantity: item.quantity,
+        product_name: item.name,
       };
     });
 
@@ -220,10 +233,10 @@ const Cart: React.FC = ({
       await api.post('orders/create', data);
 
       removeAllCart();
-    } catch {
+    } catch (err) {
       Alert.alert(
         'Erro ao finalizar o pedido!',
-        'Não foi possível finalizar o seu pedido, tente novamente.',
+        `Não foi possível finalizar o seu pedido, tente novamente.${err}`,
       );
     }
     setLoading(false);
