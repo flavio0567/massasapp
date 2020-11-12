@@ -142,7 +142,7 @@ export const HourLabelText = styled.Text`
   font-size: 20px;
   color: #efc06e;
   font-family: 'RobotoSlab-Medium';
-  margin: 0 26px 5px;
+  margin: 0 5px 5px;
   padding: 10px;
 `;
 
