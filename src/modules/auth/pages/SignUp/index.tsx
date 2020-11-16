@@ -1,6 +1,5 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 import {
   View,
@@ -28,11 +27,11 @@ import {
   RegisterButton,
   ReturnButton,
   ReturnButtonText,
-  CheckBoxAgreement,
-  Checkbox,
-  Agreement,
-  TextAgreement,
-  InputAgreement,
+  // CheckBoxAgreement,
+  // Checkbox,
+  // Agreement,
+  // TextAgreement,
+  // InputAgreement,
 } from './styles';
 
 interface SignInFormData {
@@ -51,7 +50,6 @@ const SignUp: React.FC = () => {
   const passwordConfirmInputRef = useRef<TextInput>(null);
   const mobileInputRef = useRef<TextInput>(null);
   const emailInputRef = useRef<TextInput>(null);
-  // const [isAgreed, setIsAgreed] = useState(false);
 
   const handleSignUp = useCallback(
     async (user: SignInFormData) => {
@@ -84,8 +82,6 @@ const SignUp: React.FC = () => {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
 
-          // console.log(errors);
-
           formRef.current?.setErrors(errors);
         }
 
@@ -110,11 +106,6 @@ const SignUp: React.FC = () => {
     },
     [navigate],
   );
-
-  // const toggleSwitch = useCallback(() => {
-  //   setIsAgreed((previousState) => !previousState);
-  //   // console.log(isAgreed);
-  // }, []);
 
   return (
     <>
@@ -210,19 +201,6 @@ const SignUp: React.FC = () => {
               >
                 E-mail Opcional
               </TextOptional>
-              {/* <InputAgreement
-                onValueChange={toggleSwitch}
-                value={isAgreed}
-                name="isAgreed"
-              />
-              <TextAgreement
-                allowFontScaling={false}
-                accessibilityLabel="Sim, concordo em receber mensagem de texto e/ou email sobre
-                  futuros eventos, ofertas e promoções"
-              >
-                Sim, concordo em receber mensagem de texto e/ou email sobre
-                futuros eventos, ofertas e promoções.
-              </TextAgreement> */}
 
               {/* <Agreement>
                 <CheckBoxAgreement

@@ -84,6 +84,13 @@ export const ProductText = styled.Text`
   font-family: 'RobotoSlab-Regular';
 `;
 
+export const PackingText = styled.Text`
+  margin: 20px 0 20px 20px;
+  color: #666;
+  font-size: 20px;
+  font-family: 'RobotoSlab-Regular';
+`;
+
 export const SelectionButton = styled.TouchableOpacity`
   padding: 5px;
   margin-top: 6px;
@@ -97,12 +104,30 @@ export const AddInformation = styled.Text`
 `;
 
 export const Agreement = styled.View`
-  flex-direction: row;
-
-  justify-content: center;
   align-items: center;
-  margin-top: 30px;
+  justify-content: center;
+
+  flex-direction: row;
+  margin-bottom: 5px;
 `;
+
+export const CheckBoxAgreement = styled.TouchableOpacity``;
+
+export const Checkbox = styled.Text`
+  height: 22px;
+  width: 22px;
+  border-radius: 4px;
+  border-width: 1px;
+  border-color: #666360;
+`;
+
+export const TextAgreement = styled.Text`
+  font-size: 16px;
+  color: #666;
+  margin: 15px;
+`;
+
+export const InputAgreement = styled.Switch``;
 
 export const ButtonContainer = styled.View`
   justify-content: center;

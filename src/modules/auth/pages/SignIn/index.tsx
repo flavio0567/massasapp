@@ -15,10 +15,9 @@ import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
 
 import { useNavigation } from '@react-navigation/native';
-import fbImg from '../../../assets/fb_logo.png';
 import Input from '../../../../shared/components/Input';
 import Button from '../../../../shared/components/Button';
-import api from '../../../../shared/service/api';
+// import api from '../../../../shared/service/api';
 
 import { useAuth } from '../../../../shared/hooks/auth';
 import getValidationErrors from '../../../../shared/utils/getValidationErrors';
@@ -26,10 +25,10 @@ import getValidationErrors from '../../../../shared/utils/getValidationErrors';
 import {
   Container,
   Title,
-  ForgotPasswordButton,
+  // ForgotPasswordButton,
   CreateAccountButton,
   CreateAccountButtonText,
-  GuestText,
+  // GuestText,
   Icon,
   ReturnButton,
   ReturnButtonText,
@@ -78,8 +77,6 @@ const SignIn: React.FC = () => {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
 
-          // console.log(errors);
-
           formRef.current?.setErrors(errors);
 
           if (!err.errors[0]) {
@@ -105,31 +102,31 @@ const SignIn: React.FC = () => {
     [signIn, reset],
   );
 
-  const forgotPassword = useCallback(async () => {
-    try {
-      if (!mobile) {
-        Alert.alert(
-          'Esqueci minha senha',
-          'Para recuperar a senha, informe o número do celular.',
-        );
-        return;
-      }
+  // const forgotPassword = useCallback(async () => {
+  //   try {
+  //     if (!mobile) {
+  //       Alert.alert(
+  //         'Esqueci minha senha',
+  //         'Para recuperar a senha, informe o número do celular.',
+  //       );
+  //       return;
+  //     }
 
-      await api.post('password/forgot', {
-        mobile,
-      });
+  //     await api.post('password/forgot', {
+  //       mobile,
+  //     });
 
-      Alert.alert(
-        'Esqueci minha senha',
-        'Uma memsagem para redefinir sua senha foi encaminhada para o seu endereço de e-mail. Confira sua caixa de entrada!',
-      );
-    } catch (err) {
-      Alert.alert(
-        'Esqueci minha senha',
-        `Não foi possível identificar um e-mail valido associado a este celular.${err}`,
-      );
-    }
-  }, []);
+  //     Alert.alert(
+  //       'Esqueci minha senha',
+  //       'Uma memsagem para redefinir sua senha foi encaminhada para o seu endereço de e-mail. Confira sua caixa de entrada!',
+  //     );
+  //   } catch (err) {
+  //     Alert.alert(
+  //       'Esqueci minha senha',
+  //       `Não foi possível identificar um e-mail valido associado a este celular.${err}`,
+  //     );
+  //   }
+  // }, [mobile]);
 
   return (
     <>

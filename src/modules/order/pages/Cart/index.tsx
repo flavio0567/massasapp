@@ -76,6 +76,7 @@ export interface Product {
   amount: number;
   unit: string;
   product_family: number;
+  packing: string;
 }
 
 const Cart: React.FC = ({
@@ -155,7 +156,6 @@ const Cart: React.FC = ({
         { text: 'Sim', onPress: () => removeFromCart(id) },
         {
           text: 'Não',
-          onPress: () => console.log('item deleted by customer:', id),
         },
       ],
       { cancelable: false },
@@ -171,7 +171,6 @@ const Cart: React.FC = ({
           { text: 'Sim', onPress: () => removeAllCart() },
           {
             text: 'Não',
-            onPress: () => console.log('canceled by the customer:', user),
           },
         ],
         { cancelable: false },
@@ -180,6 +179,7 @@ const Cart: React.FC = ({
   }
 
   const handleCreateOrder = useCallback(async () => {
+    setLoading(true);
     if (cart.length === 0) {
       Alert.alert(
         'Erro ao finalizar o pedido!',
@@ -210,6 +210,7 @@ const Cart: React.FC = ({
         amount: item.amount,
         quantity: item.quantity,
         product_name: item.name,
+        packing: item.packing,
       };
     });
 
@@ -558,7 +559,12 @@ const Cart: React.FC = ({
 
 const mapStateToProps = (state: any): CartProps => ({
   cart: state.cart.map(
-    (product: { sales_price: number; amount: number; quantity: number }) => ({
+    (product: {
+      sales_price: number;
+      amount: number;
+      quantity: number;
+      packing: string;
+    }) => ({
       ...product,
       subTotal: formatPrice(product.sales_price * product.quantity),
     }),

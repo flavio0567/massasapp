@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
@@ -6,6 +6,7 @@ import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Badge } from 'react-native-elements';
 import { View, StatusBar, Alert } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
+import Icon from 'react-native-vector-icons/Feather';
 
 import { formatPrice } from '../../../../util/format';
 
@@ -27,6 +28,10 @@ import {
   ProductPriceView,
   ProductLabelText,
   ProductText,
+  Agreement,
+  CheckBoxAgreement,
+  TextAgreement,
+  Checkbox,
   SelectionButton,
   LineSeparator,
   AddInformation,
@@ -42,6 +47,8 @@ interface Product {
   sales_price: any;
   amount: number;
   product_family: number;
+  category: number;
+  sub_category: number;
   quantity: number;
   unit: string;
 }
@@ -54,12 +61,13 @@ const ProductDetails: React.FC = ({
   updateQuantityRequest,
 }: any) => {
   const { navigate } = navigation;
+  const { code, caller } = route.params;
   const [userToken, setUserToken] = useState<string | null>();
   const [product, setProduct] = useState<Product>();
-
-  const { code, caller } = route.params;
-
   const [quantity, setQuantity] = useState<number>(0);
+  const [isCheckedOven, setIsCheckedOven] = useState<boolean>(true);
+  const [isCheckedMicrowave, setIsCheckedMicrowave] = useState<boolean>(false);
+  const [packing, setPacking] = useState<string>('Forno');
 
   useEffect(() => {
     async function getToken(): Promise<void> {
@@ -126,7 +134,15 @@ const ProductDetails: React.FC = ({
       return;
     }
 
-    addToCartRequest(id, quantity);
+    if (
+      product?.product_family === 1 &&
+      product.category === 6 &&
+      product.sub_category !== 1
+    ) {
+      addToCartRequest(id, quantity, packing);
+    } else {
+      addToCartRequest(id, quantity, '');
+    }
 
     navigate('Order');
   }
@@ -251,6 +267,57 @@ const ProductDetails: React.FC = ({
             {formatPrice(product?.sales_price)}
           </ProductText>
         </ProductPriceView>
+
+        {product?.product_family === 1 &&
+          product.category === 6 &&
+          product.sub_category !== 1 && (
+            <Agreement>
+              <CheckBoxAgreement
+                accessibilityTraits="button"
+                onPress={() => {
+                  setIsCheckedOven(!isCheckedOven);
+                  setIsCheckedMicrowave(!isCheckedMicrowave);
+                  setPacking('Forno');
+                }}
+              >
+                <Checkbox accessibilityTraits="selected">
+                  {isCheckedOven ? (
+                    <Icon name="check" size={20} color="#FF9000" />
+                  ) : (
+                    <Icon name="check" size={20} color="#F0F0F0F0" />
+                  )}
+                </Checkbox>
+              </CheckBoxAgreement>
+              <TextAgreement
+                allowFontScaling={false}
+                accessibilityLabel="Forno"
+              >
+                Forno
+              </TextAgreement>
+              <CheckBoxAgreement
+                accessibilityTraits="button"
+                onPress={() => {
+                  setIsCheckedOven(!isCheckedOven);
+                  setIsCheckedMicrowave(!isCheckedMicrowave);
+                  setPacking('Micro-ondas');
+                }}
+              >
+                <Checkbox accessibilityTraits="selected">
+                  {isCheckedMicrowave ? (
+                    <Icon name="check" size={20} color="#FF9000" />
+                  ) : (
+                    <Icon name="check" size={20} color="#F0F0F0F0" />
+                  )}
+                </Checkbox>
+              </CheckBoxAgreement>
+              <TextAgreement
+                allowFontScaling={false}
+                accessibilityLabel="Micro-ondas"
+              >
+                Microondas
+              </TextAgreement>
+            </Agreement>
+          )}
 
         <LineSeparator />
 

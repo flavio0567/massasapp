@@ -5,7 +5,7 @@ import api from '../../../shared/service/api';
 
 import { addToCartSuccess, updateQuantitySuccess } from './actions';
 
-function* addToCart({ id, quantity }: any): SagaIterator {
+function* addToCart({ id, quantity, packing }: any): SagaIterator {
   const productExists = yield select((state) =>
     state.cart.find((p: any) => p.id === id),
   );
@@ -35,6 +35,7 @@ function* addToCart({ id, quantity }: any): SagaIterator {
       ...response.data,
       sales_price: Number(response.data.sales_price),
       quantity,
+      packing,
     };
     yield put(addToCartSuccess(data));
   }

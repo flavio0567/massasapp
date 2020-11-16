@@ -42,11 +42,7 @@ const AuthProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     async function clearAll(): Promise<void> {
-      await AsyncStorage.multiRemove([
-        '@Massas:token',
-        '@Massas:user',
-        '@Massas:mobile',
-      ]);
+      await AsyncStorage.multiRemove(['@Massas:token', '@Massas:user']);
     }
 
     clearAll();
@@ -57,6 +53,8 @@ const AuthProvider: React.FC = ({ children }) => {
       const [token, user] = await AsyncStorage.multiGet([
         '@Massas:token',
         '@Massas:user',
+        '@Massas:mobile,',
+        '@Massas:password',
       ]);
 
       if (token[1] && user[1]) {
@@ -82,6 +80,8 @@ const AuthProvider: React.FC = ({ children }) => {
     await AsyncStorage.multiSet([
       ['@Massas:token', token],
       ['@Massas:user', JSON.stringify(user)],
+      ['@Massas:mobile', mobile],
+      ['@Massas:password', password],
     ]);
 
     api.defaults.headers.authorization = `Bearer ${token}`;
@@ -90,7 +90,8 @@ const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   const signOut = useCallback(async () => {
-    await AsyncStorage.multiRemove(['@Massas:token', '@Massas:user']);
+    // await AsyncStorage.multiRemove(['@Massas:token', '@Massas:user']);
+    await AsyncStorage.multiRemove(['@Massas:token']);
 
     setData({} as AuthState);
   }, []);
