@@ -80,25 +80,11 @@ export default function getHoliday(date: string): any {
     descricao: 'Natal',
   });
 
-  const retorno = feriados.map((n: string, i: number) => {
-    // result.append(`${feriados[key].data} - ${feriados[key].descricao}</br>`);
-    if (n.data === consultar) {
-      console.log(n);
-      return n;
-    }
-  });
-
-  // console.log(retorno);
-  // const retorno = feriados.map((n, i) => {
-  //   return n.data === consultar;
+  // const retorno = feriados.map((n: string, i: number) => {
+  //   if (n.data === consultar) {
+  //     return n;
+  //   }
   // });
 
-  // if (retorno.length) {
-  // $('body').append(
-  //   `<br><b>${consultar} é feriado de ${retorno[0].descricao}</b>`,
-  // );
-  // } else {
-  // $('body').append(`<br><em>${consultar} não é feriado</em>`);
-  // }
   return feriados;
 }

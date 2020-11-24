@@ -153,8 +153,6 @@ const DateTimeDelivery: React.FC = () => {
       return result;
     });
 
-    // console.log(isHoliday);
-
     if (weekDay) {
       if (isHoliday[Number(format(deliveryDate, 'MM')) - 1]) {
         startHour = '00:00';
@@ -371,7 +369,8 @@ const DateTimeDelivery: React.FC = () => {
                 }}
                 value={deliveryUserMobile}
                 onChangeText={(userMobile: string) =>
-                  setDeliveryUserMobile(userMobile)}
+                  setDeliveryUserMobile(userMobile)
+                }
                 returnKeyType="done"
               />
             </DeliveryUserInputView>
