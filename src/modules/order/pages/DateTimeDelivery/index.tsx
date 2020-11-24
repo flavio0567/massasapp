@@ -22,6 +22,7 @@ import Icon from 'react-native-vector-icons/Feather';
 
 import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
+import getHolidays from '../../../../shared/utils/getHolidays';
 
 import { useAuth } from '../../../../shared/hooks/auth';
 
@@ -61,7 +62,7 @@ import {
 
 const DateTimeDelivery: React.FC = () => {
   const { reset, navigate, goBack } = useNavigation();
-  const [token, setToken] = useState<string | null>();
+  // const [token, setToken] = useState<string | null>();
 
   const formRef = useRef<FormHandles>(null);
 
@@ -140,16 +141,36 @@ const DateTimeDelivery: React.FC = () => {
     let endHour = String('');
     let available = true;
 
+    const holidays = getHolidays(format(deliveryDate, 'dd/MM/yyyy'));
+
+    let result;
+    const isHoliday = holidays.map((date: string, i: number) => {
+      if (date.data === format(deliveryDate, 'dd/MM/yyyy')) {
+        result = date;
+      } else {
+        result = false;
+      }
+      return result;
+    });
+
+    // console.log(isHoliday);
+
     if (weekDay) {
-      if (weekDay === 'sábado') {
+      if (isHoliday[Number(format(deliveryDate, 'MM')) - 1]) {
+        startHour = '00:00';
+        endHour = '00:00';
+      } else if (weekDay === 'sábado') {
         startHour = '08:00';
-        endHour = '16:30';
+        endHour = '15:00';
       } else if (weekDay === 'domingo') {
         startHour = '08:00';
-        endHour = '12:30';
+        endHour = '12:00';
+      } else if (weekDay === 'segunda') {
+        startHour = '00:00';
+        endHour = '00:00';
       } else {
         startHour = '09:00';
-        endHour = '18:00';
+        endHour = '17:00';
       }
     }
 
