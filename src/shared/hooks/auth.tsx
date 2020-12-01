@@ -42,7 +42,12 @@ const AuthProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     async function clearAll(): Promise<void> {
-      await AsyncStorage.multiRemove(['@Massas:token', '@Massas:user']);
+      await AsyncStorage.multiRemove([
+        '@Massas:token',
+        '@Massas:user',
+        // '@Massas:mobile,',
+        // '@Massas:password',
+      ]);
     }
 
     clearAll();

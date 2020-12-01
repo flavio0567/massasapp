@@ -32,7 +32,7 @@ export const Title = styled.Text`
   font-size: 24px;
   color: #999;
   font-family: 'RobotoSlab-Medium';
-  padding: 40px;
+  padding: 30px;
 `;
 
 export const Image = styled.Image`
@@ -86,8 +86,7 @@ export const ReturnButton = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
 
-  top: 20px;
-  margin: 10px;
+  top: 14px;
 `;
 
 export const ReturnButtonText = styled.Text`

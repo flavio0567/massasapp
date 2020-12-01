@@ -34,7 +34,6 @@ export const CartIcon = styled(Icon)`
 export const QuantityView = styled.View`
   flex-direction: row;
   width: 80px;
-  margin-bottom: 10px;
 `;
 
 export const AddRemoveButton = styled(RectButton)`
@@ -70,7 +69,7 @@ export const ProductPriceView = styled.View`
 `;
 
 export const ProductLabelText = styled.Text`
-  margin: 18px 20px;
+  margin: 8px 10px;
   color: #ff9000;
   font-size: 14px;
   width: 130px;
@@ -78,14 +77,7 @@ export const ProductLabelText = styled.Text`
 `;
 
 export const ProductText = styled.Text`
-  margin: 20px 0 20px 20px;
-  color: #666;
-  font-size: 20px;
-  font-family: 'RobotoSlab-Regular';
-`;
-
-export const PackingText = styled.Text`
-  margin: 20px 0 20px 20px;
+  margin: 10px 0 10px 10px;
   color: #666;
   font-size: 20px;
   font-family: 'RobotoSlab-Regular';
@@ -155,6 +147,7 @@ export const ButtonText = styled.Text`
 
 export const LineSeparator = styled.View`
   width: 100%;
-  border: 20px;
-  border-color: #dcdcdc;
+  border: 2px;
+  opacity: 0.4;
+  border-color: #ff9000;
 `;

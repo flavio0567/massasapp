@@ -151,7 +151,7 @@ const SignUp: React.FC = () => {
                 keyboardType="phone-pad"
                 name="mobile"
                 icon="phone"
-                placeholder="Número do celular com DDD"
+                placeholder="Celular: (99) 9999-9999"
                 returnKeyType="next"
                 onSubmitEditing={() => {
                   passwordInputRef.current?.focus;
@@ -162,7 +162,7 @@ const SignUp: React.FC = () => {
                 ref={passwordInputRef}
                 name="password"
                 icon="lock"
-                placeholder="Senha com 6 dígitos"
+                placeholder="Senha: mínimo 6 dígitos"
                 secureTextEntry
                 returnKeyType="next"
                 onSubmitEditing={() => {

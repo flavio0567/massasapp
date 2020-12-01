@@ -16,7 +16,7 @@ export const ButtonContainer = styled.View`
   align-self: flex-end;
 
   margin-top: ${Platform.OS === 'ios' ? 0 : -40}px;
-  top: ${hp('80%')}px;
+  top: ${hp('75%')}px;
 `;
 
 export const ButtonSelection = styled.TouchableOpacity`
@@ -34,8 +34,9 @@ export const ButtonSelection = styled.TouchableOpacity`
 
 export const ButtonText = styled.Text`
   font-family: 'RobotoSlab-Medium';
-  color: #fd9e63;
-  font-size: 18px;
+  /* color: #fd9e63; */
+  color: #ff9000;
+  font-size: 22px;
 `;
 
 export const GuestSelection = styled.TouchableOpacity`
@@ -43,7 +44,7 @@ export const GuestSelection = styled.TouchableOpacity`
   left: 0;
   bottom: 0;
   right: 0;
-  padding: 10px 0 ${20 + getBottomSpace()}px;
+  padding: 10px 0 ${44 + getBottomSpace()}px;
 
   justify-content: center;
   flex-direction: row;
@@ -53,7 +54,7 @@ export const GuestSelection = styled.TouchableOpacity`
 export const GuestText = styled.Text`
   font-family: 'RobotoSlab-Medium';
   color: #fd9e63;
-  font-size: 16px;
+  font-size: 18px;
 `;
 
 export const Icon = styled(FeatherIcon)`

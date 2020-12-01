@@ -7,6 +7,7 @@ import {
   Platform,
   TextInput,
   Alert,
+  Text,
 } from 'react-native';
 
 import * as Yup from 'yup';
@@ -166,14 +167,23 @@ const SignIn: React.FC = () => {
                 keyboardType="phone-pad"
                 name="mobile"
                 icon="phone"
-                placeholder="Número do celular"
+                placeholder="Celular: (99) 9999-9999"
                 returnKeyType="next"
                 autoFocus
                 onSubmitEditing={() => {
                   passwordInputRef.current?.focus;
                 }}
               />
-
+              <Text
+                style={{
+                  fontSize: 12,
+                  opacity: 0.4,
+                  marginLeft: 10,
+                  marginBottom: 14,
+                }}
+              >
+                Digite apenas os números
+              </Text>
               <Input
                 ref={passwordInputRef}
                 name="password"
@@ -185,6 +195,7 @@ const SignIn: React.FC = () => {
                   formRef.current?.submitForm();
                 }}
               />
+              <Text>{'\n'}</Text>
               <Button
                 accessibilityLabel="Entrar"
                 onPress={() => {

@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 import { Badge } from 'react-native-elements';
-import { View, StatusBar, Alert } from 'react-native';
+import { View, StatusBar, Alert, ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/Feather';
 
@@ -205,7 +205,7 @@ const ProductDetails: React.FC = ({
           </SelectionButton>
         </Header>
       </View>
-      <View>
+      <ScrollView>
         <ProductText allowFontScaling={false} accessibilityLabel="Produto">
           {product?.name}
         </ProductText>
@@ -337,7 +337,7 @@ const ProductDetails: React.FC = ({
           O valor abaixo pode variar de acordo com o peso final do produto na
           embalagem.
         </AddInformation>
-      </View>
+      </ScrollView>
 
       <ButtonContainer>
         <ButtonSelection onPress={() => handleAddProduct(product?.id)}>
