@@ -53,7 +53,7 @@ export default function getHoliday(date: string): any {
   });
   feriados.push({
     data: moment(pascoa).add(60, 'days').format('DD/MM/YYYY'),
-    descricao: 'Corpus Cirist',
+    descricao: 'Corpus Crist',
   });
   feriados.push({
     data: moment(`${ano}0421`).format('DD/MM/YYYY'),

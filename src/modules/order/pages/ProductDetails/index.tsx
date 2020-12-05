@@ -51,6 +51,7 @@ interface Product {
   sub_category: number;
   quantity: number;
   unit: string;
+  exception: number;
 }
 
 const ProductDetails: React.FC = ({
@@ -320,6 +321,16 @@ const ProductDetails: React.FC = ({
           )}
 
         <LineSeparator />
+
+        {product?.exception ? (
+          <AddInformation
+            allowFontScaling={false}
+            accessibilityLabel="Produto disponível apenas aos finais de semana e/ou feriados."
+            style={{ color: 'red' }}
+          >
+            Produto disponível apenas aos finais de semana e/ou feriados.
+          </AddInformation>
+        ) : null}
 
         <AddInformation
           allowFontScaling={false}
