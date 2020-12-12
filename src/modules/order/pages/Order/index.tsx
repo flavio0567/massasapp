@@ -28,7 +28,6 @@ export interface Product {
   name: string;
   product_family: number;
   avatar_url: any;
-  // avatar_url: HTMLImageElement;
 }
 
 const Order: React.FC = ({ cartSize }: any) => {
@@ -102,7 +101,8 @@ const Order: React.FC = ({ cartSize }: any) => {
           renderItem={({ item: familyProduct }) => (
             <ProductContainer
               onPress={() =>
-                navigateToMenu(familyProduct.product_family, familyProduct.name)}
+                navigateToMenu(familyProduct.product_family, familyProduct.name)
+              }
             >
               {familyProduct.avatar_url ? (
                 <ProductImage source={{ uri: `${familyProduct.avatar_url}` }} />

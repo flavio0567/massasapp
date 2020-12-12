@@ -133,7 +133,9 @@ const Cart: React.FC = ({
   }
 
   function increment(product: Product): void {
-    if (product?.product_family === 1 || product?.product_family === 3) {
+    if (product?.product_family === 1) {
+      updateQuantityRequest(product.id, product.quantity + 0.5);
+    } else if (product?.product_family === 3) {
       updateQuantityRequest(product.id, product.quantity + 0.25);
     } else {
       updateQuantityRequest(product.id, product.quantity + 1);
@@ -141,7 +143,9 @@ const Cart: React.FC = ({
   }
 
   function decrement(product: Product): void {
-    if (product?.product_family === 1 || product?.product_family === 3) {
+    if (product?.product_family === 1) {
+      updateQuantityRequest(product.id, product.quantity - 0.5);
+    } else if (product?.product_family === 3) {
       updateQuantityRequest(product.id, product.quantity - 0.25);
     } else {
       updateQuantityRequest(product.id, product.quantity - 1);
