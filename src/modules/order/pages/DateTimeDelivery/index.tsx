@@ -1,4 +1,3 @@
-/* eslint-disable import/no-duplicates */
 import React, {
   useState,
   useCallback,
@@ -152,7 +151,6 @@ const DateTimeDelivery: React.FC = () => {
       }
       return result;
     });
-
     if (weekDay) {
       if (isHoliday[Number(format(deliveryDate, 'MM')) - 1]) {
         startHour = '00:00';
@@ -164,6 +162,12 @@ const DateTimeDelivery: React.FC = () => {
         startHour = '08:00';
         endHour = '12:00';
       } else if (weekDay === 'segunda') {
+        startHour = '00:00';
+        endHour = '00:00';
+      } else if (format(deliveryDate, 'dd/MM') === '23/12') {
+        startHour = '00:00';
+        endHour = '00:00';
+      } else if (format(deliveryDate, 'dd/MM') === '24/12') {
         startHour = '00:00';
         endHour = '00:00';
       } else {

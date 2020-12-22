@@ -119,8 +119,6 @@ export const TextAgreement = styled.Text`
   margin: 15px;
 `;
 
-export const InputAgreement = styled.Switch``;
-
 export const ButtonContainer = styled.View`
   justify-content: center;
   align-items: center;
