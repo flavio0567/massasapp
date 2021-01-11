@@ -58,6 +58,11 @@ import {
   DeliveryTextInfo,
   DeliveryLabelView,
   LocalizationText,
+  PaymentMethod,
+  CheckBoxAgreement,
+  Checkbox,
+  TextPaymentMethod,
+  PaymentMethodDisclaimer,
 } from './styles';
 
 interface CartProps {
@@ -89,6 +94,8 @@ const Cart: React.FC = ({
 }: any) => {
   const { reset, navigate } = navigation;
   const { user } = useAuth();
+  const [isCreditCard, setIsCreditCard] = useState<boolean>(false);
+  const [isCash, setIsCash] = useState<boolean>(true);
   const [token, setToken] = useState<string | null>();
 
   const [loading, setLoading] = useState(false);
@@ -220,6 +227,14 @@ const Cart: React.FC = ({
 
     const orderTotalNum = parseFloat(order_total);
 
+    let payment_method;
+
+    if (isCash) {
+      payment_method = 2;
+    } else {
+      payment_method = 1;
+    }
+
     const data = {
       name: user.name,
       mobile: String(user.mobile)
@@ -232,6 +247,7 @@ const Cart: React.FC = ({
       isOrderDelivering,
       deliveryDateTime,
       deliveryLocalization,
+      payment_method,
     };
 
     try {
@@ -258,6 +274,7 @@ const Cart: React.FC = ({
     deliveryLocalization,
     order_total,
     removeAllCart,
+    isCash,
   ]);
 
   return (
@@ -443,6 +460,80 @@ const Cart: React.FC = ({
           ) : null}
         </DeliveryDateTimeInfo>
 
+        <ItemSeparator />
+
+        <PaymentMethod>
+          <DeliveryLabelText
+            allowFontScaling={false}
+            accessibilityLabel="Forno"
+          >
+            Forma de pagamento:
+          </DeliveryLabelText>
+          <CheckBoxAgreement
+            accessibilityTraits="button"
+            onPress={() => {
+              setIsCash(!isCash);
+              setIsCreditCard(!isCreditCard);
+            }}
+          >
+            <Checkbox accessibilityTraits="selected">
+              {isCash ? (
+                <Icon name="check" size={20} color="#FF9000" />
+              ) : (
+                <Icon name="check" size={20} color="#fff5e6" />
+              )}
+            </Checkbox>
+          </CheckBoxAgreement>
+          <TextPaymentMethod
+            allowFontScaling={false}
+            accessibilityLabel="Cartao"
+          >
+            Cartão
+          </TextPaymentMethod>
+          <CheckBoxAgreement
+            accessibilityTraits="button"
+            onPress={() => {
+              setIsCash(!isCash);
+              setIsCreditCard(!isCreditCard);
+            }}
+          >
+            <Checkbox accessibilityTraits="selected">
+              {isCreditCard ? (
+                <Icon name="check" size={20} color="#FF9000" />
+              ) : (
+                <Icon name="check" size={20} color="#fff5e6" />
+              )}
+            </Checkbox>
+          </CheckBoxAgreement>
+          <TextPaymentMethod
+            allowFontScaling={false}
+            accessibilityLabel="Dinheiro"
+          >
+            Dinheiro
+          </TextPaymentMethod>
+        </PaymentMethod>
+        <PaymentMethodDisclaimer>
+          O pagamento será realizado na retirada/entrega
+        </PaymentMethodDisclaimer>
+        {/* <PaymentMethod>
+          <DeliveryTextInfo>
+            A forma de pagamento será Dinheiro?
+          </DeliveryTextInfo>
+          <CheckBoxAgreement
+            accessibilityTraits="button"
+            onPress={() => {
+              setIsCash(!isCash);
+            }}
+          >
+            <Checkbox accessibilityTraits="selected">
+              {isCash ? (
+                <Icon name="check" size={20} color="#FF9000" />
+              ) : (
+                <Icon name="check" size={20} color="#fff5e6" />
+              )}
+            </Checkbox>
+          </CheckBoxAgreement>
+        </PaymentMethod> */}
         <ItemSeparator />
 
         <ButtonContainer>

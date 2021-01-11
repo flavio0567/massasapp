@@ -55,7 +55,7 @@ export const LineSeparator = styled.View`
 `;
 
 export const ItemSeparator = styled.View`
-  border: 0.7px;
+  border: 0.5px;
   border-color: #dcdcdc;
 `;
 
@@ -88,7 +88,7 @@ export const Delivery = styled.View`
 
 export const UserText = styled.Text`
   flex-flow: row wrap;
-  margin: 10px 10px 0px;
+  /* margin: 10px 10px 0px; */
   color: #3f3f3f;
   font-size: 14px;
   font-family: 'RobotoSlab-Regular';
@@ -127,7 +127,7 @@ export const ProductText = styled.Text`
 `;
 
 export const DeliveryLabelText = styled.Text`
-  margin: 12px 10px 0;
+  margin-left: 22px;
   color: #ff9000;
   font-size: 12px;
   font-family: 'RobotoSlab-Regular';
@@ -255,4 +255,42 @@ export const ButtonTextValue = styled.Text`
   margin-left: ${wp('24%')}px;
   width: ${wp('60%')}px;
   padding-bottom: 5px;
+`;
+
+// export const PaymentMethod = styled.View`
+//   flex-direction: row;
+//   align-items: center;
+// `;
+
+export const PaymentMethod = styled.View`
+  /* align-items: center;
+  justify-content: center; */
+
+  flex-direction: row;
+  /* margin-bottom: 5px; */
+`;
+
+export const CheckBoxAgreement = styled.TouchableOpacity`
+  margin: 8px;
+`;
+
+export const Checkbox = styled.Text`
+  height: 22px;
+  width: 22px;
+  border-radius: 4px;
+  border-width: 1px;
+  border-color: #666360;
+`;
+
+export const TextPaymentMethod = styled.Text`
+  font-size: 14px;
+  color: #666;
+  margin-top: 11px;
+`;
+
+export const PaymentMethodDisclaimer = styled.Text`
+  font-size: 10px;
+  font-family: 'RobotoSlab-Medium';
+  color: #999;
+  margin: 0 32px 10px;
 `;
