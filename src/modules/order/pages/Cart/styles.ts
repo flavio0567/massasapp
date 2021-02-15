@@ -199,9 +199,11 @@ export const DeleteIcon = styled(Icon)`
 export const DeleteButton = styled(RectButton)``;
 
 export const AddInformation = styled.Text`
+  margin: 2px 72px;
+  color: #666;
   font-size: 12px;
+  font-family: 'RobotoSlab-Regular';
 `;
-
 export const SubTotalView = styled.View`
   justify-content: center;
   align-items: center;
@@ -235,8 +237,8 @@ export const ButtonContainer = styled.View`
 export const ButtonSelection = styled(RectButton)`
   background: #fd9e63;
   border-radius: 6px;
-  margin-left: ${wp('14%')}px;
-  width: ${wp('70%')}px;
+  margin-left: ${wp('10%')}px;
+  width: ${wp('78%')}px;
 `;
 
 export const ButtonText = styled.Text`
@@ -254,20 +256,11 @@ export const ButtonTextValue = styled.Text`
   font-size: 16px;
   margin-left: ${wp('24%')}px;
   width: ${wp('60%')}px;
-  padding-bottom: 5px;
+  padding-bottom: 2px;
 `;
 
-// export const PaymentMethod = styled.View`
-//   flex-direction: row;
-//   align-items: center;
-// `;
-
 export const PaymentMethod = styled.View`
-  /* align-items: center;
-  justify-content: center; */
-
   flex-direction: row;
-  /* margin-bottom: 5px; */
 `;
 
 export const CheckBoxAgreement = styled.TouchableOpacity`

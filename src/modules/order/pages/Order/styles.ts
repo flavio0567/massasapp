@@ -52,13 +52,12 @@ export const ProductContainer = styled(RectButton)`
   height: 164px;
   background: #ffcc50;
   margin: 4px;
-  border-radius: 6px;
   border: 0.5px solid #ffcc50;
 `;
 
 export const ProductImage = styled.Image`
   width: 100%;
-  height: 64%;
+  height: 68%;
 `;
 
 export const FamilyProductText = styled.Text`
@@ -67,5 +66,5 @@ export const FamilyProductText = styled.Text`
   width: ${wp('50%')}px;
   color: #fff;
   font-family: 'RobotoSlab-Regular';
-  margin: ${hp('1%')}px 6px;
+  padding-left: 12px;
 `;

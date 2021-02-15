@@ -72,7 +72,6 @@ const SignIn: React.FC = () => {
           mobile: data.mobile,
           password: data.password,
         });
-
         reset({ index: 0, routes: [{ name: 'Home' }] });
       } catch (err) {
         if (err instanceof Yup.ValidationError) {

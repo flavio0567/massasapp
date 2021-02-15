@@ -40,7 +40,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>RobotoSlab-Regular_Medium.ttf</string>

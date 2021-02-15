@@ -11,7 +11,7 @@
     "build:ios": "react-native bundle --entry-file='index.js' --bundle-output='./ios/main.jsbundle' --dev=false --platform='ios'"
   },
   "dependencies": {
-    "@react-native-community/async-storage": "^1.11.0",
+    "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/datetimepicker": "^2.6.0",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/bottom-tabs": "^5.7.2",
@@ -29,9 +29,10 @@
     "react-native": "0.62.2",
     "react-native-dotenv": "^2.2.0",
     "react-native-elements": "^2.0.2",
-    "react-native-gesture-handler": "^1.8.0",
+    "react-native-gesture-handler": "^1.9.0",
     "react-native-iphone-x-helper": "^1.2.1",
     "react-native-masked-text": "^1.13.0",
+    "react-native-nested-listview": "^0.9.1",
     "react-native-reanimated": "^1.9.0",
     "react-native-responsive-screen": "^1.4.1",
     "react-native-safe-area-context": "^3.1.8",

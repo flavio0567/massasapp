@@ -63,6 +63,7 @@ import {
   Checkbox,
   TextPaymentMethod,
   PaymentMethodDisclaimer,
+  AddInformation,
 } from './styles';
 
 interface CartProps {
@@ -512,28 +513,13 @@ const Cart: React.FC = ({
             Dinheiro
           </TextPaymentMethod>
         </PaymentMethod>
-        <PaymentMethodDisclaimer>
+        <PaymentMethodDisclaimer
+          allowFontScaling={false}
+          accessibilityLabel="O pagamento será realizado na retirada/entrega"
+        >
           O pagamento será realizado na retirada/entrega
         </PaymentMethodDisclaimer>
-        {/* <PaymentMethod>
-          <DeliveryTextInfo>
-            A forma de pagamento será Dinheiro?
-          </DeliveryTextInfo>
-          <CheckBoxAgreement
-            accessibilityTraits="button"
-            onPress={() => {
-              setIsCash(!isCash);
-            }}
-          >
-            <Checkbox accessibilityTraits="selected">
-              {isCash ? (
-                <Icon name="check" size={20} color="#FF9000" />
-              ) : (
-                <Icon name="check" size={20} color="#fff5e6" />
-              )}
-            </Checkbox>
-          </CheckBoxAgreement>
-        </PaymentMethod> */}
+
         <ItemSeparator />
 
         <ButtonContainer>
@@ -553,6 +539,16 @@ const Cart: React.FC = ({
             </ButtonTextValue>
           </ButtonSelection>
         </ButtonContainer>
+
+        <PaymentMethodDisclaimer
+          style={{ paddingLeft: 30, width: 310 }}
+          allowFontScaling={false}
+          accessibilityLabel="Valor estimado do pedido. O valor final será calculado de acordo com o
+          peso final dos produtos na embalagem"
+        >
+          Valor estimado do pedido. O valor final será calculado de acordo com o
+          peso final dos produtos na embalagem
+        </PaymentMethodDisclaimer>
 
         <LineSeparator>
           <ProductLabelText

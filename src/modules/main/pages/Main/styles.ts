@@ -31,7 +31,6 @@ export const ButtonContainer = styled.View`
   bottom: 0;
   right: 0;
   padding: 10px 0 ${60 + getBottomSpace()}px;
-
   justify-content: center;
   align-items: center;
 `;
@@ -42,7 +41,6 @@ export const ButtonSelection = styled(RectButton)`
   background: #fd9e63;
   border-radius: 6px;
   margin: 10px;
-
   justify-content: center;
   align-items: center;
 `;
@@ -59,7 +57,6 @@ export const GuestSelection = styled.TouchableOpacity`
   bottom: 0;
   right: 0;
   padding: 10px 0 ${10 + getBottomSpace()}px;
-
   justify-content: center;
   flex-direction: row;
   align-items: center;

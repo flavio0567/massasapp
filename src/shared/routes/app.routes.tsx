@@ -18,6 +18,7 @@ import Products from '../../modules/order/pages/Products';
 import ProductDetails from '../../modules/order/pages/ProductDetails';
 import Cart from '../../modules/order/pages/Cart';
 import Success from '../../modules/order/pages/Success';
+import More from '../../modules/main/pages/More';
 
 const Stack = createStackNavigator();
 
@@ -162,6 +163,21 @@ const AppRoutes: React.FC = () => {
               />
             ),
             // tabBarBadge: 3,
+          }}
+        />
+        <Tab.Screen
+          name="More"
+          component={More}
+          options={{
+            tabBarLabel: 'Mais',
+            tabBarIcon: ({ color }) => (
+              <Icon
+                name="more-horizontal"
+                color={color}
+                size={22}
+                style={{ padding: 8 }}
+              />
+            ),
           }}
         />
       </Tab.Navigator>

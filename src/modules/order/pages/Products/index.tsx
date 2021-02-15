@@ -14,7 +14,7 @@ import {
   Container,
   Header,
   ChevronIcon,
-  StartusBarText,
+  StatusBarText,
   CartIcon,
   SelectionButton,
   SectionSeparator,
@@ -91,9 +91,9 @@ const Products: React.FC = ({ navigation, route, cartSize }: any) => {
             backgroundColor="#FD9E63"
             barStyle="light-content"
           />
-          <StartusBarText allowFontScaling={false}>
+          <StatusBarText allowFontScaling={false}>
             Selecione um produto
-          </StartusBarText>
+          </StatusBarText>
           <SelectionButton
             onPress={() => navigate('Cart', { caller: 'Products' })}
           >

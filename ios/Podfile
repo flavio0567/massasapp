@@ -80,16 +80,12 @@ target 'massasdacecilia' do
 
   # pod 'react-native-bem-check-box', :path => '../node_modules/react-native-bem-check-box'
 
-
-
-
-
   target 'massasdaceciliaTests' do
     inherit! :complete
     # Pods for testing
   end
 
-  # use_native_modules!
+  use_native_modules!
 
   # Enables Flipper.
   #

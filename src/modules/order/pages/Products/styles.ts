@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/Feather';
 
-export const StartusBarText = styled.Text`
+export const StatusBarText = styled.Text`
   font-size: 18px;
   font-family: 'RobotoSlab-Regular';
   color: #fff;

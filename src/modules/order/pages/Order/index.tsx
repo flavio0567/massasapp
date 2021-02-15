@@ -100,16 +100,34 @@ const Order: React.FC = ({ cartSize }: any) => {
           keyExtractor={(item) => `key${item.id}`}
           renderItem={({ item: familyProduct }) => (
             <ProductContainer
+              style={{
+                borderRadius: 8,
+                shadowOpacity: 0.55,
+                shadowColor: '#000',
+                shadowOffset: {
+                  width: 0,
+                  height: 2,
+                },
+                shadowRadius: 3.84,
+                elevation: 5,
+                alignItems: 'center',
+              }}
               onPress={() =>
                 navigateToMenu(familyProduct.product_family, familyProduct.name)
               }
             >
               {familyProduct.avatar_url ? (
-                <ProductImage source={{ uri: `${familyProduct.avatar_url}` }} />
+                <ProductImage
+                  style={{ borderTopLeftRadius: 6, borderTopRightRadius: 6 }}
+                  source={{ uri: `${familyProduct.avatar_url}` }}
+                />
               ) : (
                 <ProductImage source={ImgLogo} />
               )}
-              <FamilyProductText allowFontScaling={false}>
+              <FamilyProductText
+                allowFontScaling={false}
+                accessibilityLabel="Nome do produto"
+              >
                 {familyProduct.name}
               </FamilyProductText>
             </ProductContainer>
